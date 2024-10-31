@@ -9,6 +9,7 @@ export default function App({ Component, pageProps, router }) {
   return (
     <div className="main">
       <Head>
+        <title>PaYard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/favicon.png" />
       </Head>
