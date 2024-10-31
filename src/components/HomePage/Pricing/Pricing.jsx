@@ -104,7 +104,7 @@ export default function PricingHome() {
     <section className={s.pricing}>
       <div className={s.title}>
         <h1 className="super-text second-tablet second-mobile">
-          You're just a step away from unlocking our simple,
+          You&apos;re just a step away from unlocking our simple,
           <span className="edgy green">transparent pricing</span>
         </h1>
         <p>

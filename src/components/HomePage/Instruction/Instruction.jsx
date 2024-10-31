@@ -106,8 +106,8 @@ export default function InstructionHome() {
       <motion.div style={{ y: popUpY }} className={s.popUp}>
         <h2>Sign up to Your Account</h2>
         <p>
-          Our dedicated team says "Hi"! Reach out with any questions or for
-          support, and we'll ensure you get the assistance you need
+          Our dedicated team says &quot;Hi&quot;! Reach out with any questions or for
+          support, and we&apos;ll ensure you get the assistance you need
         </p>
       </motion.div>
     </motion.section>

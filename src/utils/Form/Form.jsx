@@ -98,8 +98,8 @@ export default function FormSection() {
             we&#8217;re here for you
           </h1>
           <p className={"shadow"}>
-            Our dedicated team says "Hi"! Reach out with any questions or for
-            support, and we'll ensure you get the assistance you need
+            Our dedicated team says &quot;Hi&quot;! Reach out with any questions or for
+            support, and we&apos;ll ensure you get the assistance you need
           </p>
         </div>
         <AnimatePresence mode="wait">

@@ -97,7 +97,7 @@ export default function CTA() {
           )}
         </AnimatePresence>
 
-        <p className={"shadow " + s.text}>Using our app is simple and intuitive. Open it, follow the guided steps to set up your account, and explore all features. Hot questions? We've got you covered.</p>
+        <p className={"shadow " + s.text}>Using our app is simple and intuitive. Open it, follow the guided steps to set up your account, and explore all features. Hot questions? We&apos;ve got you covered.</p>
       </div>
     </section>
   );
