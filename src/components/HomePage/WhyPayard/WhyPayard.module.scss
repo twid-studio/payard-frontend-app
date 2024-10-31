@@ -1,0 +1,330 @@
+.why {
+  background-color: $green-70;
+  // padding-bottom: 200vh;
+  overflow: clip;
+
+  margin-top: VW(230);
+position: relative;
+z-index: 10;
+  @include forMobile {
+    padding-bottom: 5vh;
+  }
+
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("/images/whyPayard/bg.png") no-repeat center;
+    position: relative;
+
+    @include forTablet {
+      aspect-ratio: 4/3;
+      height: auto;
+    }
+    
+    @include forMobile {
+      aspect-ratio: 3/4;
+      height: auto;
+      background-size: cover;
+    }
+
+    .icon {
+      position: absolute;
+      display: none;
+      scale: 2.2;
+
+      &_wrapper {
+        position: absolute;
+        inset: 0;
+      }
+
+      &_1 {
+        display: block;
+        top: 8%;
+        left: 10%;
+        width: VW(173);
+        height: VW(173);
+        
+        @include forTablet {
+          width: VW(200, $tablet);
+          height: VW(200, $tablet);
+        }
+        
+        @include forMobile {
+          width: VW(200, $tablet);
+          height: VW(200, $tablet);
+        }
+      }
+
+      &_2 {
+        display: block;
+        top: VW(400);
+        left: -2%;
+        width: VW(200);
+        height: VW(262);
+        scale: 1.8;
+        
+        @include forTablet {
+          top: VW(450, $tablet);
+          width: VW(100, $tablet);
+          height: VW(162, $tablet);
+        }
+        
+        @include forMobile {
+          top: VW(350, $mobile);
+          left: -5%;
+          width: VW(80, $mobile);
+          height: VW(112, $mobile);
+        }
+      }
+
+      &_3 {
+        display: block;
+        top: VW(600);
+        left: 4%;
+        width: VW(130.58);
+        height: VW(130.58);
+        
+        @include forTablet {
+          left: 8%;
+          top: VW(530, $tablet);
+          width: VW(100, $tablet);
+          height: VW(100, $tablet);
+        }
+
+        @include forMobile {
+          display: none;
+        }
+      }
+
+      &_4 {
+        display: block;
+        top: VW(550);
+        right: 0%;
+        width: VW(100);
+        height: VW(100);
+
+        @include forTablet {
+          right: -2%;
+          top: VW(400, $tablet);
+          width: VW(70, $tablet);
+          height: VW(70, $tablet);
+        }
+        
+        @include forMobile {
+          right: -2%;
+          top: VW(350, $mobile);
+          width: VW(70, $mobile);
+          height: VW(70, $mobile);
+        }
+      }
+
+      &_5 {
+        display: block;
+        top: VW(700);
+        right: 30%;
+        width: VW(200);
+        height: VW(200);
+        
+        @include forTablet {
+          right: 30%;
+          top: VW(500, $tablet);
+          width: VW(120, $tablet);
+          height: VW(120, $tablet);
+        }
+
+        @include forMobile {
+          right: 30%;
+          top: auto;
+          bottom: VW(10, $mobile);
+          width: VW(70, $mobile);
+          height: VW(70, $mobile);
+        }
+      }
+
+      &_6 {
+        display: block;
+        top: 10%;
+        right: -2%;
+        width: VW(387.67);
+        height: VW(262.49);
+        scale: 1.4;
+
+        @include forTablet {
+          right: -2%;
+          top: 14%;
+          width: VW(287, $tablet);
+          height: VW(162, $tablet);
+        }
+
+        @include forMobile {
+          right: -2%;
+          top: 20%;
+          width: VW(187, $mobile);
+          height: VW(133, $mobile);
+        }
+      }
+    }
+
+    .title {
+      @include forMobile {
+        padding: 0 VW(100, $mobile);
+        text-align: center;
+      }
+    }
+  }
+
+  .slides_wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: VW(300);
+
+    @include touch {
+      gap: 0;
+    }
+
+    .slide {
+      border-bottom: 0.1vw solid $green-90;
+      border-top: 0.1vw solid $green-90;
+      position: sticky;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      height: VW(150);
+      overflow: clip;
+
+      &:nth-of-type(1) {
+        top: 20%;
+        margin-bottom: 80vh;
+      }
+      &:nth-of-type(2) {
+        top: 40%;
+        margin-bottom: 60vh;
+      }
+      &:nth-of-type(3) {
+        top: 60%;
+        margin-bottom: 40vh;
+      }
+      &:nth-of-type(4) {
+        top: 80%;
+        margin-bottom: 20vh;
+      }
+
+      @include hover {
+        .title {
+          transform: translateY(-80%);
+          scale: 1.1;
+          filter: blur(1vw);
+        }
+        
+        .text {
+          transform: translateY(0%);
+          scale: 1;
+          filter: blur(0vw);
+        }
+      }
+
+      @include touch {
+        position: static;
+        margin-bottom: 0 !important;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: VW(40);
+        padding: VW(20) 0 VW(60);
+      }
+
+      @include forTablet {
+        position: static;
+        margin-bottom: 0 !important;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: VW(40, $tablet);
+        padding: VW(20, $tablet) 0 VW(60, $tablet);
+      }
+
+      @include forMobile {
+        position: static;
+        margin-bottom: 0 !important;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: VW(20, $mobile);
+        padding: VW(20, $mobile) VW(15, $mobile) VW(60, $mobile);
+      }
+
+      .title {
+        transform: translateY(0%);
+        
+        transition: 0.5s $ease1;
+        transition-property: transform, scale, filter, opacity;
+        
+        @include forTablet {
+          transform: translateY(0%) !important;
+          filter: none !important;
+          scale: 1 !important;
+        }  
+        
+        @include forMobile {
+          transform: translateY(0%) !important;
+          filter: none !important;
+          scale: 1 !important;
+        }  
+      }
+
+      .text {
+        transition: 0.5s $ease1;
+        transition-property: transform, scale, filter, opacity;
+        transform: translateY(110%);
+        scale: .9;
+        filter: blur(1vw);
+
+        width: 50%;
+        height: VW(150);
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 0%;
+        bottom: 0%;
+        z-index: 2;
+        
+        @include touch {
+          scale: 1 !important;
+          filter: blur(0vw) !important;
+          transform: translateY(0%) !important;
+          position: static;
+          height: auto;
+          width: 60%;
+        }  
+
+        @include forTablet {
+          scale: 1 !important;
+          filter: blur(0vw) !important;
+          transform: translateY(0%) !important;
+          position: static;
+          height: auto;
+          width: 70%;
+        }  
+        
+        @include forMobile {
+          scale: 1 !important;
+          filter: blur(0vw) !important;
+          transform: translateY(0%) !important;
+          position: static;
+          height: auto;
+          width: 80%;
+        }  
+      }
+    }
+  }
+}

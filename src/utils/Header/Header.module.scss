@@ -1,72 +1,169 @@
 .header {
-  align-items: center;
-  background-color: #8e8e8e2d;
-  backdrop-filter: blur(2vw);
-  display: flex;
-  flex-direction: row;
-  height: 3vw;
-  justify-content: space-between;
-  z-index: 10;
-  padding: 0 6.5vw;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: VW(30);
+  left: VW(44);
+  right: VW(20);
+  z-index: 100;
 
-  @include mq() {
-    height: 14vw;
-    justify-content: space-between;
-    padding: 0 6.3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include forTablet {
+    top: VW(20, $tablet);
+    left: VW(40, $tablet);
+    right: VW(40, $tablet);
   }
-
-  &__wrapper {
-    display: flex;
-    align-items: center;
-    gap: 1.8vw;
-    height: 100%;
-
-    @include mq() {
-      display: none;
-    }
+  
+  @include forMobile {
+    top: VW(20, $mobile);
+    left: VW(15, $mobile);
+    right: VW(15, $mobile);
   }
 
   &__logo {
-    height: 70%;
-    position: relative;
-    z-index: 100;
+    width: VW(210);
+    height: VW(48);
 
-
-    @include mq() {
-      width: 14.7vw;
-      height: 13.5vw;
+    @include forTablet {
+      width: VW(166, $tablet);
+      height: VW(38, $tablet);
     }
+    @include forMobile {
+      width: VW(166, $mobile);
+      height: VW(38, $mobile);
+    }
+  
   }
 
-  &__list_links {
-    display: flex;
+  .links {
+    // display: flex;
     align-items: center;
-    gap: 0.5vw;
+    box-sizing: border-box;
+    background: rgba(217, 217, 217, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: $boxShadow;
+    backdrop-filter: blur(15px);
 
-    @include mq() {
-      display: none;
-    }
-  }
-
-  &__link {
-    font-size: 1.2vw;
-    padding: 0.5vw 0.7vw;
-    position: relative;
+    position: absolute;
+    left: 50%;
     z-index: 1;
-    
-    & > span {
+    transform: translateX(-50%);
+    padding: VW(8) VW(22);
+    border-radius: 10vw;
+
+    .bg {
+      border-radius: 10vw;
+      display: block;
+      position: absolute;
+      inset: VW(8);
+      z-index: -1;
+      background-color: #fff;
+    }
+
+    &_item {
+      &:nth-of-type(1),
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
+        .link {
+
+          border-right: 0.1vw solid #0000001a;
+        }
+      }
+      
+      &:nth-last-of-type(1) {
+        .link {
+          padding: VW(22) VW(38) VW(22) VW(28);
+        }
+      }
+      
+      .link {
+        padding: VW(22) VW(28);
+      }
+    }
+
+    .dropDown {
       position: relative;
-      z-index: 1;  
+      
+      &_active {
+        .arrow {
+          rotate: -180deg;
+        }
+
+        .body {
+          transform: rotate(-4deg) translate(8%, 0) !important;
+          opacity: 1 !important;
+          pointer-events: all !important;
+        }
+      }
+
+      .label {
+        display: flex;
+        align-items: center;
+        gap: 0.3vw;
+        cursor: pointer;
+
+        span {
+          cursor: pointer;
+        }
+        
+        @include hover {
+          .arrow path {
+            fill: $g-100 !important;
+            stroke: $g-100 !important;
+          }
+        }
+
+        .arrow {
+          width: VW(11);
+          height: VW(7);
+
+          transition: rotate 0.3s $easePower4;
+
+          path {
+            transition: all 0.3s ease;
+          }
+        }
+      }
+
+      .body {
+        position: absolute;
+        left: -10%;
+        top: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: VW(8);
+        padding: VW(24) VW(12);
+        text-wrap: nowrap;
+
+        background-color: $green-100;
+        box-shadow: $boxShadow;
+        backdrop-filter: blur(15vw);
+        border-radius: VW(10);
+        transform: rotate(8deg) translate(4%, -50%);
+        opacity: 0;
+        transform-origin: top;
+
+        pointer-events: none;
+
+        transition: 0.3s $easeOutPower3;
+        transition-delay: .1s;
+        transition-property: transform, opacity;
+
+        .dropDownLink {
+          transition: opacity .3s ease;
+
+          @include hover {
+            opacity: .5;
+          }
+        }
+      }
     }
   }
 
-  &__nav {
-    @include mq($tablet + 1, ">") {
-      display: none;
-    }
+  .log_in_buttons {
+    // display: flex; 
+    align-content: center;
+    gap: VW(16);
   }
 }

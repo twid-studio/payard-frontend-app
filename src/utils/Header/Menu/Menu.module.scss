@@ -1,0 +1,156 @@
+.button {
+  width: max(VW(48, $tablet), 48px);
+  height: max(VW(48, $tablet), 48px);
+  background-color: $c-black;
+  border-radius: 10vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: VW(8, $tablet);
+
+  position: relative;
+  z-index: 11;
+
+  &_active {
+    .line {
+      top: 50% !important;
+
+      &:nth-of-type(1) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-of-type(2) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  .line {
+    width: 60%;
+    height: max(0.1vw, 1px);
+    background-color: #fff;
+    position: absolute;
+    transition: all 0.5s $ExpoIn;
+
+    &:nth-of-type(1) {
+      top: 58%;
+    }
+
+    &:nth-of-type(2) {
+      top: 40%;
+    }
+  }
+}
+
+.menuBg {
+  position: fixed;
+  inset: 0;
+  background-color: #fff;
+  z-index: 10;
+
+  box-sizing: border-box;
+  background: rgba(217, 217, 217, 0.2);
+  border: 0.407547px solid rgba(255, 255, 255, 0.2);
+  box-shadow: -4.07547px 4.07547px 20.3774px 4.07547px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10vw);
+}
+
+.menu {
+  border-radius: VW(20, $tablet);
+  overflow: clip;
+
+  position: fixed;
+  top: 50vh;
+  left: VW(40, $tablet);
+  right: VW(40, $tablet);
+  z-index: 100;
+  transform: translateY(-50%);
+
+  padding: VW(40, $tablet);
+
+  background-color: $c-white;
+
+  @include forMobile {
+    border-radius: VW(15, $mobile);
+  }
+
+  &_links {
+    h1 {
+      line-height: 120%;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+
+      @include hover {
+        opacity: 0.4;
+      }
+    }
+
+    .buttonWrapper {
+      margin-top: VW(40, $tablet);
+      font-size: VW(26, $tablet);
+      
+      @include forMobile {
+        margin-top: VW(24, $mobile);
+        font-size: VW(20, $mobile);
+      }
+    }
+  }
+
+  .bottom {
+    margin-top: VW(60, $tablet);
+    display: flex;
+    flex-direction: column;
+    gap: VW(10, $tablet);
+
+    h2 {
+      @include forMobile {
+        font-size: VW(20, $mobile);
+      }
+    }
+
+    .bottomTitle {
+      margin-bottom: VW(10, $tablet);
+
+      @include forMobile {
+        margin-top: 4vh;
+      }
+    }
+  }
+
+  .line {
+    display: block;
+    width: calc(100% + VW(80, $tablet));
+    height: 0.1vw;
+    background-color: $g-100;
+    margin: VW(40, $tablet) VW(-40, $tablet);
+  }
+
+  .logInButtons {
+    display: flex;
+    gap: VW(12, $tablet);
+
+    .button {
+      font-size: VW(26, $tablet);
+      width: 50%;
+      transition: scale 0.3s $BounceOut;
+      border-radius: 10vw;
+      padding: VW(12, $tablet) VW(22, $tablet);
+
+      @include forMobile {
+        font-size: VW(20, $mobile);
+      }
+
+      &.blackButton {
+        color: $c-white !important;
+        background-color: $c-black;
+      }
+
+      &.transparentButton {
+        border: 0.1vw solid $c-black;
+        color: $c-black;
+        background-color: transparent;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.page_bottom {
+  position: relative;
+  margin-top: VW(300);
+
+  @include forTablet {
+    margin-top: 0;
+  }
+  @include forMobile {
+    margin-top: 0;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-color: $green-100;
+    z-index: -1;
+
+    @include forTablet {
+      clip-path: none !important;
+    }
+    @include forMobile {
+      clip-path: none !important;
+    }
+  }
+}

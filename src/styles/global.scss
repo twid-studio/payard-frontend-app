@@ -2,16 +2,17 @@
   @import "./utils/fonts";
   @import "./utils/mixins";
   @import "./utils/variables";
+  @import "./utils/responsive-data";
 
 .body {
   @extend %body-text;
   color: $c-black;
   overflow-x: hidden;
   opacity: 1;
-  &::selection {
-    color: #5f00f9;
-    background: #6929ff1b;
-    mix-blend-mode: difference;
+
+  ::selection {
+    color: $green-100 !important;
+    background: $c-black !important;
   }
 }
 
@@ -47,7 +48,19 @@
 }
 
 .shadow {
-  color: $g-70;
+  color: $g-100;
+}
+
+.green {
+  color: $green-100;
+}
+
+.text-hover {
+  transition: color .3s ease;
+
+  @include hover {
+    color: $g-90;
+  }
 }
 
 .main {
@@ -60,6 +73,11 @@
   }
 }
 
+.white-space {
+  height: 100vh;
+  background-color: #fff;
+}
+
 .lazyload-wrapper {
   height: 100%;
   width: 100%;
@@ -67,5 +85,21 @@
   img, video {
     height: 100%;
     width: 100%;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, VW(119));
+  column-gap: VW(40);
+  
+  @include forTablet {
+    grid-template-columns: repeat(6, VW(110, $tablet));
+    column-gap: VW(20, $tablet);
+  }
+  
+  @include forMobile {
+    grid-template-columns: repeat(2, VW(173, $mobile));
+    column-gap: VW(20, $mobile);
   }
 }

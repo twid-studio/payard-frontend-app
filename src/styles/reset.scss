@@ -17,6 +17,14 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+h1, h2, h3, h4, h5, h6, p, span {
+  cursor: default;
+}
+
+span {
+  display: inline-block;
+}
+
 ul,
 ol {
   list-style: none;
@@ -24,6 +32,15 @@ ol {
 
 button {
   font-size: 100%;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 input,

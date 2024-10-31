@@ -9,8 +9,6 @@ import dynamic from "next/dynamic";
 import { ScrollBar } from "@/utils/ScrollBar/ScrollBar";
 import { ScrollContext } from "./context";
 
-
-
 export const useScrollLenis = () => useContext(ScrollContext);
 
 function easeInOutExpo(x) {
@@ -25,6 +23,7 @@ function easeInOutExpo(x) {
 
 const ScrollProviderContent = ({ children, scrollBar = true, wrapper }) => {
   const [lenis, setLenis] = useState(null);
+  const rafRef = useRef(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -41,12 +40,15 @@ const ScrollProviderContent = ({ children, scrollBar = true, wrapper }) => {
 
         function raf(time) {
           lenisInstance.raf(time);
-          requestAnimationFrame(raf);
+          rafRef.current = requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
+        rafRef.current = requestAnimationFrame(raf);
 
         return () => {
+          if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current);
+          }
           lenisInstance.destroy();
         };
       });
@@ -70,9 +72,28 @@ const ScrollProviderContent = ({ children, scrollBar = true, wrapper }) => {
     }
   };
 
+  const scrollStop = () => {
+    if (lenis) {
+      lenis.stop();
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    }
+  };
+
+  const scrollResume = () => {
+    if (lenis) {
+      lenis.start();
+      function raf(time) {
+        lenis.raf(time);
+        rafRef.current = requestAnimationFrame(raf);
+      }
+      rafRef.current = requestAnimationFrame(raf);
+    }
+  };
+
   return (
-    <ScrollContext.Provider value={{ scrollTo, rangeScrollTo }}>
-      {scrollBar && <ScrollBar />}
+    <ScrollContext.Provider value={{ scrollTo, rangeScrollTo, scrollStop, scrollResume }}>
       {children}
     </ScrollContext.Provider>
   );

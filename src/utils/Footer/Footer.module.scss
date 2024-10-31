@@ -3,30 +3,192 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 70vh;
+  height: VW(604);
   position: relative;
+  z-index: 2;
+  margin-top: VW(140);
 
-  .super-text {
-    font-weight: normal;
+  @include forTablet {
+    height: VW(664, $tablet);
+    margin-top: VW(180, $tablet);
+  }
+  
+  @include forMobile {
+    height: VW(720, $mobile);
+
+    margin-top: VW(100, $mobile);
+  }
+
+  .top {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+
+    .adress {
+      grid-column: 1/4;
+
+      display: flex;
+      flex-direction: column;
+      gap: VW(20);
+
+      @include forTablet {
+        grid-column: 1/4;
+        grid-row: 1/1;
+
+        font-size: VW(23, $tablet);
+        gap: VW(20, $tablet);
+
+        margin-bottom: VW(90, $tablet);
+      }
+      
+      @include forMobile {
+        grid-column: 1/3;
+        grid-row: 1/1;
+  
+        font-size: VW(23, $mobile);
+        gap: VW(20, $mobile);
+  
+        margin-bottom: VW(90, $mobile);
+      }    
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: VW(5);
+      
+      @include forTablet {
+        grid-row: 2/2;
+        gap: VW(5, $tablet);
+      }
+      
+      @include forMobile {
+        grid-row: 2/2;
+        gap: VW(5, $tablet);
+      }    
+
+      &:nth-of-type(1) {
+        grid-column: 6/8;
+
+        @include forTablet {
+          grid-column: 1/2;
+        }
+        
+        @include forMobile {
+          grid-column: 1/2;
+          
+        }      
+      }
+
+      &:nth-of-type(2) {
+        grid-column: 8/10;
+
+        @include forTablet {
+          grid-column: 3/5;
+        }
+
+        @include forMobile {
+          grid-column: 2/3;
+        }   
+      }
+
+      &:nth-of-type(3) {
+        grid-column: 10/12;
+
+        @include forTablet {
+          grid-column: 5/7;
+        }
+
+        @include forMobile {
+          grid-column: 1/2;
+          grid-row: 3/3;
+          margin-top: VW(40, $mobile);
+        }   
+      }
+
+      &_title {
+        font-weight: bold !important;
+        text-wrap: nowrap;
+        // margin-bottom: VW(5);
+
+        @include forTablet {
+          font-size: VW(23, $tablet);
+        }
+        
+        @include forMobile {
+          font-size: VW(23, $mobile);
+          margin-bottom: VW(5, $mobile);
+        }
+      }
+    }
   }
 
   .bottom {
     position: absolute;
-    bottom: 1vw;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
+    bottom: VW(10);
     align-items: flex-end;
+
+    @include forTablet {
+      bottom: VW(20, $tablet);
+      align-items: flex-start;
+    }
+    
+    @include forMobile {
+      align-items: flex-start;
+      bottom: 0;
+    }
+
+    .trademark {
+      grid-column: 7/11;
+
+      @include forTablet {
+        grid-column: 3/6;
+        padding-right: VW(90, $tablet);
+      }
+
+      @include forMobile {
+        grid-column: 2/3;
+      }
+    }
+
+    .link {
+      grid-column: 12/13;
+      text-align: end;
+      text-wrap: nowrap;
+      
+      @include forTablet {
+        grid-column: 6/7;
+      }
+      
+      @include forMobile {
+        grid-column: 1/2;
+        grid-row: 2/2;
+        text-align: start;
+        transform: translateY(-100%);
+      }
+    }
   }
 
-  &__description {
-    width: 15%;
-    text-align: justify;
-  }
+  .logo {
+    width: VW(1880);
+    height: VW(537);
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
 
-  &__logo {
-    width: 6vw;
-    height: 2.3vw;
+    & > img {
+      object-fit: contain;
+    }
+
+    @include forTablet {
+      bottom: VW(100, $tablet);
+      width: VW(754, $tablet);
+      height: VW(215, $tablet);
+    }
+
+    @include forMobile {
+      bottom: VW(145, $mobile);
+      width: VW(360, $mobile);
+    }
   }
 }

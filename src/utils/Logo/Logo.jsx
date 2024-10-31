@@ -5,8 +5,9 @@ export const Logo = ({ ...rest }) => (
     src="/images/logo.svg"
     alt="logo"
     style={{ objectFit: "contain" }}
-    width={103}
-    height={40}
+    width={210}
+    height={47}
+    priority
     {...rest}
   />
 );

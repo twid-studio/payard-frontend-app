@@ -1,0 +1,282 @@
+.cta {
+  height: VW(680);
+  display: flex;
+  justify-content: center;
+  gap: VW(150);
+  overflow: clip;
+  
+  padding-top: VW(120);
+  position: relative;
+
+  @include forTablet {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    height: VW(1000, $tablet);
+    padding-top: VW(155, $tablet);
+  }
+  
+  @include forMobile {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    height: VW(1100, $mobile);
+    padding-top: VW(80, $mobile);
+    gap: VW(40, $mobile);
+  }
+  
+  .phone {
+    position: relative;
+    width: VW(483);
+    height: VW(973);
+    
+    @include forTablet {
+      width: VW(483, $tablet);
+      height: VW(973, $tablet);
+
+      img {
+        object-position: 0% 0%;
+      }
+    }
+    
+    @include forMobile {
+      width: VW(357, $mobile);
+      height: VW(973, $tablet);
+
+      img {
+        object-position: 0% 0%;
+      }
+    }
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: VW(600);
+
+    @include forTablet {
+      text-align: center;
+      align-items: center;
+      width: VW(525, $tablet);
+      gap: VW(40, $tablet);
+    }
+    
+    @include forMobile {
+      text-align: center;
+      align-items: center;
+      width: 90%;
+      gap: VW(40, $mobile);
+    }
+
+    .title {
+      @include forTablet {
+        order: -1;
+      }  
+    
+      @include forMobile {
+        order: -1;
+        width: 80%;
+      }  
+    }
+
+    .text {
+      width: 90%;
+      margin-top: VW(40);
+      
+      @include forTablet {
+        order: -1;
+        margin: VW(0) 0 VW(20, $tablet);
+      }  
+      
+      @include forMobile {
+        order: -1;
+        margin: VW(0) 0 VW(0, $mobile);
+      }  
+    }
+  }
+
+  .button {
+    padding: VW(12) VW(22) VW(12) VW(12);
+    transition: scale 0.3s $BounceOut;
+    box-shadow: $boxShadow;
+    border-radius: 10vw;
+    color: $c-white;
+    background-color: $green-100;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: VW(12);
+
+    width: fit-content;
+
+    line-height: 90%;
+
+    @include hover {
+      scale: 0.9;
+    }
+
+    @include forTablet {
+      padding: VW(12, $tablet) VW(22, $tablet) VW(12, $tablet) VW(12, $tablet);
+      gap: VW(8, $tablet);
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
+    @include forMobile {
+      opacity: 1 !important;
+      transform: none !important;
+      padding: VW(12, $mobile) VW(22, $mobile) VW(12, $mobile) VW(12, $mobile);
+    }
+
+    &_active {
+      @include forDesktop {
+        border-radius: 0vw;
+      }
+
+      .buttonIcon {
+        @include forDesktop {
+          opacity: 0;
+          transition: opacity 0.001s ease;
+        }
+
+        @include forPortraitTablet {
+          opacity: 0;
+          transition: opacity 0.001s ease;
+        }
+      }
+
+      .buttonText {
+        @include forDesktop {
+          opacity: 0;
+          transition: opacity 0.001s ease;
+        }
+
+        @include forPortraitTablet {
+          opacity: 0;
+          transition: opacity 0.001s ease;
+        }
+      }
+    }
+
+    .buttonIcon {
+      width: VW(40);
+      height: VW(40);
+      transition: opacity 0.3s 0.5s ease;
+
+      @include forTablet {
+        width: VW(30, $tablet);
+        height: VW(30, $tablet);
+      }
+
+      @include forMobile {
+        width: VW(30, $mobile);
+        height: VW(30, $mobile);
+      }
+    }
+
+    .buttonText {
+      transition: opacity 0.3s 0.5s ease;
+    }
+  }
+
+  .popUp {
+    display: flex;
+    flex-direction: column;
+    gap: VW(80);
+    box-shadow: $boxShadow;
+    background-color: $c-white;
+
+    width: VW(470);
+    padding: VW(20);
+    border-radius: VW(20);
+
+    position: absolute;
+    bottom: VW(20);
+    left: VW(20);
+
+    @include forTablet {
+      width: VW(387, $tablet);
+      padding: VW(15, $tablet);
+      border-radius: VW(20, $tablet);
+      gap: VW(16, $tablet);
+    }
+
+    @include forMobile {
+      width: 84%;
+      left: 50%;
+      bottom: VW(15, $mobile);
+      transform: translateX(-50%) !important;
+      gap: VW(16, $mobile);
+      border-radius: VW(20, $mobile);
+      padding: VW(15, $mobile);
+    }
+
+    h2 {
+      @include forTablet {
+        width: 70%;
+      }
+    }
+  }
+
+  .video_main {
+    width: VW(1620);
+    height: VW(911);
+    aspect-ratio: 16/9;
+    border-radius: VW(30);
+
+    &_wrapper {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+
+        animation: presenceBg 0.3s 0.7s forwards;
+
+        transition: opacity 0.3s ease-in-out;
+
+        @keyframes presenceBg {
+          0% {
+            background: rgba(217, 217, 217, 0);
+            backdrop-filter: blur(VW(0));
+          }
+          100% {
+            background: rgba(217, 217, 217, 0.2);
+            backdrop-filter: blur(VW(15));
+          }
+        }
+
+        @include hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    &_close {
+      width: VW(22);
+      height: VW(22);
+      position: absolute;
+      top: VW(20);
+      right: VW(20);
+      padding: VW(20);
+      z-index: 10000;
+      cursor: pointer;
+
+      transition: opacity 0.3s ease;
+
+      @include hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}

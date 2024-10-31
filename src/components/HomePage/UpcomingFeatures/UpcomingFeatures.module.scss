@@ -1,0 +1,112 @@
+.features {
+  background-color: $w-100;
+
+  padding: VW(160) 0;
+
+  @include forTablet {
+    padding: VW(100, $tablet) 0;
+  }
+
+  .content {
+    margin: 0 auto;
+    width: VW(1340);
+
+    @include forTablet {
+      width: 85%;
+    }
+
+    @include forMobile {
+      width: 85%;
+    }
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include forMobile {
+      text-align: center;
+    }
+
+    .image {
+      mix-blend-mode: darken;
+      width: VW(243);
+      height: VW(243);
+
+      @include forTablet {
+        width: VW(153, $tablet);
+        height: VW(153, $tablet);
+      }
+
+      @include forMobile {
+        width: VW(153, $mobile);
+        height: VW(153, $mobile);
+      }
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: VW(30);
+    margin-top: VW(130);
+
+    @include forTablet {
+      gap: VW(30, $tablet);
+      margin-top: VW(100, $tablet);
+    }
+
+    @include forMobile {
+      gap: VW(30, $mobile);
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      padding-top: VW(30);
+      border-top: 0.1vw solid $g-70;
+
+      @include forTablet {
+        padding-top: VW(30, $tablet);
+      }
+
+      @include forMobile {
+        flex-direction: column;
+        padding-top: VW(30, $mobile);
+        gap: VW(10, $mobile);
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: VW(14);
+
+        @include forTablet {
+          gap: VW(14, $tablet);
+        }
+
+        @include forMobile {
+          gap: VW(14, $mobile);
+        }
+
+        .icon {
+          width: VW(50);
+          height: VW(50);
+        }
+      }
+
+      .text {
+        width: VW(600);
+
+        @include forTablet {
+          width: VW(360, $tablet);
+        }
+
+        @include forMobile {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

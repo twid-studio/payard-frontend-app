@@ -1,99 +1,152 @@
 @import "./mixins";
 
 %h1 {
-  font-family: NeueHaasDisplay, sans-serif;
-  font-size: 2.8vw;
+  font-family: StudioFeixenSans, sans-serif;
+  font-size: VW(100);
   font-style: normal;
   font-weight: bold;
-  line-height: 142%;
-  text-transform: uppercase;
-  letter-spacing: normal;
-
-  @include mq() {
-    font-size: 9.4vw;
+  line-height: 99%;
+  letter-spacing: -0.2vw;
+  
+  @include forTablet {
+    font-size: VW(75, $tablet);
+  }
+  
+  @include forMobile {
+    font-size: VW(63, $mobile);
   }
 }
 
-.super-text {
-  font-family: NeueHaasDisplay, sans-serif;
-  font-size: 4.7vw;
-  font-style: bold;
-  line-height: 90%;
-  text-transform: uppercase;
-  letter-spacing: normal;
+.edgy {
+  font-family: StudioFeixenEdgy, sans-serif;
+}
 
-  @include mq() {
-    font-size: 11vw;
+.super-text {
+  font-size: VW(150) !important;
+
+  @include forTablet {
+    font-size: VW(100, $tablet) !important;
+  }
+  
+  @include forMobile {
+    font-size: VW(60, $mobile) !important;
+  }
+
+  &.second-tablet {
+    @include forTablet {
+      font-size: VW(75, $tablet) !important;
+    }
+  }
+
+  &.second-mobile {
+    @include forMobile {
+      font-size: VW(54, $mobile) !important;
+    }
   }
 }
 
 %h2 {
-  font-family: NeueHaasDisplay, sans-serif;
-  font-size: 2vw;
-  font-style: bold;
+  font-family: StudioFeixenSans, sans-serif;
+  font-size: VW(50);
+  font-style: normal;
   font-weight: normal;
-  line-height: normal;
-  letter-spacing: normal;
+  line-height: 110%;
+  letter-spacing: -0.15vw;
 
-  @include mq() {
-    font-size: 6.4vw;
+  @include forTablet {
+    font-size: VW(30, $tablet);
+  }
+  
+  @include forMobile {
+    font-size: VW(30, $mobile);
+  }
+}
+
+%h3 {
+  font-family: StudioFeixenSans, sans-serif;
+  font-size: VW(32);
+  font-style: normal;
+  font-weight: normal;
+  line-height: 106%;
+  letter-spacing: -0.1vw;
+
+  @include forTablet {
+    font-size: VW(23, $tablet);
+  }
+  
+  @include forMobile {
+    font-size: VW(20, $mobile);
   }
 }
 
 %body-text {
-  font-family: NeueHaasDisplay, sans-serif;
-  font-size: 1.5vw;
+  font-family: StudioFeixenSans, sans-serif;
+  font-size: VW(23);
   font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  letter-spacing: -0.06vw;
+  font-weight: normal;
+  line-height: 130%;
+  letter-spacing: 0vw;
+
+  @include forTablet {
+    font-size: VW(17, $tablet);
+  }
   
-  @include mq() {
-    letter-spacing: -0.4vw;
-    font-size: 4.7vw;
+  @include forMobile {
+    font-size: VW(17, $mobile);
   }
 }
 
 .small-text {
-  font-family: NeueHaasDisplay, sans-serif;
-  font-size: 1vw;
+  font-family: StudioFeixenSans, sans-serif;
+  font-size: VW(18);
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 140%;
-  letter-spacing: -0.03vw;
-}
+  letter-spacing: .01vw !important;
 
-.micro-text {
-  font-family: NeueHaasDisplay, sans-serif;
-  font-size: 0.7vw;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 140%;
-  letter-spacing: -0.03vw;
-}
+  @include forTablet {
+    font-size: VW(17, $tablet);
+  }
+  
+  @include forMobile {
+    font-size: VW(17, $mobile);
+  }
 
-%link {
-  @extend %body-text;
-  font-weight: bold;
+  &.second-tablet {
+    @include forTablet {
+      font-size: VW(14, $tablet);
+    }
+  }
+
+  &.second-mobile {
+    @include forMobile {
+      font-size: VW(14, $mobile);
+    }
+  }
 }
 
 .bold {
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .body {
   @extend %body-text;
 
+  h1 {
+    @extend %h1;
 
-h1 {
-  @extend %h1;
-}
+    &.second-mobile {
+      @include forMobile {
+        font-size: VW(54, $mobile);
+      }
+    }
+  }
 
-h2 {
-  @extend %h2;
-}
+  h2 {
+    @extend %h2;
+  }
 
-a {
-  @extend %link;
-}
+  h3 {
+    @extend %h3;
+  }
 }

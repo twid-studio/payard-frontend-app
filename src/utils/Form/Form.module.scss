@@ -1,0 +1,376 @@
+.contact {
+  background-color: $c-white;
+  box-shadow: $boxShadow;
+  border-radius: VW(30);
+  padding: VW(44);
+  width: VW(1080);
+  position: relative;
+
+  transition: 0.5s $ExpoIn;
+  transition-property: background-color, color;
+
+  @include forTablet {
+    width: VW(684, $tablet);
+    border-radius: VW(30, $tablet);
+    padding: VW(25, $tablet);
+
+    background-color: $c-black !important;
+    color: $c-white !important;
+
+    .form {
+      &_input {
+        background-color: $g-120 !important;
+        border-color: $g-100 !important;
+        color: $c-white !important;
+      }
+    }
+  }
+
+  @include forMobile {
+    width: VW(684, $tablet);
+    border-radius: VW(20, $mobile);
+    padding: VW(40, $tablet) VW(40, $tablet) VW(40, $mobile);
+
+    background-color: $c-black !important;
+    color: $c-white !important;
+
+    .form {
+      &_input {
+        background-color: $g-120 !important;
+        border-color: $g-100 !important;
+        color: $c-white !important;
+      }
+    }
+  }
+
+  &_sucess {
+    .top {
+      scale: 1.1;
+      filter: blur(1vw);
+      opacity: 0;
+    }
+
+    .form {
+      scale: 1.1;
+      filter: blur(1vw);
+      opacity: 0;
+    }
+  }
+
+  &_colorChange {
+    background-color: $c-black;
+    color: $c-white;
+
+    .submited {
+      background-color: $c-black !important;
+      color: $c-white !important;
+    }
+
+    .form {
+      &_input {
+        background-color: $g-120;
+        border-color: $g-100 !important;
+        color: $c-white;
+      }
+    }
+  }
+
+  &_wrapper {
+    height: 120vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .top {
+    width: VW(810);
+    display: flex;
+    flex-direction: column;
+    gap: VW(40);
+    transition: 0.5s $ExpoIn;
+    transition-property: scale, filter, opacity;
+
+    @include forTablet {
+      width: VW(660, $tablet);
+      gap: VW(30, $tablet);
+    }
+
+    @include forMobile {
+      width: 100%;
+      gap: VW(20, $mobile);
+    }
+
+    & > p {
+      @include forTablet {
+        width: VW(580, $tablet);
+      }
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: VW(30);
+    margin-top: VW(80);
+    width: 100%;
+    transition: 0.5s $ExpoIn;
+    transition-property: scale, filter, opacity;
+
+    @include forTablet {
+      gap: VW(40, $tablet);
+    }
+
+    @include forMobile {
+      gap: VW(40, $tablet);
+      margin-top: VW(40, $mobile);
+    }
+
+    &_input {
+      width: 100%;
+      max-width: VW(490);
+      border: 0.1vw solid $g-70;
+      border-radius: VW(5);
+      border-radius: VW(5);
+      font-size: VW(18);
+      padding: VW(12) VW(15);
+      outline: none;
+
+      transition: background-color 0.5s $ExpoIn;
+
+      @include forTablet {
+        padding: VW(22, $tablet) VW(25, $tablet);
+        border-radius: VW(5, $tablet);
+        max-width: VW(630, $tablet);
+        font-size: VW(18, $tablet);
+      }
+
+      @include forMobile {
+        padding: VW(6, $mobile) VW(12, $mobile);
+        border-radius: VW(5, $mobile);
+        max-width: VW(630, $tablet);
+        font-size: VW(18, $mobile);
+      }
+
+      &:-internal-autofill-selected {
+        background-color: #fff !important;
+      }
+
+      &:focus {
+        border-color: $green-100;
+      }
+
+      &__error {
+        border-color: red !important;
+      }
+
+      &_error_msg {
+        color: red;
+      }
+
+      &_textarea {
+        width: 97% !important;
+
+        .form_input {
+          min-width: 100%;
+          max-width: 100%;
+          min-height: VW(70);
+          max-height: VW(170);
+
+          @include forTablet {
+            min-width: VW(630, $tablet);
+            max-width: VW(630, $tablet);
+            min-height: VW(70, $mobile);
+            max-height: VW(170, $mobile);
+
+            padding: VW(6, $mobile) VW(12, $mobile);
+            border-radius: VW(5, $mobile);
+            font-size: VW(18, $mobile);
+          }
+
+          @include forMobile {
+            padding: VW(22, $tablet) VW(25, $tablet);
+            border-radius: VW(5, $tablet);
+            min-width: VW(630, $tablet);
+            max-width: VW(630, $tablet);
+            font-size: VW(18, $tablet);
+            min-height: VW(70, $tablet);
+            max-height: VW(170, $tablet);
+          }
+        }
+      }
+
+      &_wrapper {
+        width: VW(520);
+        position: relative;
+        z-index: 10;
+
+        display: flex;
+        flex-direction: column;
+        gap: VW(5);
+
+        @include forTablet {
+          gap: VW(10, $tablet);
+          width: 100%;
+        }
+
+        @include forMobile {
+          gap: VW(10, $mobile);
+          width: 100%;
+        }
+      }
+    }
+
+    .button {
+      padding: VW(12) VW(22);
+      transition: 0.3s $BounceOut;
+      transition-property: scale, opacity;
+      box-shadow: $boxShadow;
+      border-radius: 10vw;
+      color: $c-white;
+
+      @include hover {
+        scale: 0.9;
+      }
+
+      @include forTablet {
+        padding: VW(22, $tablet) VW(72, $tablet);
+      }
+
+      @include forMobile {
+        padding: VW(12, $mobile) VW(22, $mobile);
+        width: fit-content;
+      }
+
+      &.mainButton {
+        background-color: $green-100;
+      }
+
+      &_disabled {
+        opacity: 0.4;
+        scale: 1 !important;
+        cursor: no-drop;
+      }
+    }
+  }
+
+  .submited {
+    position: absolute;
+    inset: 0;
+    padding: VW(44);
+    border-radius: VW(30);
+
+    z-index: 10;
+    background-color: $c-white;
+
+    display: flex;
+    flex-direction: column;
+    gap: VW(30);
+
+    @include forTablet {
+      border-radius: VW(30, $tablet);
+      padding: VW(40, $tablet);
+      background-color: $c-black !important;
+      color: $c-white !important;
+    }
+
+    @include forMobile {
+      border-radius: VW(20, $mobile);
+      padding: VW(40, $tablet);
+      gap: VW(20, $mobile);
+      background-color: $c-black !important;
+      color: $c-white !important;
+    }
+
+    .icon {
+      position: absolute;
+      top: VW(160);
+      left: VW(380);
+      width: VW(130);
+      height: VW(130);
+      scale: 2;
+
+      @include forTablet {
+        top: VW(130, $tablet);
+        left: VW(340, $tablet);
+        width: VW(100, $tablet);
+        height: VW(100, $tablet);
+      }
+      
+      @include forMobile {
+        top: VW(60, $mobile);
+        left: auto;
+        right: VW(60, $mobile);
+        width: VW(80, $mobile);
+        height: VW(80, $mobile);
+
+      }
+    }
+  }
+}
+.socials {
+  display: flex;
+  gap: VW(10);
+
+  background: rgba(0, 0, 0, 0.1);
+  border: 0.1vw solid rgba(0, 0, 0, 0.1);
+  box-shadow: $boxShadow;
+  border-radius: VW(20);
+  padding: VW(20) VW(30);
+
+  position: absolute;
+  bottom: 0;
+
+  @include forTablet {
+    border-radius: VW(20, $tablet);
+    padding: VW(20, $tablet) VW(30, $tablet);
+    gap: VW(10, $tablet);
+  }
+
+  @include forMobile {
+    border-radius: VW(14, $mobile);
+    padding: VW(16, $mobile);
+    gap: VW(10, $mobile);
+  }
+
+  .item {
+    width: VW(180);
+    height: VW(50);
+    position: relative;
+    transition: scale 0.3s $BounceOut;
+
+    @include hover {
+      scale: 0.9;
+    }
+
+    @include forTablet {
+      width: VW(180, $tablet);
+      height: VW(50, $tablet);
+    }
+
+    @include forMobile {
+      width: VW(118, $mobile);
+      height: VW(35, $mobile);
+    }
+
+    &:nth-of-type(3),
+    &:nth-of-type(4) {
+      width: VW(50);
+
+      @include forTablet {
+        width: VW(50, $tablet);
+      }
+
+      @include forMobile {
+        width: VW(35, $mobile);
+      }
+    }
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

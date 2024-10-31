@@ -1,0 +1,34 @@
+.button {
+  padding: VW(12) VW(22);
+  transition: scale 0.3s $BounceOut;
+  box-shadow: $boxShadow;
+  border-radius: 10vw;
+  color: $c-white;
+
+  @include hover {
+    scale: 0.9;
+  }
+
+  @include forTablet {
+    padding: VW(12, $tablet) VW(22, $tablet);
+  }
+
+  @include forMobile {
+    padding: VW(12, $mobile) VW(22, $mobile);
+    width: fit-content;
+  }
+
+  &.mainButton {
+    background-color: $green-100;
+  }
+
+  &.blackButton {
+    background-color: $c-black;
+  }
+
+  &.transparentButton {
+    border: 0.1vw solid $c-black;
+    color: $c-black;
+    box-shadow: none;
+  }
+}

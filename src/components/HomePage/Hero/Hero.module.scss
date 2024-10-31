@@ -1,0 +1,214 @@
+.hero {
+  width: 100vw;
+  height: 110lvh;
+
+  background-color: $green-100;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url("/images/hero/herobg.png");
+  position: relative;
+  
+  @include forTablet {
+    height: VW(864, $tablet);
+  }
+  
+  @include forMobile {
+    background-size: contain;
+  }
+
+  .title {
+    position: absolute;
+    top: VW(240);
+    width: 100%;
+    text-align: center;
+    color: $c-white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+    @include forTablet {
+      top: VW(180, $tablet);
+    }
+    
+    @include forMobile {
+      top: VW(100, $mobile);
+    }
+
+    .op {
+      opacity: 0.4;
+    }
+  }
+
+  .open_account {
+    max-width: VW(1640);
+    padding: VW(40) VW(30);
+    border-radius: VW(30);
+    background-color: $c-white;
+    
+    box-shadow: VW(-10) VW(10) VW(70) VW(20) rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(VW(15));
+    
+    position: absolute;
+    top: 60%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    
+    @include forTablet {
+      max-width: VW(1640);
+      padding: VW(20, $tablet) VW(30, $tablet);
+      top: 65%;
+    }
+    
+    @include forMobile {
+      top: 50%;
+      border-radius: VW(13, $mobile);
+      padding: VW(14, $mobile);
+    }
+
+    .cards_wrapper {
+      display: flex;
+      gap: VW(12);
+      
+      @include forMobile {
+        flex-direction: column;
+        gap: VW(12, $mobile);
+      }
+
+      .card {
+        width: 50%;
+        height: VW(760);
+        position: relative;
+        border-radius: VW(15);
+        padding: VW(20);
+        margin-top: VW(36);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: clip;
+        
+        transition: width 0.35s $easeOutPower3;
+        
+        @include forTablet {
+          height: VW(435, $tablet);
+          margin-top: VW(25, $tablet);
+        }
+        
+        @include forMobile {
+          width: auto !important;
+          height: VW(470, $mobile);
+          border-radius: VW(8, $mobile);
+          padding: VW(15, $mobile);
+        }    
+
+        &:nth-of-type(1) {
+          background-color: #71C8FB;
+          
+          @include hover {
+            ~ .card:nth-of-type(2) {
+              .video {
+                object-position: 25%;
+              }
+            }
+          }
+        }
+        
+        &:nth-of-type(2) {
+          background-color: #3DFFC7;
+
+          .video {
+            object-position: 20%;
+          }
+
+          @include hover {
+            ~ .card:nth-of-type(1) {
+              .video {
+                object-position: 65%;
+              }
+            }
+          }
+        }
+
+        @include hover {
+          width: 60%;
+
+          .popUp {
+            transform: translateY(0%);
+            opacity: 1;
+            box-shadow: $boxShadow;
+          }
+        }
+
+        .video {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          border-radius: VW(15);
+          object-position: 50%;
+          transition: object-position 0.35s $easeOutPower3;
+
+          @include forTablet {
+            height: VW(320, $tablet);
+          }
+          
+          @include forMobile {
+            height: VW(320, $mobile);
+          }      
+        }
+
+        .popUp {
+          box-sizing: border-box;
+
+          background: rgba(217, 217, 217, 0.2);
+          border: 0.1vw solid rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(VW(15));
+          border-radius: VW(10);
+          padding: VW(20);
+          transform: translateY(100%);
+          opacity: 0;
+          transition: 0.45s $ease1;
+          transition-property: box-shadow, opacity, transform;
+          
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: VW(14);
+          
+          position: relative;
+          z-index: 1;
+          
+          @include touch {
+            transform: translateY(0%) !important;
+            opacity: 1 !important;
+            box-shadow: $boxShadow !important;
+          }
+          
+          @include forTablet {
+            gap: VW(14, $tablet);
+          }
+          
+          @include forMobile {
+            border-radius: VW(5, $mobile);
+            backdrop-filter: blur(VW(15, $mobile));
+            padding: VW(15, $mobile);
+            gap: VW(14, $mobile);
+            transform: translateY(0%) !important;
+            opacity: 1 !important;
+          }      
+
+          &_text {
+            @include forDesktop {
+              width: VW(600);
+            }
+            @include forPortraitTablet {
+              width: VW(600);
+            }
+          }
+        }
+      }
+    }
+  }
+}

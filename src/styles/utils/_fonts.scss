@@ -1,14 +1,22 @@
 @font-face {
-  font-family: NeueHaasDisplay;
-  src: url("/fonts/NeueHaasDisplay/NeueHaasDisplayRoman.ttf")
+  font-family: StudioFeixenEdgy;
+  src: url("/fonts/StudioFeixenEdgy/StudioFeixenEdgySemibold.ttf")
+    format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: StudioFeixenSans;
+  src: url("/fonts/StudioFeixenSans/StudioFeixenSansRegular.ttf")
     format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: NeueHaasDisplay;
-  src: url("/fonts/NeueHaasDisplay/NeueHaasDisplayBold.ttf")
+  font-family: StudioFeixenSans;
+  src: url("/fonts/StudioFeixenSans/StudioFeixenSansSemibold.ttf")
     format("opentype");
   font-weight: bold;
   font-style: normal;

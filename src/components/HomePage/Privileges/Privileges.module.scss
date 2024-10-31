@@ -1,0 +1,137 @@
+.privileges {
+  height: VW(1230);
+  margin-top: VW(220);
+  
+  background: url("/images/privileges/bg.webp") no-repeat;
+  background-size: cover;
+  
+  position: relative;
+  
+  @include forTablet {
+    background: url("/images/privileges/bgMobile.webp") no-repeat;
+    background-color: $g-70;
+    background-size: 100% VW(430, $tablet);
+    background-position-y: 100% !important;
+    
+    height: VW(1326, $tablet);
+    
+    padding: VW(80, $tablet) VW(40, $tablet) 0 VW(40, $tablet);
+    margin-top: VW(160, $tablet);
+    
+    display: flex;
+    flex-direction: column;
+    gap: VW(54, $tablet);
+  } 
+  
+  @include forMobile {
+    height: VW(1335, $mobile);
+    padding: VW(80, $mobile) VW(15, $mobile) 0 VW(15, $mobile);
+    margin-top: VW(120, $mobile);
+    
+    background: url("/images/privileges/bgMobile.webp") no-repeat;
+    background-color: $g-70;
+    background-size: 120% VW(307, $mobile);
+    background-position: 50% 100% !important;
+
+    display: flex;
+    flex-direction: column;
+    gap: VW(54, $mobile);
+  } 
+
+  .title {
+    @include forDesktop {
+      position: absolute;
+      top: VW(160);
+      left: VW(220);
+    }
+
+    @include forPortraitTablet {
+      position: absolute;
+      top: VW(160);
+      left: VW(220);
+    }
+  }
+
+  .list {
+    @include forDesktop {
+      position: absolute;
+      bottom: VW(160);
+      right: VW(120);
+      width: VW(830);
+    }
+
+    @include forPortraitTablet {
+      position: absolute;
+      bottom: VW(160);
+      right: VW(120);
+      width: VW(830);
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      gap: VW(20);
+      padding: VW(30) 0;
+      
+      &:not(.item:nth-last-of-type(1)) {
+        border-bottom: 0.1vw solid $g-80;
+      }
+      
+      &:nth-last-of-type(1) {
+        @include forTablet {
+          border-bottom: 0.1vw solid $g-80;
+        }
+        
+        @include forMobile {
+          border-bottom: 0.15vw solid $g-80;
+        }  
+      }
+
+      @include forTablet {
+        gap: VW(20, $tablet);
+        padding: VW(30, $tablet) 0;
+      }
+
+      @include forMobile {
+        gap: VW(20, $mobile);
+        padding: VW(30, $mobile) 0;
+      }
+
+      .top {
+        display: flex;
+        gap: VW(12);
+        
+        @include forTablet {
+          align-items: center;
+          gap: VW(12, $tablet);
+        }
+
+        @include forMobile {
+          align-items: center;
+          gap: VW(12, $mobile);
+        }
+
+        .icon {
+          width: VW(50);
+          height: VW(50);
+          
+          @include forTablet {
+            width: VW(50, $tablet);
+            height: VW(50, $tablet);
+          }
+          
+          @include forMobile {
+            width: VW(50, $mobile);
+            height: VW(50, $mobile);
+          }
+        }
+      }
+
+      .text {
+        @include forTablet {
+          width: VW(500, $tablet);
+        }
+      }
+    }
+  }
+}
