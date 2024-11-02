@@ -2,11 +2,11 @@
   margin-top: VW(220);
   padding-bottom: VW(1230);
   position: relative;
-  
+
   @include forTablet {
     padding-bottom: 0;
   }
-  
+
   @include forMobile {
     margin-top: VW(80, $mobile);
     padding-bottom: 0;
@@ -16,13 +16,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: VW(40);
 
     text-align: center;
 
-    p {
+    &_anim {
+      p {
+        justify-content: center;
+      }
+    }
+
+    .text {
       width: 45%;
-      
+
       @include forTablet {
         width: 65%;
       }
@@ -42,14 +49,14 @@
     position: absolute;
     padding-top: VW(100);
     width: 100%;
-    
+
     @include forTablet {
       position: relative;
       flex-direction: column;
       align-items: center;
       gap: VW(40, $tablet);
     }
-    
+
     @include forMobile {
       position: relative;
       flex-direction: column;
@@ -60,7 +67,7 @@
 
     .card {
       padding: VW(15);
-      background-color: $g-70;
+      background-color: $w-70;
       width: VW(690);
       height: VW(1100);
       border-radius: VW(30);
@@ -88,7 +95,7 @@
         padding: VW(15, $tablet);
         border-radius: VW(30, $tablet);
       }
-      
+
       @include forMobile {
         height: fit-content !important;
         width: VW(350, $mobile);
@@ -105,7 +112,8 @@
         }
 
         .main {
-          background-color: $g-120 !important;
+          background-color: $g-130 !important;
+          border: .1vw solid $g-120 !important;
 
           .tableWrapper.tableTop {
             .tableItem {
@@ -119,13 +127,14 @@
         padding: VW(40);
         background-color: $c-white;
         border-radius: VW(20);
+        border: .1vw solid $g-50;
         overflow: clip;
-        
+
         @include forTablet {
           border-radius: VW(20, $tablet);
           padding: VW(30, $tablet);
         }
-        
+
         @include forMobile {
           border-radius: VW(15, $mobile);
           padding: VW(20, $mobile);
@@ -133,27 +142,27 @@
 
         .tag {
           padding: VW(4) VW(15);
-          margin-bottom: VW(60);
+          margin-bottom: VW(40);
           background-color: $green-100;
           display: inline-block;
           border-radius: 10vw;
           color: $c-white;
-          
+
           @include forTablet {
             padding: VW(6, $tablet) VW(15, $tablet);
-            margin-bottom: VW(60, $tablet);
+            margin-bottom: VW(40, $tablet);
           }
 
           @include forMobile {
             padding: VW(6, $mobile) VW(15, $mobile);
             margin-bottom: VW(20, $mobile);
-          }      
+          }
         }
       }
 
       .transfers {
         padding: VW(40);
-        
+
         @include forTablet {
           padding: VW(40, $tablet);
         }
@@ -183,17 +192,15 @@
         position: relative;
 
         @include forTablet {
-          grid-template-columns: VW(200, $tablet) VW(50, $tablet) VW(
-              150,
-              $tablet
-            ) VW(30, $tablet) VW(140, $tablet);
+          grid-template-columns:
+            VW(200, $tablet) VW(50, $tablet) VW(150, $tablet)
+            VW(30, $tablet) VW(140, $tablet);
         }
-        
+
         @include forMobile {
-          grid-template-columns: VW(200, $tablet) VW(50, $tablet) VW(
-              150,
-              $tablet
-            ) VW(30, $tablet) VW(140, $tablet);
+          grid-template-columns:
+            VW(200, $tablet) VW(50, $tablet) VW(150, $tablet)
+            VW(30, $tablet) VW(140, $tablet);
         }
 
         &:not(:has(.tableItem:nth-child(3))) {
@@ -228,7 +235,7 @@
           padding: VW(30) 0;
           display: flex;
           align-items: center;
-          
+
           @include forTablet {
             padding: VW(30, $tablet) 0;
           }
@@ -247,17 +254,16 @@
           display: block;
           position: absolute;
           bottom: 0;
-          left: 0%;
-          right: 0%;
-          // left: -100%;
-          // right: -100%;
+          // left: 0%;
+          // right: 0%;
+          left: -100%;
+          right: -100%;
           height: 0.1vw;
           background-color: #7878783a;
 
           @include forMobile {
             min-height: 1px;
           }
-  
         }
       }
 
@@ -269,14 +275,13 @@
         transition: 0.5s $ease1;
         transition-property: transform, scale, filter, opacity;
         transform: translateY(50%);
-        scale: .9;
+        scale: 0.9;
         filter: blur(1vw);
-        
+
         @include touch {
           transform: translateY(0%) !important;
           scale: 1 !important;
           filter: blur(0vw) !important;
-
         }
 
         @include forMobile {

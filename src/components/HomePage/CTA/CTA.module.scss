@@ -19,8 +19,8 @@
   @include forMobile {
     flex-direction: column-reverse;
     align-items: center;
-    justify-content: center;
-    height: VW(1100, $mobile);
+    justify-content: space-between;
+    height: VW(1000, $mobile);
     padding-top: VW(80, $mobile);
     gap: VW(40, $mobile);
   }

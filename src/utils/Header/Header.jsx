@@ -5,6 +5,8 @@ import { ButtonBlack, ButtonMain, ButtonTransparent } from "../Button/Button";
 import { useState } from "react";
 import clsx from "clsx";
 import { Menu } from "./Menu/Menu";
+import { motion } from "framer-motion";
+import { anim, MenuAnim } from "@/lib/helpers/anim";
 
 const linksList = [
   {
@@ -36,7 +38,7 @@ const linksList = [
 
 const Header = () => {
   return (
-    <header className={s.header}>
+    <motion.header {...anim(MenuAnim.headerMain)} className={s.header}>
       <Logo className={s.header__logo} />
 
       <ul className={s.links} data-only-desktop--flex>
@@ -61,7 +63,7 @@ const Header = () => {
       </div>
 
       <Menu />
-    </header>
+    </motion.header>
   );
 };
 

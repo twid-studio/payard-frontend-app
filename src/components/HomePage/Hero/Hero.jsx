@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import s from "./Hero.module.scss";
 import { ButtonBlack } from "@/utils/Button/Button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { anim, TitleAnim } from "@/lib/helpers/anim";
+import { anim, HeroCardPresence, TitleAnim } from "@/lib/helpers/anim";
 
 export default function HeroHome() {
   const heroRef = useRef();
@@ -11,25 +11,47 @@ export default function HeroHome() {
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["0% 0%", "100% 0%"],
-    layoutEffect: false
+    layoutEffect: false,
   });
 
-  const cardY = useTransform(scrollYProgress, [0,1], ["0%", "-30%"]);
+  const cardY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const titleBlur = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["blur(0vw)", "blur(1vw)"]
+  );
 
   return (
     <section className={s.hero} ref={heroRef}>
-      <h1 className={`super-text ${s.title}`}>
-        Banking beyond borders,
+      <motion.h1
+        style={{ scale: titleScale, filter: titleBlur }}
+        className={`super-text ${s.title}`}
+      >
+        <Words text="Banking beyond borders," />
         <br />
-        <span className={`edgy ${s.op}`}>made simple</span>
-      </h1>
-      <motion.div style={{ y: cardY }} className={s.open_account}>
+        <Words classNames={`edgy ${s.op}`} index={1} text="made simple" />
+      </motion.h1>
+      <motion.div style={{ y: cardY, }} {...anim(HeroCardPresence)} className={s.open_account}>
         <p>Open Account</p>
         <Cards />
       </motion.div>
     </section>
   );
 }
+
+const Words = ({ text, classNames, index = 0 }) => {
+  return text.split(" ").map((currWord, i) => (
+    <motion.span
+      key={i}
+      className={`${classNames}`}
+      {...anim(TitleAnim)}
+      custom={i + index}
+    >
+      {currWord}&nbsp;
+    </motion.span>
+  ));
+};
 
 const Cards = () => {
   const content = [

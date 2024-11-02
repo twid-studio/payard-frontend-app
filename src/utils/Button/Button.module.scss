@@ -1,12 +1,18 @@
 .button {
   padding: VW(12) VW(22);
   transition: scale 0.3s $BounceOut;
-  box-shadow: $boxShadow;
   border-radius: 10vw;
   color: $c-white;
+  position: relative;
+  z-index: 11;
 
   @include hover {
-    scale: 0.9;
+    // scale: 0.9;
+
+    .bg {
+      scale: 1.1;
+      filter: blur(0.4vw);
+    }
   }
 
   @include forTablet {
@@ -18,12 +24,26 @@
     width: fit-content;
   }
 
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 10vw;
+    transition: all 0.3s $BounceOut;
+    box-shadow: $boxShadow;
+    cursor: pointer;
+  }
+
   &.mainButton {
-    background-color: $green-100;
+    .bg {
+      background-color: $green-100;
+    }
   }
 
   &.blackButton {
-    background-color: $c-black;
+    .bg {
+      background-color: $c-black;
+    }
   }
 
   &.transparentButton {

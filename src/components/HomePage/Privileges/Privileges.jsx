@@ -3,6 +3,8 @@ import React, { useRef } from "react";
 import s from "./Privileges.module.scss";
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import isInViewAnim from "@/lib/helpers/isInViewAnim";
+import { Paragraph } from "@/utils/ParagraphAnim/ParagraphAnim";
 
 const list = [
   {
@@ -29,6 +31,7 @@ const list = [
 
 export default function PrivilegesHome() {
   const privilegesRef = useRef();
+  const isInView = isInViewAnim(privilegesRef);
 
   const { scrollYProgress } = useScroll({
     target: privilegesRef,
@@ -49,11 +52,12 @@ export default function PrivilegesHome() {
       className={s.privileges}
       ref={privilegesRef}
     >
-      <h1 className={s.title}>
-        Fast. Safe.
-        <br />
-        Always on.
-      </h1>
+      <motion.h1
+        className={s.title}
+        // {...inViewAnim(BlurTitleAnim, isInView)}
+      >
+        <Paragraph paragraph={["Fast. Safe.", "Always on."]} />
+      </motion.h1>
 
       <ul className={s.list}>
         {list.map((currI, i) => (

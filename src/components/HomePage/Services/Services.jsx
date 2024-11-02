@@ -65,10 +65,10 @@ export default function ServicesHome() {
     <section className={s.services} >
       <div className={s.title_wrapper}>
         <motion.div style={{ clipPath }} className={s.title}>
-          <Image src="/images/services/title.svg" fill alt=""/>
+          <Image src="/images/services/title-start.svg" fill alt=""/>
         </motion.div>
         <motion.div style={{ clipPath: clipPathStart }} className={s.title}>
-          <Image src="/images/services/title-start.svg" fill alt=""/>
+          <Image src="/images/services/title.svg" fill alt=""/>
         </motion.div>
       </div>
       <div className={s.cards_wrapper} ref={servicesRef}>

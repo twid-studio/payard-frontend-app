@@ -76,12 +76,31 @@
   }
 
   &_wrapper {
-    height: 120vh;
+    height: 120lvh;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @include forMobile {
+      height: VW(1000, $mobile);
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      background-color: $green-100;
+      z-index: -1;
+  
+      @include forTablet {
+        clip-path: none !important;
+      }
+      @include forMobile {
+        clip-path: none !important;
+      }
+    }
+
   }
 
   .top {
@@ -220,10 +239,18 @@
           gap: VW(10, $mobile);
           width: 100%;
         }
+
       }
     }
 
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      gap: VW(20);
+    }
+
     .button {
+      width: fit-content;
       padding: VW(12) VW(22);
       transition: 0.3s $BounceOut;
       transition-property: scale, opacity;

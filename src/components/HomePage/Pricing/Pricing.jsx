@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Pricing.module.scss";
 import { ButtonMain } from "@/utils/Button/Button";
+import { Paragraph } from "@/utils/ParagraphAnim/ParagraphAnim";
 
 const cardsContent = [
   {
@@ -104,10 +105,12 @@ export default function PricingHome() {
     <section className={s.pricing}>
       <div className={s.title}>
         <h1 className="super-text second-tablet second-mobile">
-          You&apos;re just a step away from unlocking our simple,
-          <span className="edgy green">transparent pricing</span>
+          <Paragraph paragraph={["You&apos;re just a step away from unlocking our simple,"]} classNames={s.title_anim}/>
+          <span className="edgy green">
+            <Paragraph paragraph={["transparent pricing"]} classNames={s.title_anim}/>
+          </span>
         </h1>
-        <p>
+        <p className={s.text}>
           No hidden fees, no surprises. PaYard’s clear, upfront pricing ensures
           you know exactly what you’re paying for—so you can focus on what
           matters.

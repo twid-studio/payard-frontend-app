@@ -22,19 +22,20 @@ const HomePage = () => {
 
   return (
     <>
-    <PageLayout className={s.home}>
-      <HeroHome />
-      <ServicesHome />
-      <PrivilegesHome />
-      <InstructionHome />
-      <PricingHome /> 
-      <WhyPayard />
-      <CTA />
-      <Consulting />
-      <UpcomingFeatures />
-    </PageLayout>
+      <PageLayout className={s.home}>
+        {/* <div className="white-space"></div> */}
+        <HeroHome />
+        <ServicesHome />
+        <PrivilegesHome />
+        <InstructionHome />
+        <PricingHome />
+        <WhyPayard />
+        <CTA />
+        <Consulting />
+        <UpcomingFeatures />
+      </PageLayout>
     </>
   );
-}
+};
 
-export default HomePage
+export default HomePage;

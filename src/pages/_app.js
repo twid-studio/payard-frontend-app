@@ -1,4 +1,6 @@
+import { ScrollProvider } from "@/lib/providers/ScrollProvider/ScrollProvider";
 import "@/styles/reset.scss";
+import Header from "@/utils/Header/Header";
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -15,9 +17,12 @@ export default function App({ Component, pageProps, router }) {
       </Head>
 
       <QueryClientProvider client={queryC}>
-        <AnimatePresence mode="wait">
-          <Component key={router.route} {...pageProps} />
-        </AnimatePresence>
+        <ScrollProvider>
+          <Header />
+          <AnimatePresence mode="wait">
+            <Component key={router.route} {...pageProps} />
+          </AnimatePresence>
+        </ScrollProvider>
       </QueryClientProvider>
     </div>
   );

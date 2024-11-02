@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   padding: VW(160) 0;
-  height: VW(960);
+  // height: VW(960);
   position: relative;
-
+  z-index: 10;
   background-color: $w-90;
 
   @include forTablet {
@@ -18,6 +18,8 @@
     height: fit-content;
     padding: VW(80, $mobile) VW(15, $mobile);
     overflow: hidden;
+    transform: none !important;
+    filter: none !important;
   }
 
   .line {
@@ -59,6 +61,7 @@
       width: 100%;
     }
     @include forMobile {
+      margin-top: VW(80, $mobile);
       flex-direction: column;
       width: 100%;
     }
@@ -138,14 +141,14 @@
 
       &_line {
         width: 100%;
-        height: min(0.1vw, 1px);
+        height: max(0.1vw, 1px);
         background-color: $c-black;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
 
         transition-duration: 0.5s, 0.5s;
-        transition-property: rotate scale;
+        transition-property: rotate, scale;
         transition-timing-function: $ease1, $BounceOut;
 
         &:nth-of-type(2) {
@@ -253,7 +256,7 @@
         gap: VW(30, $mobile);
       }
 
-      &> a {
+      & > a {
         line-height: 150%;
       }
 
@@ -279,6 +282,10 @@
       @include forTablet {
         margin-bottom: VW(30, $tablet);
       }
+      
+      @include forMobile {
+        margin-bottom: VW(20, $mobile);
+      }
     }
   }
 
@@ -286,18 +293,16 @@
     display: flex;
     flex-direction: column;
     gap: VW(50);
-    
+
     @include forTablet {
       gap: VW(50, $tablet);
-
     }
-    
+
     @include forMobile {
       gap: VW(50, $tablet);
-
     }
   }
-  
+
   .paragraph {
     display: flex;
     line-height: 1;

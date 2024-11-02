@@ -1,35 +1,36 @@
 $c-white: #fff;
 $c-black: #000;
 
-$w-100: #F0EFEF;
-$w-90: #F9F9F9;
-$w-70: #F0F0F0;
+$w-100: #f0efef;
+$w-90: #f9f9f9;
+$w-70: #f0f0f0;
 
-$g-120: #3F3F3F;
+$g-130: #292929;
+$g-120: #3f3f3f;
 $g-100: #666666;
 $g-90: #999999;
 $g-80: #bcbdbc;
 $g-70: #e4e5e5;
+$g-50: #d9d9d9;
 
-
-$green-100: #38D091;
+$green-100: #38d091;
 $green-90: #88e3bd;
-$green-70: #BCFFE3;
+$green-70: #bcffe3;
 
 $ease1: cubic-bezier(0.65, 0.05, 0, 1);
 
-$BounceOut: cubic-bezier(.02,.09,.15,1.54);
+$BounceOut: cubic-bezier(0.02, 0.09, 0.15, 1.54);
 $ExpoIn: cubic-bezier(0.88, 0.05, 0.1, 0.97);
-$easeInOut2: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$easeInOut2: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 $easePower2: cubic-bezier(0.77, 0, 0.175, 1);
 $easePower3: cubic-bezier(0.645, 0.045, 0.355, 1);
-$easePower4: cubic-bezier(0.770, 0.000, 0.175, 1);
+$easePower4: cubic-bezier(0.77, 0, 0.175, 1);
 $easeSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-$easeInPower2: cubic-bezier(0.550, 0.085, 0.680, 0.530);
-$easeInPower3: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-$easeInPower4: cubic-bezier(0.895, 0.030, 0.685, 0.220);
+$easeInPower2: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$easeInPower3: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$easeInPower4: cubic-bezier(0.895, 0.03, 0.685, 0.22);
 $easeOutPower2: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-$easeOutPower3: cubic-bezier(0.215, 0.610, 0.355, 1);
+$easeOutPower3: cubic-bezier(0.215, 0.61, 0.355, 1);
 
 $boxShadow: VW(-10) VW(10) VW(70) VW(20) rgba(0, 0, 0, 0.1);
 

@@ -56,10 +56,10 @@
 }
 
 .text-hover {
-  transition: color .3s ease;
+  transition: opacity .3s ease;
 
   @include hover {
-    color: $g-90;
+    opacity: 0.4;
   }
 }
 

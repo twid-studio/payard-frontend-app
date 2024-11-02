@@ -21,8 +21,18 @@ const contentFAQ = [
 ];
 
 export default function Consulting() {
+  const consultRef = useRef();
+  const { scrollYProgress } = useScroll({
+    target: consultRef,
+    offset: ["100% 100%", "100% 0%"],
+    layoutEffect: false,
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const filter = useTransform(scrollYProgress, [0.5, 1], ["blur(0vw)", "blur(0.5vw)"]);
+
   return (
-    <section className={s.consulting}>
+    <motion.section style={{ y, filter }} className={s.consulting} ref={consultRef}>
       <svg
         className={s.line}
         viewBox="0 0 249 251"
@@ -62,7 +72,7 @@ export default function Consulting() {
           <ButtonMain link="" text="Get in Touch" />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

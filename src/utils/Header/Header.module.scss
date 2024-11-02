@@ -16,7 +16,7 @@
   }
   
   @include forMobile {
-    top: VW(20, $mobile);
+    top: VW(10, $mobile);
     left: VW(15, $mobile);
     right: VW(15, $mobile);
   }

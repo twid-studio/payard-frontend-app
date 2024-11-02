@@ -1,0 +1,44 @@
+.paragraphWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.paragraph {
+  display: flex;
+  line-height: 1;
+  // max-width: VW(1240);
+  flex-wrap: wrap;
+
+  // @include forTablet {
+  //   max-width: 100%;
+  // }
+
+  // @include forMobile {
+  //   max-width: 100%;
+  // }
+
+  .word {
+    position: relative;
+    margin-right: VW(13);
+    margin-top: VW(10);
+
+    @include forTablet {
+      margin-right: VW(15);
+      margin-top: VW(12);
+    }
+
+    @include forMobile {
+      margin-right: VW(6, $mobile);
+      margin-top: VW(4, $mobile);
+    }
+
+    &:has(.word br) {
+      opacity: 1;
+    }
+
+    .shadow {
+      position: absolute;
+      opacity: 20%;
+    }
+  }
+}

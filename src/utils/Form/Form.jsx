@@ -64,10 +64,15 @@ export default function FormSection() {
     layoutEffect: false,
   });
 
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["inset(80% 0% 0%)", "inset(0% 0% 0%)"]
+  );
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setIsAtTop(latest >= 0.85);
   });
-
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
@@ -85,6 +90,8 @@ export default function FormSection() {
 
   return (
     <section className={s.contact_wrapper} ref={contactRef}>
+      <motion.span style={{ clipPath }} className={s.bg} />
+
       <motion.div
         className={clsx(s.contact, {
           [s.contact_sucess]: isSubmitted,
@@ -98,8 +105,9 @@ export default function FormSection() {
             we&#8217;re here for you
           </h1>
           <p className={"shadow"}>
-            Our dedicated team says &quot;Hi&quot;! Reach out with any questions or for
-            support, and we&apos;ll ensure you get the assistance you need
+            Our dedicated team says &quot;Hi&quot;! Reach out with any questions
+            or for support, and we&apos;ll ensure you get the assistance you
+            need
           </p>
         </div>
         <AnimatePresence mode="wait">
@@ -158,19 +166,25 @@ export default function FormSection() {
                   className={`${s.form_input}`}
                 />
               </motion.div>
+              <div className={s.bottom}>
+                <p className="small-text shadow">
+                  By submitting this form, I confirm that I agree to Privacy
+                  Policy
+                </p>
 
-              <motion.button
-                type="submit"
-                disabled={
-                  formik.isSubmitting || !formik.isValid || !formik.dirty
-                }
-                className={clsx(s.button, s.mainButton, {
-                  [s.button_disabled]:
-                    formik.isSubmitting || !formik.isValid || !formik.dirty,
-                })}
-              >
-                Submit
-              </motion.button>
+                <motion.button
+                  type="submit"
+                  disabled={
+                    formik.isSubmitting || !formik.isValid || !formik.dirty
+                  }
+                  className={clsx(s.button, s.mainButton, {
+                    [s.button_disabled]:
+                      formik.isSubmitting || !formik.isValid || !formik.dirty,
+                  })}
+                >
+                  Submit
+                </motion.button>
+              </div>
             </Form>
           )}
         </Formik>
