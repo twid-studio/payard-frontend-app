@@ -10,8 +10,7 @@ import { anim, PagePresenceAnim } from "@/lib/helpers/anim";
 
 export const PageLayout = ({ children, ...rest }) => {
   return (
-    <ScrollProvider>
-      <motion.div {...anim(PagePresenceAnim)} {...rest}>
+      <motion.div {...anim(PagePresenceAnim)} {...rest} style={{ willChange: "auto" }}>
         {children}
         <div className={s.page_bottom}>
           <span className={s.bg} />
@@ -19,6 +18,5 @@ export const PageLayout = ({ children, ...rest }) => {
           <Footer />
         </div>
       </motion.div>
-    </ScrollProvider>
   );
 };
