@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 
 import s from "./Hero.module.scss";
 import { ButtonBlack } from "@/utils/Button/Button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { anim, HeroCardPresence, TitleAnim } from "@/lib/helpers/anim";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 export default function HeroHome() {
+  
   const heroRef = useRef();
 
   const { scrollYProgress } = useScroll({
@@ -54,28 +56,15 @@ const Words = ({ text, classNames, index = 0 }) => {
 };
 
 const Cards = () => {
-  const content = [
-    {
-      title: "For business",
-      popUpText:
-        "Empower your business with a PaYard account, offering swift onboarding and global transaction capabilities within 3 days or less",
-      video: "/images/hero/1.mp4",
-    },
-    {
-      title: "For persons",
-      popUpText:
-        "For you, worldwide. Open personal account in just 30 minutes with seamless virtual setup, and let your money work.",
-      video: "/images/hero/2.mp4",
-    },
-  ];
+  const { data } = useContext(DataContext);
 
   return (
     <div className={s.cards_wrapper}>
-      {content.map((currC, i) => (
+      {data.heroCards.map((currC, i) => (
         <div className={s.card} key={i}>
-          <h2>{currC.title}</h2>
-          <div className={s.popUp}>
-            <p className={s.popUp_text}>{currC.popUpText}</p>
+          <h2 className={s.cardTitle}>{currC?.title}</h2>
+          <div className={s?.popUp}>
+            <p className={s.popUp_text}>{currC?.popUpText}</p>
             <ButtonBlack link="/" text="Create Your Account" />
           </div>
           <video
@@ -86,7 +75,7 @@ const Cards = () => {
             playsInline
             className={s.video}
           >
-            <source src={currC.video} />
+            <source src={currC?.video} />
           </video>
         </div>
       ))}

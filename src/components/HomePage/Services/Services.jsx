@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 
 import s from "./Services.module.scss";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import { Content } from "@/utils/Content/Content";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ButtonMain } from "@/utils/Button/Button";
 import Link from "next/link";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const cards = [
   {
@@ -39,6 +40,8 @@ const cards = [
 ];
 
 export default function ServicesHome() {
+  const { data } = useContext(DataContext);
+
   const servicesRef = useRef();
 
   const { scrollYProgress } = useScroll({
@@ -72,7 +75,7 @@ export default function ServicesHome() {
         </motion.div>
       </div>
       <div className={s.cards_wrapper} ref={servicesRef}>
-        {cards.map((currC, i) => {
+        {data.services.map((currC, i) => {
           switch (currC.type) {
             case "regular":
               return <RegularCard content={currC} key={i} />;
@@ -94,47 +97,44 @@ export default function ServicesHome() {
 }
 
 const RegularCard = ({ content }) => {
-  const { icon, title, text, bg } = content;
   return (
     <div className={`${s.card} ${s.regular}`}>
       <div className={s.top}>
-        <Image src={icon} width={92} height={92} className={s.icon} alt=""/>
-        <h2>{title}</h2>
+        <Image src={content?.icon} width={92} height={92} className={s?.icon} alt=""/>
+        <h2>{content?.title}</h2>
       </div>
-      <Content url={bg} className={s.background} />
-      <p dangerouslySetInnerHTML={{ __html: text }} className={s.text} />
+      <Content url={content?.bg} className={s?.background} />
+      <p dangerouslySetInnerHTML={{ __html: content?.text }} className={s?.text} />
     </div>
   );
 };
 
 const FullBgCard = ({ content }) => {
-  const { icon, title, text, bg } = content;
   return (
     <div className={`${s.card} ${s.fullBg}`}>
       <div className={s.top}>
-        <Image src={icon} width={92} height={92} className={s.icon} alt=""/>
-        <h2>{title}</h2>
+        <Image src={content?.icon} width={92} height={92} className={s.icon} alt=""/>
+        <h2>{content?.title}</h2>
       </div>
-      <Content url={bg} className={s.background} />
-      <p dangerouslySetInnerHTML={{ __html: text }} className={s.text} />
+      <Content url={content?.bg} className={s.background} />
+      <p dangerouslySetInnerHTML={{ __html: content?.text }} className={s.text} />
     </div>
   );
 };
 
 const CarouselCard = ({ content }) => {
-  const { icon, title, text, carousel } = content;
   return (
     <div className={`${s.card} ${s.carousel}`}>
       <div className={s.left}>
         <div className={s.top}>
-          <Image src={icon} width={92} height={92} className={s.icon} alt=""/>
-          <h2>{title}</h2>
+          <Image src={content?.icon} width={92} height={92} className={s.icon} alt=""/>
+          <h2>{content?.title}</h2>
         </div>
-        <p dangerouslySetInnerHTML={{ __html: text }} className={s.text} />
+        <p dangerouslySetInnerHTML={{ __html: content?.text }} className={s.text} />
       </div>
       <div className={s.wrapper}>
         <div className={s.content}>
-          {carousel.map((currT, i) => (
+          {content?.carousel.map((currT, i) => (
             <h2
               className={s.item}
               key={i}
@@ -143,7 +143,7 @@ const CarouselCard = ({ content }) => {
           ))}
         </div>
         <div className={s.content}>
-          {carousel.map((currT, i) => (
+          {content?.carousel.map((currT, i) => (
             <h2
               className={s.item}
               key={i}
@@ -152,7 +152,7 @@ const CarouselCard = ({ content }) => {
           ))}
         </div>
         <div className={s.content}>
-          {carousel.map((currT, i) => (
+          {content?.carousel.map((currT, i) => (
             <h2
               className={s.item}
               key={i}

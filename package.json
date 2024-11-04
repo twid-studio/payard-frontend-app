@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.1.0",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "framer-motion": "^11.8.0",
     "lenis": "^1.1.13",
     "next": "14.2.13",
+    "next-sanity": "^9.8.8",
     "react": "^18",
     "react-dom": "^18",
     "react-lazyload": "^3.2.1",
