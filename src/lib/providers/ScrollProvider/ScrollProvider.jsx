@@ -15,10 +15,10 @@ function easeInOutExpo(x) {
   return x === 0
     ? 0
     : x === 1
-    ? 1
-    : x < 0.5
-    ? Math.pow(2, 20 * x - 10) / 2
-    : (2 - Math.pow(2, -20 * x + 10)) / 2;
+      ? 1
+      : x < 0.5
+        ? Math.pow(2, 20 * x - 10) / 2
+        : (2 - Math.pow(2, -20 * x + 10)) / 2;
 }
 
 const ScrollProviderContent = ({ children, scrollBar = true, wrapper }) => {
@@ -57,8 +57,10 @@ const ScrollProviderContent = ({ children, scrollBar = true, wrapper }) => {
 
   const scrollTo = (target) => {
     if (lenis) {
+      const dynamicOffset = window.innerHeight * 0.15; // 10% of viewport height
       lenis.scrollTo(target, {
-        duration: 1.7,
+        duration: 2,
+        offset: -dynamicOffset,
         easing: (x) => easeInOutExpo(x),
       });
     }
@@ -93,7 +95,9 @@ const ScrollProviderContent = ({ children, scrollBar = true, wrapper }) => {
   };
 
   return (
-    <ScrollContext.Provider value={{ scrollTo, rangeScrollTo, scrollStop, scrollResume }}>
+    <ScrollContext.Provider
+      value={{ scrollTo, rangeScrollTo, scrollStop, scrollResume }}
+    >
       {children}
     </ScrollContext.Provider>
   );

@@ -11,7 +11,7 @@ export const AnchorLink = ({ children, toSection, ...rest }) => {
   }
 
   return (
-    <Link href={toSection} onClick={handlerScrollTo} {...rest}>
+    <Link href={toSection || "/"} onClick={handlerScrollTo} {...rest}>
       {children}
     </Link>
   )

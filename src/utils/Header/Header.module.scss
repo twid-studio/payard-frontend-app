@@ -41,9 +41,9 @@
     align-items: center;
     box-sizing: border-box;
     background: rgba(217, 217, 217, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: .1vw solid rgba(0, 0, 0, 0.1);
     box-shadow: $boxShadow;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(VW(15));
 
     position: absolute;
     left: 50%;

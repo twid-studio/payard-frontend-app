@@ -1,0 +1,58 @@
+.anchor_link {
+  margin: VW(40) auto 0;
+  padding: VW(5);
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: VW(5);
+
+  background: rgba(217, 217, 217, 0.2);
+  border: 0.1vw solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(VW(15));
+  border-radius: 100vw;
+  
+  // position: sticky;
+  // top: 6vw;
+  z-index: 100;
+  
+  &_fixed {
+    position: fixed;
+    left: 0%;
+    right: 0%;
+    z-index: 100;
+    bottom: 1vw;
+    
+    display: flex;
+    align-items: center;
+  }
+
+  .link {
+    position: relative;
+    z-index: 1;
+    padding: VW(20) VW(25);
+    cursor: pointer;
+
+    transition: color .4s ease;
+    
+    &_active {
+      // transition: color .3s .1s ease;
+      color: $c-white;
+    }
+
+    .text {
+      position: relative;
+      z-index: 100;
+      cursor: pointer;
+    }
+
+    .highlight {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: $green-100;
+      box-shadow: $boxShadow;
+      border-radius: 10vw;
+      cursor: pointer;
+    }
+  }
+}

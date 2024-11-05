@@ -26,7 +26,7 @@ const linksList = [
       },
       {
         text: "For Persons",
-        slug: "/",
+        slug: "/pricing/personal",
       },
     ],
   },

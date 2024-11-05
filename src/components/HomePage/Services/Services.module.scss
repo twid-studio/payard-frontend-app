@@ -218,8 +218,9 @@
               margin-top: VW(12);
               background-color: $w-100;
               color: $g-90;
-              width: VW(438);
-              height: VW(438);
+              width: calc(VW(438) - VW(80));
+              height: calc(VW(438) - VW(80));
+              padding: VW(40);
               border-radius: VW(10);
               display: flex;
               align-items: center;
@@ -230,13 +231,21 @@
                 width: VW(238, $tablet);
                 height: VW(238, $tablet);
                 border-radius: VW(6, $tablet);
-              }
 
+                width: calc(VW(238, $tablet) - VW(60, $tablet));
+                height: calc(VW(238, $tablet) - VW(60, $tablet));
+                padding: VW(30, $tablet);
+              }
+              
               @include forMobile {
                 margin: 0 VW(12, $mobile) 0 0;
                 width: VW(200, $mobile);
                 height: VW(200, $mobile);
                 border-radius: VW(6, $mobile);
+                
+                width: calc(VW(200, $mobile) - VW(40, $mobile));
+                height: calc(VW(200, $mobile) - VW(40, $mobile));
+                padding: VW(20, $mobile);
               }
             }
           }

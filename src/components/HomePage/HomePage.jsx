@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
 import { PageLayout } from "@/utils/PageLayout/PageLayout";
-import { Content } from "@/utils/Content/Content";
-import { AnchorLink } from "@/utils/AnchorLink/AnchorLink";
-
-import s from "./HomePage.module.scss";
-import { ScrollProvider } from "@/lib/providers/ScrollProvider/ScrollProvider";
 import HeroHome from "./Hero/Hero";
 import ServicesHome from "./Services/Services";
 import PrivilegesHome from "./Privileges/Privileges";
@@ -22,8 +17,7 @@ const HomePage = () => {
 
   return (
     <>
-      <PageLayout className={s.home}>
-        {/* <div className="white-space"></div> */}
+      <PageLayout>
         <HeroHome />
         <ServicesHome />
         <PrivilegesHome />

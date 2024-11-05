@@ -17,6 +17,7 @@ export const inViewAnim = (variants, inView) => {
 const ease1 = [0.88, 0.05, 0.1, 0.97];
 const ease2 = [0.23, 0.7, 0.23, 0.72];
 const ease3 = [0.7, 0.2, 0.7, 0.9];
+const ease4 = [0.65, 0.05, 0, 1];
 
 export const PagePresenceAnim = {
   initial: {
@@ -139,14 +140,18 @@ export const MenuAnim = {
 
 export const HeroCardPresence = {
   initial: {
-    y: "120%",
+    y: "20%",
+    opacity: 0,
+    filter: "blur(1vw)",
   },
   animate: {
     y: "0%",
+    opacity: 1,
+    filter: "blur(0vw)",
     transition: {
-      ease: ease1,
-      duration:1,
-      delay: .45,
+      ease: ease4,
+      duration: 1,
+      delay: .35,
     },
   },
   exit: {
@@ -197,7 +202,7 @@ export const BlurTitleAnim = {
     transition: {
       ease: ease3,
       duration: 0.5,
-      // delay: 0.5,
+      delay: 0.35,
     },
   },
   exit: {
@@ -268,3 +273,34 @@ export const ContactAnim = {
     },
   },
 };
+
+export const AnchorListAnim = {
+  initial: {
+    y: "120%",
+    opacity: 0,
+    filter: "blur(1vw)",
+    transition: {
+      duration: 0.5,
+      ease: ease1
+    }
+  },
+  animate: {
+    y: "0%",
+    opacity: 1,
+    filter: "blur(0vw)",
+    transition: {
+      duration: 0.5,
+      ease: ease1
+    }
+  },
+  exit: {
+    y: "120%",
+    opacity: 0,
+    filter: "blur(1vw)",
+    transition: {
+      duration: 0.5,
+      ease: ease1
+    }
+  },
+  
+}
