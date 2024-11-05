@@ -6,8 +6,12 @@ import { ScrollContext } from "@/lib/providers/ScrollProvider/context";
 import { AnimatePresence, motion } from "framer-motion";
 import { VideoPlayer } from "@/utils/VideoPlayer/VideoPlayer";
 import clsx from "clsx";
+import LazyLoad from "react-lazyload";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 export default function CTA() {
+  const { data } = useContext(DataContext);
+
   const [isPlayerActive, setIsPlayerActive] = useState(false);
   const { scrollStop, scrollResume } = useContext(ScrollContext);
 
@@ -23,8 +27,12 @@ export default function CTA() {
 
   return (
     <section className={s.cta}>
+      <LazyLoad className={s.hiden_video}>
+        <video src={data.appInstruction} />
+      </LazyLoad>
+
       <div className={s.phone}>
-        <Image fill src="/images/CTA/phone.png" alt="phone decor"/>
+        <Image fill src="/images/CTA/phone.png" alt="phone decor" />
       </div>
       <div className={s.left}>
         <h1 className={s.title}>Get Started with the App</h1>
@@ -63,7 +71,7 @@ export default function CTA() {
             >
               <VideoPlayer
                 customClass={s.video_main}
-                url={"/images/instruction/GRID_03.webm"}
+                url={data.appInstruction}
               >
                 <span
                   className={s.video_main_close}
@@ -97,7 +105,11 @@ export default function CTA() {
           )}
         </AnimatePresence>
 
-        <p className={"shadow " + s.text}>Using our app is simple and intuitive. Open it, follow the guided steps to set up your account, and explore all features. Hot questions? We&apos;ve got you covered.</p>
+        <p className={"shadow " + s.text}>
+          Using our app is simple and intuitive. Open it, follow the guided
+          steps to set up your account, and explore all features. Hot questions?
+          We&apos;ve got you covered.
+        </p>
       </div>
     </section>
   );

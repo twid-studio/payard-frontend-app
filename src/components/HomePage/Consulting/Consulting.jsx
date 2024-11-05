@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import s from "./Consulting.module.scss";
 import clsx from "clsx";
 import { ButtonMain } from "@/utils/Button/Button";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const contentFAQ = [
   {
@@ -21,6 +22,8 @@ const contentFAQ = [
 ];
 
 export default function Consulting() {
+  const { data } = useContext(DataContext);
+
   const consultRef = useRef();
   const { scrollYProgress } = useScroll({
     target: consultRef,
@@ -64,7 +67,7 @@ export default function Consulting() {
       </div>
 
       <div className={s.faq}>
-        {contentFAQ.map((currQ, i) => (
+        {data.consulting.map((currQ, i) => (
           <FAQCard content={currQ} key={i} />
         ))}
         <div className={s.faq_button}>

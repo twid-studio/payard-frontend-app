@@ -5,8 +5,11 @@ import { AnimatePresence, motion, useScroll, useSpring, useTransform } from "fra
 import { VideoPlayer } from "@/utils/VideoPlayer/VideoPlayer";
 import { ScrollContext } from "@/lib/providers/ScrollProvider/context";
 import clsx from "clsx";
+import { DataContext } from "@/lib/providers/DataProvider/context";
+import LazyLoad from "react-lazyload";
 
 export default function InstructionHome() {
+  const { data } = useContext(DataContext);
   const [isPlayerActive, setIsPlayerActive] = useState(false);
   const { scrollStop, scrollResume } = useContext(ScrollContext);
   const instructionRef = useRef();
@@ -37,6 +40,9 @@ export default function InstructionHome() {
 
   return (
     <motion.section className={s.instruction} ref={instructionRef} style={{ backgroundPositionY: bgPosition }}>
+      <LazyLoad className={s.hiden_video}>
+        <video src={data.signUpInstruction} />
+      </LazyLoad>
       <motion.div
         className={clsx(s.button, {
           [s.button_active]: isPlayerActive,
@@ -72,7 +78,7 @@ export default function InstructionHome() {
           >
             <VideoPlayer
               customClass={s.video_main}
-              url={"/images/instruction/GRID_03.webm"}
+              url={data.signUpInstruction}
             >
               <span className={s.video_main_close} onClick={handlerClosePlayer}>
                 <svg

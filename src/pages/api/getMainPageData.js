@@ -17,19 +17,48 @@ const services = `
   },
 `
 
+const privileges = `
+  "privileges": privileges.list[] {
+    title,
+    text,
+    "icon": icon.asset->url
+  },
+`
+
+const whyPayard = `
+  "whyPayard": whyPayard.list[] {
+    text, title
+  },
+`
+
+const consulting = `
+  "consulting": consulting.list[] {
+    title, text
+  },
+`
+
+const features = `
+  "features": features.list[] {
+    title,
+    text, 
+    "icon": icon.asset->url,
+  },
+`
+
 const appInstruction = `"appInstruction": appInstruction.asset->url,`;
 
 const signUpInstruction = `"signUpInstruction": signUpInstruction.asset->url,`;
-
-const consult = `"consulting": consulting.list,`;
 
 const query = groq`
   *[_type == "homePage"][0] {
     ${heroCards}
     ${services}
-    ${consult}
+    ${privileges}
+    ${whyPayard}
+    ${consulting} 
     ${appInstruction}
     ${signUpInstruction}
+    ${features} 
   }
 `;
 

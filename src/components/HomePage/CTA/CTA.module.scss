@@ -25,6 +25,14 @@
     gap: VW(40, $mobile);
   }
   
+  .hiden_video {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    // display: none;
+    opacity: 0;
+  }
+
   .phone {
     position: relative;
     width: VW(483);

@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 
 import s from "./Privileges.module.scss";
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import isInViewAnim from "@/lib/helpers/isInViewAnim";
 import { Paragraph } from "@/utils/ParagraphAnim/ParagraphAnim";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const list = [
   {
@@ -31,7 +32,7 @@ const list = [
 
 export default function PrivilegesHome() {
   const privilegesRef = useRef();
-  const isInView = isInViewAnim(privilegesRef);
+  const { data } = useContext(DataContext);
 
   const { scrollYProgress } = useScroll({
     target: privilegesRef,
@@ -60,7 +61,7 @@ export default function PrivilegesHome() {
       </motion.h1>
 
       <ul className={s.list}>
-        {list.map((currI, i) => (
+        {data.privileges.map((currI, i) => (
           <li key={i} className={s.item}>
             <div className={s.top}>
               <Image

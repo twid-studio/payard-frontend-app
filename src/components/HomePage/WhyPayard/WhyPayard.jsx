@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import s from "./WhyPayard.module.scss";
 import Image from "next/image";
 import {
@@ -8,27 +8,11 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-
-const contentCard = [
-  {
-    title: "Secure Payments",
-    text: "PaYard’s Visa cards keep your transactions safe with strong encryption, two-factor authentication, and ISO 27001 certified security. It’s all about making sure your money is protected, whether you're using fiat or digital currencies, so you can pay with confidence.",
-  },
-  {
-    title: "Tailored to Your Needs",
-    text: "Whether you’re a freelancer managing global payments or a business scaling internationally, PaYard adapts to your financial journey.",
-  },
-  {
-    title: "No Surprises",
-    text: "Planning an international transfer? Get transparent, upfront pricing, including a 0.2% transfer fee and clear fixed charges. You’ll always know exactly what you’re paying, so you can manage your finances without any unexpected costs.",
-  },
-  {
-    title: "Personalized Support",
-    text: "Get a dedicated manager and 24/7 multilingual support to ensure smooth, tailored financial management every step of the way.",
-  },
-];
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 export default function WhyPayard() {
+  const { data } = useContext(DataContext);
+
   const cardsRef = useRef();
   const { scrollYProgress } = useScroll({
     target: cardsRef,
@@ -43,7 +27,7 @@ export default function WhyPayard() {
     <section className={s.why} ref={cardsRef}>
       <Hero />
       <motion.div style={{ y, filter }} className={s.slides_wrapper}>
-        {contentCard.map((currCard, i) => (
+        {data.whyPayard.map((currCard, i) => (
           <div className={s.slide} key={i}>
             <h1 className={"super-text second-tablet green " + s.title}>{currCard.title}</h1>
             <p className={s.text}>{currCard.text}</p>

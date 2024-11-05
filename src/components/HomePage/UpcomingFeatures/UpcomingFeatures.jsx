@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import s from "./UpcomingFeatures.module.scss";
 import Image from "next/image";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const content = [
   {
@@ -21,6 +22,8 @@ const content = [
 ]
 
 export default function UpcomingFeatures() {
+  const { data } = useContext(DataContext);
+
   return (
     <section className={s.features}>
       <div className={s.content}>
@@ -36,18 +39,18 @@ export default function UpcomingFeatures() {
         </div>
 
         <ul className={s.list}>
-          {content.map((currI, i) => (
+          {data.features.map((currI, i) => (
             <li className={s.item} key={i}>
               <div className={s.left}>
                 <Image
                   width={50}
                   height={50}
-                  src={currI.icon}
+                  src={currI?.icon}
                   alt="icon"
                 />
-                <span>{currI.title}</span>
+                <span>{currI?.title}</span>
               </div>
-              <p className={"shadow " + s.text}>{currI.text}</p>
+              <p className={"shadow " + s?.text}>{currI.text}</p>
             </li>
           ))}
         </ul>
