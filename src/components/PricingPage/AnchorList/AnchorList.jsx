@@ -5,41 +5,21 @@ import React, { useContext, useState, useEffect } from "react";
 import s from "./AnchorList.module.scss";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import {
-  AnchorListAnim,
-  anim,
-  BlurTitleAnim,
-  inViewAnim,
-} from "@/lib/helpers/anim";
+import { AnchorListAnim, anim, BlurTitleAnim } from "@/lib/helpers/anim";
 
-export default function AnchorList() {
+export default function AnchorList({ blackTheme }) {
   const { data: allData } = useContext(DataContext);
   const data = allData.pricingPersonalTables;
 
   const [activeSection, setActiveSection] = useState(data[0].tableSlug);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "0px", threshold: 0.5 }
-    );
-
-    const sections = document.querySelectorAll("[id^='#']");
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   return (
-    <motion.div {...anim(BlurTitleAnim)} className={s.anchor_link}>
+    <motion.div
+      {...anim(BlurTitleAnim)}
+      className={clsx(s.anchor_link, {
+        [s.anchor_link_black]: blackTheme,
+      })}
+    >
       {data.map((currentTable, index) => (
         <AnchorLink
           toSection={`#${currentTable.tableSlug}`}
@@ -69,48 +49,73 @@ export default function AnchorList() {
   );
 }
 
-export function FixedAnchorList() {
+export function FixedAnchorList({ blackTheme }) {
   const { data: allData } = useContext(DataContext);
   const data = allData.pricingPersonalTables;
 
   const [activeSection, setActiveSection] = useState(data[0].tableSlug);
+  const [hoveredSection, setHoveredSection] = useState(null);
 
   useEffect(() => {
+    // Create an Intersection Observer to track sections
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          // When a section becomes visible
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            // Remove the '#' from the beginning of the ID to match with tableSlug
+            const sectionId = entry.target.id;
+            setActiveSection(sectionId);
           }
         });
       },
-      { rootMargin: "0px", threshold: 0.5 }
+      {
+        // Adjust these values based on when you want the section to be considered "active"
+        threshold: 0.3,
+        rootMargin: "-20% 0px -20% 0px",
+      }
     );
 
-    const sections = document.querySelectorAll("[id^='#']");
-    sections.forEach((section) => observer.observe(section));
+    // Observe all sections
+    data.forEach((table) => {
+      const element = document.getElementById(table.tableSlug);
+      if (element) {
+        observer.observe(element);
+      }
+    });
 
+    // Cleanup
     return () => {
-      observer.disconnect();
+      data.forEach((table) => {
+        const element = document.getElementById(table.tableSlug);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
     };
-  }, []);
+  }, [data]);
 
   return (
     <motion.div
       {...anim(AnchorListAnim)}
-      className={`${s.anchor_link} ${s.anchor_link_fixed}`}
+      className={clsx(`${s.anchor_link} ${s.anchor_link_fixed}`, {
+        [s.anchor_link_black]: blackTheme,
+      })}
     >
       {data.map((currentTable, index) => (
         <AnchorLink
           toSection={`#${currentTable.tableSlug}`}
           key={index}
           className={clsx(s.link, {
-            [s.link_active]: activeSection === currentTable.tableSlug,
+            [s.link_active]:
+              activeSection === currentTable.tableSlug ||
+              hoveredSection === currentTable.tableSlug,
           })}
-          onMouseEnter={() => setActiveSection(currentTable.tableSlug)}
-          onMouseLeave={() => setActiveSection(activeSection)}
+          // onMouseEnter={() => setHoveredSection(currentTable.tableSlug)}
+          // onMouseLeave={() => setHoveredSection(null)}
         >
-          {activeSection === currentTable.tableSlug && (
+          {(activeSection === currentTable.tableSlug ||
+            hoveredSection === currentTable.tableSlug) && (
             <motion.span
               transition={{
                 layout: {

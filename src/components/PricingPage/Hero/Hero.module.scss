@@ -5,4 +5,24 @@
   gap: VW(20);
   flex-direction: column;
   align-items: center;
+  
+  @include forTablet {
+    padding-top: VW(160, $tablet);
+    gap: VW(20, $tablet);
+  }
+  
+  @include forMobile {
+    padding-top: VW(120, $mobile);
+    gap: VW(20, $mobile);
+    padding-left: 4vw;
+
+    transform: none !important;
+    filter: none !important;
+  }
+
+  &_black {
+    .shadow {
+      color: $g-90;
+    }
+  }
 }

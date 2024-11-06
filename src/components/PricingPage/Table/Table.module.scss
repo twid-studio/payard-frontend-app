@@ -5,7 +5,7 @@
   background-color: $c-white;
   box-shadow: $boxShadow;
   border-radius: VW(20);
-  margin-top: VW(60);
+  margin-top: VW(30);
 
   display: flex;
   flex-direction: column;
@@ -14,6 +14,29 @@
   position: relative;
   z-index: 10;
 
+  @include forTablet {
+    width: VW(654, $tablet);
+    padding: VW(60, $tablet) VW(40, $tablet);
+    border-radius: VW(20, $tablet);
+    margin-top: VW(30, $tablet);
+  }
+
+  @include forMobile {
+    width: VW(654, $tablet);
+    padding: VW(40, $mobile) VW(40, $tablet);
+    border-radius: VW(20, $mobile);
+    margin-top: VW(40, $mobile);
+    gap: VW(80, $mobile);
+  }
+
+  &_black {
+    background-color: $g-130;
+
+    .shadow {
+      color: $g-90;
+    }
+  }
+
   &_content {
     margin-top: VW(40);
   }
@@ -21,13 +44,32 @@
   &_header {
     align-items: flex-end;
     padding: VW(15) 0;
-    border-bottom: .1vw solid $g-50;
+    border-bottom: 0.1vw solid $g-50;
+
+    @include forTablet {
+      padding: VW(15, $tablet) 0;
+    }
+    
+    @include forMobile {
+      padding: VW(10, $mobile) 0;
+      .table_item {
+        font-size: VW(12, $mobile) !important;
+      }
+    }
   }
 
   &_main_grid {
     padding: VW(37) 0;
-    border-bottom: .1vw solid $g-50;
+    border-bottom: 0.1vw solid $g-50;
     align-items: center;
+
+    @include forTablet {
+      padding: VW(37, $tablet) 0;
+    }
+
+    @include forMobile {
+      padding: VW(20, $mobile) 0;
+    }  
   }
 
   &_item {
@@ -35,16 +77,43 @@
     flex-direction: column;
     &:nth-child(1) {
       grid-column: 1/4;
-      // padding-right: 3vw;
+
+      @include forMobile {
+        grid-column: 1/2;
+        padding-right: VW(20, $mobile);
+      }
     }
 
     &:nth-child(2) {
       grid-column: 5/6;
+
+      @include forMobile {
+        grid-column: 2/3;
+        padding-right: VW(20, $mobile);
+      }
     }
 
     &:nth-child(3) {
       grid-column: 7/9;
       padding-right: 5vw;
+
+      @include forMobile {
+        grid-column: 3/4;
+        padding-right: VW(20, $mobile);
+      }
+    }
+  }
+
+  .underTables {
+    margin-top: VW(40);
+    display: flex;
+    flex-direction: column;
+    gap: VW(15);
+    
+    @include forMobile {
+      margin-top: VW(40, $mobile);
+      gap: VW(15, $mobile);
+      font-size: VW(14, $mobile);
     }
   }
 }
@@ -55,18 +124,30 @@
 
   width: 100%;
 
+  @include forMobile {
+    grid-template-columns: VW(138, $mobile) VW(80, $mobile) VW(112, $mobile);
+  }
+
   &_twoColumn {
     .table_item {
       &:nth-child(1) {
         grid-column: 1/4;
+
+        @include forMobile {
+          grid-column: 1/2;
+        }
       }
-  
+
       &:nth-child(2) {
         // grid-column: 5/6;
         grid-column: 7/9;
         padding-right: 5vw;
+
+        @include forMobile {
+          grid-column: 3/4;
+          padding-right: VW(20, $mobile);
+        }
       }
     }
   }
 }
-

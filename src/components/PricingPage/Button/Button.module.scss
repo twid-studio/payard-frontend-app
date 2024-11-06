@@ -1,0 +1,62 @@
+.button {
+  display: inline-block;
+  padding: VW(20) VW(40);
+  color: $c-white;
+  border-radius: 10vw;
+
+  position: relative;
+  z-index: 1;
+
+  transition: scale 0.3s $BounceOut;
+
+  @include forTablet {
+    padding: VW(18, $tablet) VW(40, $tablet);
+  }
+
+  @include forMobile {
+    padding: VW(18, $mobile) VW(40, $mobile);
+  }
+
+  @include hover {
+    .bg {
+      scale: 1.1;
+      filter: blur(0.4vw);
+    }
+  }
+
+  &_wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: VW(60);
+
+    @include forTablet {
+      margin-top: VW(60, $tablet);
+      margin-bottom: VW(300, $tablet);
+    }
+
+    @include forMobile {
+      margin-top: VW(40, $mobile);
+      margin-bottom: VW(300, $mobile);
+    }
+  }
+
+  &_black {
+    color: $c-black !important;
+
+    .bg {
+      background-color: $c-white !important;
+    }
+  
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 10vw;
+    transition: all 0.3s $BounceOut;
+    box-shadow: $boxShadow;
+    cursor: pointer;
+    background-color: $c-black;
+  }
+}

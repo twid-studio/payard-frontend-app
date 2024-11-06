@@ -1,3 +1,10 @@
 .pricing_page {
   background-color: $w-70;
+  width: 100vw;
+  overflow: clip;
+
+  &_black {
+    background-color: $b-100;
+    color: $c-white;
+  }
 }

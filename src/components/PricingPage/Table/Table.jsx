@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { anim, HeroCardPresence } from "@/lib/helpers/anim";
 
-export default function TablePricing({ setIsFixedList }) {
+export default function TablePricing({ setIsFixedList, blackTheme }) {
   const { data: allData } = useContext(DataContext);
   const data = allData.pricingPersonalTables;
 
@@ -14,20 +14,26 @@ export default function TablePricing({ setIsFixedList }) {
 
   const { scrollYProgress } = useScroll({
     target: tableRef,
-    offset: ["0% 0%", "100% 100%"],
-    layoutEffect: false
+    offset: ["0% 0%", "100% 70%"],
+    layoutEffect: false,
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setIsFixedList(latest > 0 && latest !== 1)
-  })
+    setIsFixedList(latest > 0 && latest !== 1);
+  });
 
   return (
     data && (
-      <motion.section {...anim(HeroCardPresence)} className={s.table} ref={tableRef}>
+      <motion.section
+        {...anim(HeroCardPresence)}
+        className={clsx(s.table, {
+          [s.table_black]: blackTheme
+        })}
+        ref={tableRef}
+      >
         {data.map((currentTable, wrapperIndex) => (
           <div key={wrapperIndex} id={currentTable.tableSlug}>
-            <h2 className="shadow">{currentTable.tableTitle}</h2>
+            <h2 className={"shadow " + s.shadow}>{currentTable.tableTitle}</h2>
             {currentTable.list.map((tableItem, tableIndex) => (
               <div
                 className={s.table_content}
@@ -42,7 +48,7 @@ export default function TablePricing({ setIsFixedList }) {
                   {/* header */}
                   {tableItem.tableHeaders.map((currentHeader, headerIndex) => (
                     <p
-                      className={`${s.table_item} small-text shadow`}
+                      className={`${s.table_item} ${s.shadow} small-text second-mobile shadow`}
                       key={`${currentTable.tableTitle}_${tableIndex}_${headerIndex}`}
                     >
                       {currentHeader}
@@ -70,7 +76,7 @@ export default function TablePricing({ setIsFixedList }) {
                           {!tableRow.values.secondValues.switchField ? (
                             <h2>{tableRow.values.secondValues.second}</h2>
                           ) : (
-                            <h2 className="shadow">━</h2>
+                            <h2 className={"shadow " + s.shadow}>━</h2>
                           )}
                           {tableRow.values.secondValues.underTextSecond && (
                             <p>
@@ -86,7 +92,7 @@ export default function TablePricing({ setIsFixedList }) {
                           {!tableRow.values.thirdValues.switchField ? (
                             <h2>{tableRow.values.thirdValues.second}</h2>
                           ) : (
-                            <h2 className="shadow">━</h2>
+                            <h2 className={"shadow " + s.shadow}>━</h2>
                           )}
                           {tableRow.values.thirdValues.underTextSecond && (
                             <p>{tableRow.values.thirdValues.underTextSecond}</p>
@@ -98,6 +104,15 @@ export default function TablePricing({ setIsFixedList }) {
                 </div>
               </div>
             ))}
+            {currentTable.underTables && (
+              <div className={s.underTables}>
+                {currentTable.underTables.map((currText, index) => (
+                  <p className="shadow" key={index}>
+                    {currText}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </motion.section>

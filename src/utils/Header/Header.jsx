@@ -71,10 +71,15 @@ const DropDown = ({ label, inside }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className={clsx(`${s.link} ${s.dropDown}`, {
-      [s.dropDown_active]: isActive
-    })}>
-      <div className={`${s.label} text-hover`} onClick={() => setIsActive(!isActive)}>
+    <div
+      className={clsx(`${s.link} ${s.dropDown}`, {
+        [s.dropDown_active]: isActive,
+      })}
+    >
+      <div
+        className={`${s.label} text-hover`}
+        onClick={() => setIsActive(!isActive)}
+      >
         <span>{label}</span>
         <svg
           className={s.arrow}
@@ -92,7 +97,12 @@ const DropDown = ({ label, inside }) => {
       </div>
       <div className={s.body}>
         {inside.map((currItem, i) => (
-          <Link href={currItem.slug} key={i} className={s.dropDownLink}>
+          <Link
+            href={currItem.slug}
+            key={i}
+            className={s.dropDownLink}
+            onClick={() => setIsActive(false)}
+          >
             {currItem.text}
           </Link>
         ))}

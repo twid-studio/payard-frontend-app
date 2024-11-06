@@ -8,11 +8,12 @@ const query = groq`
     "pricingPersonalTables": pricingPersonalTables[] -> {
       tableTitle,
       "tableSlug": tableSlug.current,
+      underTables,
       "list": list[]{
         "tableHeaders": table.tableHeaders,
         "tableRows": table.tableRows[] {
           values
-        }
+        },
       }
     }
   }
