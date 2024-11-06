@@ -5,17 +5,21 @@ const heroCards = `
   "heroCards": heroCards.list[] {
     title,
     popUpText,
-    "video": video.asset->url
+    "video": video.asset->url,
+    buttonGroup,
   },
 `;
 
 const services = `
-  "services": services.cards[] {
-    ...,
-    "bg": bg.asset->url,
-    "icon": icon.asset->url
+  "services": services{
+    buttonGroup,
+    "cards": cards[] {
+      ...,
+      "bg": bg.asset->url,
+      "icon": icon.asset->url
+    } 
   },
-`
+`;
 
 const privileges = `
   "privileges": privileges.list[] {
@@ -23,19 +27,22 @@ const privileges = `
     text,
     "icon": icon.asset->url
   },
-`
+`;
 
 const whyPayard = `
   "whyPayard": whyPayard.list[] {
     text, title
   },
-`
+`;
 
 const consulting = `
-  "consulting": consulting.list[] {
-    title, text
+  "consulting": consulting{
+    buttonGroup,
+    "list": list[] {
+      title, text
+    }
   },
-`
+`;
 
 const features = `
   "features": features.list[] {
@@ -43,7 +50,7 @@ const features = `
     text, 
     "icon": icon.asset->url,
   },
-`
+`;
 
 const appInstruction = `"appInstruction": appInstruction.asset->url,`;
 

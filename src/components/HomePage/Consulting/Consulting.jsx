@@ -6,21 +6,6 @@ import clsx from "clsx";
 import { ButtonMain } from "@/utils/Button/Button";
 import { DataContext } from "@/lib/providers/DataProvider/context";
 
-const contentFAQ = [
-  {
-    title: "Business Setup Assistance",
-    text: "We help you establish your business with expert guidance on legal and financial matters.",
-  },
-  {
-    title: "Account Management",
-    text: "Our consultants support you in efficiently managing your accounts and optimizing your financial strategies.",
-  },
-  {
-    title: "Global Compliance",
-    text: "We help you establish your business with expert guidance on legal and financial matters.",
-  },
-];
-
 export default function Consulting() {
   const { data } = useContext(DataContext);
 
@@ -67,12 +52,12 @@ export default function Consulting() {
       </div>
 
       <div className={s.faq}>
-        {data.consulting.map((currQ, i) => (
+        {data.consulting.list.map((currQ, i) => (
           <FAQCard content={currQ} key={i} />
         ))}
         <div className={s.faq_button}>
-          <p className={s.text}>Do You Have Any Questions?</p>
-          <ButtonMain link="" text="Get in Touch" />
+          <p className={s.text}>{data.consulting.buttonGroup.titleText}</p>
+          <ButtonMain link={data.consulting.buttonGroup.buttonLink} text={data.consulting.buttonGroup.buttonText} />
         </div>
       </div>
     </motion.section>

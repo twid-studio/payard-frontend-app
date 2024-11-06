@@ -234,7 +234,9 @@
         .tableItem {
           padding: VW(30) 0;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
+          flex-direction: column;
+          justify-content: center;
 
           @include forTablet {
             padding: VW(30, $tablet) 0;

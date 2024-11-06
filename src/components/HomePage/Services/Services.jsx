@@ -75,7 +75,7 @@ export default function ServicesHome() {
         </motion.div>
       </div>
       <div className={s.cards_wrapper} ref={servicesRef}>
-        {data.services.map((currC, i) => {
+        {data.services.cards.map((currC, i) => {
           switch (currC.type) {
             case "regular":
               return <RegularCard content={currC} key={i} />;
@@ -86,10 +86,10 @@ export default function ServicesHome() {
           }
         })}
       </div>
-      <Link href="/" className={s.button}>
-        <h2 className={s.buttonTitle}>Let’s Get Started</h2>
+      <Link href={data.services.buttonGroup.buttonLink || "/"} className={s.button}>
+        <h2 className={s.buttonTitle}>{data.services.buttonGroup.titleText}</h2>
         <div className={s.buttonWrapper}>
-          <ButtonMain link="/" text="Create Your Account" />
+          <ButtonMain link={data.services.buttonGroup.buttonLink || "/"} text={data.services.buttonGroup.buttonText} />
         </div>
       </Link>
     </section>

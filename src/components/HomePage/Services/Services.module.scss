@@ -306,9 +306,10 @@
     background-color: $green-100;
     width: VW(860);
     border-radius: VW(30);
-    padding: VW(30);
+    padding: VW(40) VW(30);
     position: relative;
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
 
@@ -326,7 +327,7 @@
     
     @include forMobile {
       width: 78%;
-      padding: VW(20, $mobile);
+      padding: VW(30, $mobile) VW(20, $mobile);
       border-radius: VW(12, $mobile);
       justify-content: center;
     }
@@ -337,6 +338,15 @@
       .buttonTitle {
         color: $c-black;
         transform: translateX(0%);
+        left: VW(40);
+        
+        @include forTablet {
+          left: VW(40, $tablet);
+        }
+        
+        @include forMobile {
+          left: VW(20, $mobile);
+        }    
       }
 
       .buttonWrapper {
@@ -356,9 +366,11 @@
       .buttonTitle {
         color: $c-black !important;
         transform: translateX(0%) !important;
+        left: VW(40) !important;
         
         @include forMobile {
           transform: translateX(0%) !important;
+          left: 0% !important;
           color: $c-white !important;
         }  
       }
@@ -372,21 +384,29 @@
     .buttonTitle {
       display: inline-block;
       color: $c-white;
-      transform: translateX(74%);
-
+      transform: translateX(-50%);
+      position: absolute;
+      left: 50%;
+      
       pointer-events: none;
-
+      
       transition-duration: 0.5s;
-      transition-timing-function: $ease1, ease;
-      transition-property: transform, color;
+      transition-timing-function: $ease1, $ease1, ease;
+      transition-property: transform, left, color;
+      
+      // padding-left: VW(30);
 
+      text-wrap: nowrap;
+      
       @include forTablet {
-        transform: translateX(56%);
-      }
-
-      @include forMobile {
+        left: VW(40, $tablet) !important;
         transform: translateX(0%) !important;
-      }  
+      }
+      
+      @include forMobile {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }    
     }
 
     .buttonWrapper {
@@ -396,6 +416,12 @@
 
       transition: 0.5s $ease1;
       transition-property: transform, opacity, filter;
+
+      @include touch {
+        transform: translateY(0%) !important;
+        filter: blur(0vw) !important;
+        opacity: 1 !important;
+      }
 
       @include forMobile {
         display: none;

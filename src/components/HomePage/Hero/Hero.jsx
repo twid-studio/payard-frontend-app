@@ -65,7 +65,7 @@ const Cards = () => {
           <h2 className={s.cardTitle}>{currC?.title}</h2>
           <div className={s?.popUp}>
             <p className={s.popUp_text}>{currC?.popUpText}</p>
-            <ButtonBlack link="/" text="Create Your Account" />
+            <ButtonBlack link={currC.buttonGroup.buttonLink} text={currC.buttonGroup.buttonText} />
           </div>
           <video
             loop

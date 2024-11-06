@@ -41,8 +41,10 @@ const cardsContent = [
         values: [
           {
             first: "Outgoing transfer",
-            second: false,
+            second: "0,3",
+            secondUnder: "(min 15€)",
             third: "15",
+            thirdUnder: "(min 15€)",
           },
           {
             first: "Incoming transfer",
@@ -86,8 +88,10 @@ const cardsContent = [
         values: [
           {
             first: "Outgoing transfer",
-            second: false,
+            second: "0,3",
+            secondUnder: "(min 15€)",
             third: "15",
+            thirdUnder: "(min 15€)",
           },
           {
             first: "Incoming transfer",
@@ -105,9 +109,17 @@ export default function PricingHome() {
     <section className={s.pricing}>
       <div className={s.title}>
         <h1 className="super-text second-tablet second-mobile">
-          <Paragraph paragraph={["You&apos;re just a step away from unlocking our simple,"]} classNames={s.title_anim}/>
+          <Paragraph
+            paragraph={[
+              "You&apos;re just a step away from unlocking our simple,",
+            ]}
+            classNames={s.title_anim}
+          />
           <span className="edgy green">
-            <Paragraph paragraph={["transparent pricing"]} classNames={s.title_anim}/>
+            <Paragraph
+              paragraph={["transparent pricing"]}
+              classNames={s.title_anim}
+            />
           </span>
         </h1>
         <p className={s.text}>
@@ -175,7 +187,10 @@ const Table = ({ table }) => (
                   {currT.second === "Free" ? (
                     <h2 className={s.highlight}>Free</h2>
                   ) : (
-                    <h3>{currT.second}</h3>
+                    <>
+                      <h3>{currT.second}</h3>
+                      <p>{currT?.secondUnder}</p>
+                    </>
                   )}
                 </>
               ) : (
@@ -185,7 +200,10 @@ const Table = ({ table }) => (
             {currT.third !== undefined && (
               <li className={s.tableItem}>
                 {currT.third ? (
-                  <h3>{currT.third}</h3>
+                  <>
+                    <h3>{currT.third}</h3>
+                    <p>{currT?.thirdUnder}</p>
+                  </>
                 ) : (
                   <h3 className="shadow">━</h3>
                 )}
