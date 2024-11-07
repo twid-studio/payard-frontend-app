@@ -10,15 +10,28 @@
   justify-content: space-between;
 
   @include forTablet {
-    top: VW(20, $tablet);
-    left: VW(40, $tablet);
-    right: VW(40, $tablet);
+    top: -2vw;
+    left: 0;
+    right: 0;
+    // top: VW(20, $tablet);
+    // left: VW(40, $tablet);
+    // right: VW(40, $tablet);
+
+    padding: VW(20, $tablet) VW(40, $tablet);
+    background: rgba(217, 217, 217, 0.2);
+    backdrop-filter: blur(5vw);
   }
   
   @include forMobile {
-    top: VW(10, $mobile);
-    left: VW(15, $mobile);
-    right: VW(15, $mobile);
+    top: -2vw;
+    // top: VW(0, $mobile);
+    left: VW(0, $mobile);
+    right: VW(0, $mobile);
+
+    padding: VW(10, $mobile) VW(15, $mobile);
+
+    background: rgba(217, 217, 217, 0.2);
+    backdrop-filter: blur(5vw);
   }
 
   &__logo {

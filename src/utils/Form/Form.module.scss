@@ -72,6 +72,17 @@
         background-color: $g-120;
         border-color: $g-100 !important;
         color: $c-white;
+
+        &:focus {
+          border-color: $green-100 !important;
+        }
+        
+        @include hover {
+          background-color: $g-130 !important;
+          border-color: $green-70 !important;
+
+          transition: all 0.5s ease;
+        }
       }
     }
   }
@@ -158,7 +169,11 @@
       padding: VW(12) VW(15);
       outline: none;
 
-      transition: background-color 0.5s $ExpoIn;
+      transition: all 0.5s $ExpoIn;
+
+      @include hover {
+        background-color: $w-70;
+      }
 
       @include forTablet {
         padding: VW(22, $tablet) VW(25, $tablet);

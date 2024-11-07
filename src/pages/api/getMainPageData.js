@@ -1,6 +1,52 @@
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
 
+const pricingPreviewHome1 = `
+  *[_type == "homePage"][0] {
+    "pricingPreview": *[_type == "pricingPreviewHome"][0] {
+      title, // Title containing "edgy" and "base"
+      "cards": cards[] {
+        settings, // Contains cardColor and type
+        "table": table[] {
+          "tableHeaders": table.tableHeaders, // Table headers
+          "tableRows": table.tableRows[].values {
+              name, // Name of the fee
+              secondValues // Fixed fees
+          }
+        }
+      }
+    }
+  }
+`;
+
+const pricingPreviewHome = `
+  "pricingPreview": *[_type == "pricingPreviewHome"][0] {
+      title,
+      text,
+      "cards": cards[] {
+        settings,
+        buttonGroup,
+        "table": table[] {
+          "tableHeaders": table.tableHeaders,
+          "tableRows": table.tableRows[].values {
+              name,
+              secondValues,
+              thirdValues,
+          }
+        },
+        "tableBottom": tableBottom[] {
+            title,
+          "tableHeaders": table.tableHeaders,
+          "tableRows": table.tableRows[].values {
+              name,
+              secondValues,
+              thirdValues,
+          }
+        }
+      }
+    }
+`;
+
 const heroCards = `
   "heroCards": heroCards.list[] {
     title,
@@ -66,6 +112,7 @@ const query = groq`
     ${appInstruction}
     ${signUpInstruction}
     ${features} 
+    ${pricingPreviewHome}
   }
 `;
 

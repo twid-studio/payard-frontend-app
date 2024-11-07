@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import s from "./Pricing.module.scss";
 import { ButtonMain } from "@/utils/Button/Button";
 import { Paragraph } from "@/utils/ParagraphAnim/ParagraphAnim";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const cardsContent = [
   {
@@ -105,31 +106,26 @@ const cardsContent = [
 ];
 
 export default function PricingHome() {
+  const { data: allData } = useContext(DataContext);
+
+  const data = allData.pricingPreview;
+
   return (
     <section className={s.pricing}>
       <div className={s.title}>
         <h1 className="super-text second-tablet second-mobile">
-          <Paragraph
-            paragraph={[
-              "You&apos;re just a step away from unlocking our simple,",
-            ]}
-            classNames={s.title_anim}
-          />
+          <Paragraph paragraph={[data.title.base]} classNames={s.title_anim} />
           <span className="edgy green">
             <Paragraph
-              paragraph={["transparent pricing"]}
+              paragraph={[data.title.edgy]}
               classNames={s.title_anim}
             />
           </span>
         </h1>
-        <p className={s.text}>
-          No hidden fees, no surprises. PaYard’s clear, upfront pricing ensures
-          you know exactly what you’re paying for—so you can focus on what
-          matters.
-        </p>
+        <p className={s.text}>{data.text}</p>
       </div>
       <div className={s.cards_wrapper}>
-        {cardsContent.map((currCard, i) => (
+        {data.cards.map((currCard, i) => (
           <Card card={currCard} key={i} />
         ))}
       </div>
@@ -138,23 +134,25 @@ export default function PricingHome() {
 }
 
 const Card = ({ card }) => {
-  const { cardColor, type, table, transfersTable } = card;
+  const { settings, table, tableBottom, buttonGroup } = card;
   const classForWrapper = `${s.card} ${
-    cardColor === "black" ? s.card_black : ""
+    settings.cardColor === "black" ? s.card_black : ""
   }`;
 
   return (
     <div className={classForWrapper}>
       <div className={s.main}>
-        <p className={s.tag}>{type}</p>
+        <p className={s.tag}>{settings.type}</p>
         <Table table={table} />
       </div>
       <div className={s.transfers}>
-        <h2>Transfers</h2>
-        <Table table={transfersTable} />
+        <Table table={tableBottom} />
       </div>
       <div className={s.button}>
-        <ButtonMain link="/" text="Learn More" />
+        <ButtonMain
+          link={buttonGroup?.buttonLink || "/"}
+          text={buttonGroup?.buttonText || "Learn More"}
+        />
       </div>
     </div>
   );
@@ -164,32 +162,30 @@ const Table = ({ table }) => (
   <div className={s.table}>
     {table.map((currT, i) => (
       <div className={s.table_content} key={i}>
+        {currT.title && <h2>{currT.title}</h2>}
         <ul className={`${s.tableWrapper} ${s.tableTop}`}>
-          <li className={`${s.tableItem} shadow small-text second-mobile`}>
-            {currT.fisrtTitle}
-          </li>
-          <li className={`${s.tableItem} shadow small-text second-mobile`}>
-            {currT.secondTitle}
-          </li>
-          {currT.thirdTitle && (
-            <li className={`${s.tableItem} shadow small-text second-mobile`}>
-              {currT.thirdTitle}
+          {currT.tableHeaders.map((currTableTop, indexTop) => (
+            <li
+              className={`${s.tableItem} shadow small-text second-mobile`}
+              key={indexTop}
+            >
+              {currTableTop}
             </li>
-          )}
+          ))}
           <span className={s.line} />
         </ul>
-        {currT.values.map((currT, j) => (
+        {currT.tableRows.map((currTableRow, j) => (
           <ul className={s.tableWrapper} key={i + j}>
-            <li className={s.tableItem}>{currT.first}</li>
+            <li className={s.tableItem}>{currTableRow.name}</li>
             <li className={s.tableItem}>
-              {currT.second ? (
+              {currTableRow.secondValues.second ? (
                 <>
-                  {currT.second === "Free" ? (
+                  {currTableRow.secondValues?.second === "Free" ? (
                     <h2 className={s.highlight}>Free</h2>
                   ) : (
                     <>
-                      <h3>{currT.second}</h3>
-                      <p>{currT?.secondUnder}</p>
+                      <h3>{currTableRow.secondValues.second}</h3>
+                      <p>{currTableRow.secondValues.underTextSecond}</p>
                     </>
                   )}
                 </>
@@ -197,12 +193,18 @@ const Table = ({ table }) => (
                 <h3 className="shadow">━</h3>
               )}
             </li>
-            {currT.third !== undefined && (
+            {currTableRow.thirdValues && (
               <li className={s.tableItem}>
-                {currT.third ? (
+                {currTableRow.thirdValues?.second ? (
                   <>
-                    <h3>{currT.third}</h3>
-                    <p>{currT?.thirdUnder}</p>
+                    {currTableRow.thirdValues?.second === "Free" ? (
+                      <h2 className={s.highlight}>Free</h2>
+                    ) : (
+                      <>
+                        <h3>{currTableRow.thirdValues.second}</h3>
+                        <p>{currTableRow.thirdValues.underTextSecond}</p>
+                      </>
+                    )}
                   </>
                 ) : (
                   <h3 className="shadow">━</h3>
