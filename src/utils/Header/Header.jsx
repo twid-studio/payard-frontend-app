@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { Logo } from "../Logo/Logo";
+import { Logo, LogoWhite } from "../Logo/Logo";
 import s from "./Header.module.scss";
 import { ButtonBlack, ButtonMain, ButtonTransparent } from "../Button/Button";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Menu } from "./Menu/Menu";
 import { motion } from "framer-motion";
 import { anim, MenuAnim } from "@/lib/helpers/anim";
+import { usePathname } from "next/navigation";
 
 const linksList = [
   {
@@ -22,7 +23,7 @@ const linksList = [
     dropDown: [
       {
         text: "For Business",
-        slug: "/",
+        slug: "/pricing/business",
       },
       {
         text: "For Persons",
@@ -37,15 +38,25 @@ const linksList = [
 ];
 
 const Header = () => {
+  const pathname = usePathname();
+
+  console.log(pathname);
+
   return (
     <motion.header {...anim(MenuAnim.headerMain)} className={s.header}>
-      <Logo className={s.header__logo} />
+      <Link scroll={false} href="/" className={s.header__logo}>
+        {pathname !== "/pricing/business" ? <Logo /> : <LogoWhite />}
+      </Link>
 
       <ul className={s.links} data-only-desktop--flex>
         {linksList.map((currLink, index) => (
           <li key={`header_link_${index}`} className={s.links_item}>
             {currLink?.slug ? (
-              <Link className={`${s.link} text-hover`} href={currLink.slug}>
+              <Link
+                scroll={false}
+                className={`${s.link} text-hover`}
+                href={currLink.slug}
+              >
                 {currLink.text}
               </Link>
             ) : (
@@ -57,7 +68,9 @@ const Header = () => {
         <div className={s.bg} />
       </ul>
 
-      <div className={s.log_in_buttons} data-only-desktop--flex>
+      <div className={clsx(s.log_in_buttons, {
+        [s.log_in_buttons__invert]: pathname === "/pricing/business"
+      })} data-only-desktop--flex>
         <ButtonTransparent link="/" text="Sign in" />
         <ButtonBlack link="/" text="Log in" />
       </div>
@@ -69,12 +82,36 @@ const Header = () => {
 
 const DropDown = ({ label, inside }) => {
   const [isActive, setIsActive] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    };
+
+    const handleScroll = () => {
+      if (isActive) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [isActive]);
 
   return (
     <div
       className={clsx(`${s.link} ${s.dropDown}`, {
         [s.dropDown_active]: isActive,
       })}
+      ref={dropdownRef}
     >
       <div
         className={`${s.label} text-hover`}
@@ -102,6 +139,7 @@ const DropDown = ({ label, inside }) => {
             key={i}
             className={s.dropDownLink}
             onClick={() => setIsActive(false)}
+            scroll={false}
           >
             {currItem.text}
           </Link>

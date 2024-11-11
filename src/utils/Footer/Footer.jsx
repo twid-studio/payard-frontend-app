@@ -27,21 +27,21 @@ const linksList = {
     },
     {
       text: "Terms & Conditions",
-      link: "/",
+      link: "/privacy/terms-and-conditions",
     },
     {
       text: "Privacy Policy",
-      link: "/",
+      link: "/privacy/privacy-policy",
     },
   ],
   pricing: [
     {
       text: "For Business Account",
-      link: "/",
+      link: "/pricing/business",
     },
     {
       text: "For Personal Account",
-      link: "/",
+      link: "/pricing/personal",
     },
   ],
 };
@@ -50,7 +50,7 @@ export default function Footer() {
   return (
     <footer className={s.footer}>
       <div className={"grid " + s.top}>
-        <Link href="https://maps.app.goo.gl/ZQLcVNVGWf7SbsyF7" target="_blank" className={"bold text-hover " + s.adress}>
+        <Link scroll={false} href="https://maps.app.goo.gl/ZQLcVNVGWf7SbsyF7" target="_blank" className={"bold text-hover " + s.adress}>
           <p>Office Adress</p>
           <p>
             BC, Vancouver - Pacific centre 70 West Georgia street, Suite 1500
@@ -61,7 +61,7 @@ export default function Footer() {
         <div className={s.list}>
           <p className={"bold " + s.list_title}>More Info</p>
           {linksList.anchor.map((curr, i) => (
-            <Link href={curr.link} key={i} className="small-text text-hover">
+            <Link scroll={false} href={curr.link} key={i} className="small-text text-hover">
               {curr.text}
             </Link>
           ))}
@@ -69,7 +69,7 @@ export default function Footer() {
         <div className={s.list}>
           <p className={"bold " + s.list_title}>Terms</p>
           {linksList.terms.map((curr, i) => (
-            <Link href={curr.link} key={i} className="small-text text-hover">
+            <Link scroll={false} href={curr.link} key={i} className="small-text text-hover">
               {curr.text}
             </Link>
           ))}
@@ -77,7 +77,7 @@ export default function Footer() {
         <div className={s.list}>
           <p className={"bold " + s.list_title}>Pricing</p>
           {linksList.pricing.map((curr, i) => (
-            <Link href={curr.link} key={i} className="small-text text-hover">
+            <Link scroll={false} href={curr.link} key={i} className="small-text text-hover">
               {curr.text}
             </Link>
           ))}
@@ -93,7 +93,7 @@ export default function Footer() {
           <br />
           Transaction limits are subject to terms and conditions
         </p>
-        <Link href="https://twid.marketing/" target="_blank" className={"shadow text-hover small-text second-mobile second-tablet " + s.link}>
+        <Link scroll={false} href="https://twid.marketing/" target="_blank" className={"shadow text-hover small-text second-mobile second-tablet " + s.link}>
           Made by twid
         </Link>
       </div>

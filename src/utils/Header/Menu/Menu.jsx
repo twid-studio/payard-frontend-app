@@ -30,11 +30,11 @@ const linksList = {
   bottom: [
     {
       text: "For Business",
-      slug: "/",
+      slug: "/pricing/business",
     },
     {
       text: "For Persons",
-      slug: "/",
+      slug: "/pricing/personal",
     },
   ],
 };
@@ -71,7 +71,7 @@ export const Menu = () => {
               <ul className={s.menu_links}>
                 {linksList.top.map((currI, i) => (
                   <motion.li key={i} {...anim(MenuAnim.links)} custom={i}>
-                    <Link href={currI.slug}>
+                    <Link scroll={false} href={currI.slug}>
                       <h1 className="second-mobile">{currI.text}</h1>
                     </Link>
                   </motion.li>
@@ -93,7 +93,7 @@ export const Menu = () => {
                   Pricing
                 </motion.h2>
                 {linksList.bottom.map((currL, i) => (
-                  <Link key={i} href={currL.slug}>
+                  <Link scroll={false} key={i} href={currL.slug}>
                     <motion.h2
                       {...anim(MenuAnim.links)}
                       custom={linksList.top.length + i}

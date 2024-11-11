@@ -11,3 +11,15 @@ export const Logo = ({ ...rest }) => (
     {...rest}
   />
 );
+
+export const LogoWhite = ({ ...rest }) => (
+  <Image
+    src="/images/logo-white.svg"
+    alt="logo"
+    style={{ objectFit: "contain" }}
+    width={210}
+    height={47}
+    priority
+    {...rest}
+  />
+);

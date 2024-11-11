@@ -167,10 +167,10 @@ export default function FormSection() {
                 />
               </motion.div>
               <div className={s.bottom}>
-                <p className="small-text shadow">
+                <Link scroll={false} href="/privacy/privacy-policy" className={"small-text shadow " + s.privacyLink}>
                   By submitting this form, I confirm that I agree to Privacy
                   Policy
-                </p>
+                </Link>
 
                 <motion.button
                   type="submit"
@@ -182,6 +182,7 @@ export default function FormSection() {
                       formik.isSubmitting || !formik.isValid || !formik.dirty,
                   })}
                 >
+                <span className={s.bg} />
                   Submit
                 </motion.button>
               </div>
@@ -191,8 +192,8 @@ export default function FormSection() {
       </motion.div>
       <div className={s.socials}>
         {downloadContent.map((currIcon, i) => (
-          <Link href={currIcon.link} key={i} target="_blank" className={s.item}>
-            <img src={currIcon.icon} className={s.icon} alt="" />
+          <Link scroll={false} href={currIcon.link} key={i} target="_blank" className={s.item}>
+            <Image src={currIcon.icon} className={s.icon} alt="" fill />
           </Link>
         ))}
       </div>

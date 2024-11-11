@@ -16,19 +16,17 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
-      <PageLayout>
-        <HeroHome />
-        <ServicesHome />
-        <PrivilegesHome />
-        <InstructionHome />
-        <PricingHome />
-        <WhyPayard />
-        <CTA />
-        <Consulting />
-        <UpcomingFeatures />
-      </PageLayout>
-    </>
+    <PageLayout>
+      <HeroHome />
+      <ServicesHome />
+      <PrivilegesHome />
+      <InstructionHome />
+      <PricingHome />
+      <WhyPayard />
+      <CTA />
+      <Consulting />
+      <UpcomingFeatures />
+    </PageLayout>
   );
 };
 

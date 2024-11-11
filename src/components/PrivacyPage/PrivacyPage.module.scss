@@ -1,0 +1,103 @@
+.privacy {
+  .content {
+    padding-top: VW(200);
+    width: VW(1080);
+    margin: 0 auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @include forTablet {
+      padding-top: VW(200, $tablet);
+      width: VW(750, $tablet);
+      margin: 0 auto VW(300, $tablet);
+    }
+    
+    @include forMobile {
+      padding-top: VW(150, $mobile);
+      width: VW(360, $mobile);
+      margin: 0 auto VW(200, $mobile);
+    }
+  }
+
+  .title {
+    &_wrapper {
+      width: VW(800);
+      display: flex;
+      flex-direction: column;
+      gap: VW(50);
+      text-align: center;
+      
+      @include forTablet {
+        gap: VW(30, $tablet);
+      }
+
+      @include forMobile {
+        width: 100%;
+        gap: VW(20, $mobile);
+      }  
+    }
+  }
+
+  .body {
+    margin-top: VW(180);
+    
+    @include forMobile {
+      margin-top: VW(140, $mobile);
+    }
+
+    &_element {
+      display: flex;
+      flex-direction: column;
+      gap: 1vw;
+
+      @include forMobile {
+        gap: 4vw;
+      }  
+
+      h2 {
+        // font-size: inherit;
+        letter-spacing: -.1vw !important;
+        margin-top: VW(40);
+      }
+
+      blockquote {
+        color: $g-100;
+        background-color: $w-70;
+        padding: VW(20) VW(60) VW(20) VW(20);
+        border: .1vw solid $g-50;
+        border-radius: VW(20);
+        
+        @include forMobile {
+          border: 1px solid $g-50;
+          border-radius: VW(20, $mobile);
+          padding: VW(20, $mobile);
+        }    
+      }
+
+      a {
+        text-decoration: underline;
+        transition: opacity .3s ease;
+
+        @include hover {
+          opacity: .6;
+        }
+      }
+
+      ul {
+        list-style: auto;
+        list-style-type: disc;
+        padding-left: VW(28);
+        display: flex;
+        flex-direction: column;
+        gap: VW(20);
+        
+        @include forMobile {
+          padding-left: VW(20, $mobile);
+          gap: VW(20, $mobile);
+        }    
+      }
+    }
+  }
+}

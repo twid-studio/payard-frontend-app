@@ -9,7 +9,7 @@ import { AnchorListAnim, anim, BlurTitleAnim } from "@/lib/helpers/anim";
 
 export default function AnchorList({ blackTheme }) {
   const { data: allData } = useContext(DataContext);
-  const data = allData.pricingPersonalTables;
+  const data = allData.pricingTables;
 
   const [activeSection, setActiveSection] = useState(data[0].tableSlug);
 
@@ -51,7 +51,7 @@ export default function AnchorList({ blackTheme }) {
 
 export function FixedAnchorList({ blackTheme }) {
   const { data: allData } = useContext(DataContext);
-  const data = allData.pricingPersonalTables;
+  const data = allData.pricingTables;
 
   const [activeSection, setActiveSection] = useState(data[0].tableSlug);
   const [hoveredSection, setHoveredSection] = useState(null);

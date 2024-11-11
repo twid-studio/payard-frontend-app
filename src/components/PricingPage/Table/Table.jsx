@@ -8,7 +8,7 @@ import { anim, HeroCardPresence } from "@/lib/helpers/anim";
 
 export default function TablePricing({ setIsFixedList, blackTheme }) {
   const { data: allData } = useContext(DataContext);
-  const data = allData.pricingPersonalTables;
+  const data = allData.pricingTables;
 
   const tableRef = useRef();
 

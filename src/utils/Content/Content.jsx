@@ -56,7 +56,7 @@ export const Content = ({ url, refCon, lazy = true, ...rest }) => {
             </video>
           )}
           {isImage && (
-            <Image src={url} ref={refCon && refCon} {...rest} />
+            <Image src={url} ref={refCon && refCon} {...rest} alt=""/>
           )}
         </>
       )}

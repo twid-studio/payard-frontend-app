@@ -9,16 +9,16 @@
 
   @include hover {
     .progressBar__bar {
-      width: .6vw;
+      width: .8vw;
     }
   }
   
   &__bar {
     position: absolute;
     right: 0;
-    width: 0.2vw;
-    height: 5%;
-    background-color: rgb(170, 130, 130);
+    width: 0.3vw;
+    height: 10%;
+    background-color: $green-100;
     // transform-origin: center;
     transform: translateY(-100%);
     transition: width .4s cubic-bezier(.08,.99,.37,1);

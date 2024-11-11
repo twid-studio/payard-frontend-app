@@ -178,5 +178,11 @@
     // display: flex; 
     align-content: center;
     gap: VW(16);
+    transition: filter .3s .3s ease;
+    
+    &__invert {
+      transition: filter .3s 1s ease;
+      filter: invert(1);
+    }
   }
 }

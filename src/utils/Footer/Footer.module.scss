@@ -8,6 +8,8 @@
   z-index: 2;
   margin-top: VW(140);
 
+  color: $c-black;
+
   @include forTablet {
     height: VW(664, $tablet);
     margin-top: VW(180, $tablet);

@@ -5,7 +5,7 @@ import s from './Button.module.scss';
 
 export const ButtonMain = ({ link, text }) => {
   return (
-    <Link href={link} className={`${s.button} ${s.mainButton}`}>
+    <Link scroll={false} href={link} className={`${s.button} ${s.mainButton}`}>
       <span className={s.bg} />
       {text}
     </Link>
@@ -14,7 +14,7 @@ export const ButtonMain = ({ link, text }) => {
 
 export const ButtonBlack = ({ link, text }) => {
   return (
-    <Link href={link} className={`${s.button} ${s.blackButton}`}>
+    <Link scroll={false} href={link} className={`${s.button} ${s.blackButton}`}>
       <span className={s.bg} />
       {text}
     </Link>
@@ -23,7 +23,8 @@ export const ButtonBlack = ({ link, text }) => {
 
 export const ButtonTransparent = ({ link, text }) => {
   return (
-    <Link href={link} className={`${s.button} ${s.transparentButton}`}>
+    <Link scroll={false} href={link} className={`${s.button} ${s.transparentButton}`}>
+      <span className={s.bg} />
       {text}
     </Link>
   )

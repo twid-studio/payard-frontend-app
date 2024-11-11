@@ -255,7 +255,6 @@
           gap: VW(10, $mobile);
           width: 100%;
         }
-
       }
     }
 
@@ -263,6 +262,14 @@
       display: flex;
       flex-direction: column;
       gap: VW(20);
+
+      .privacyLink {
+        transition: color .3s ease;
+
+        @include hover {
+          color: $green-100;
+        }
+      }
     }
 
     .button {
@@ -270,12 +277,18 @@
       padding: VW(12) VW(22);
       transition: 0.3s $BounceOut;
       transition-property: scale, opacity;
-      box-shadow: $boxShadow;
+      // box-shadow: $boxShadow;
       border-radius: 10vw;
       color: $c-white;
 
+      position: relative;
+      z-index: 10;
+
       @include hover {
-        scale: 0.9;
+        .bg {
+          scale: 1.1;
+          filter: blur(0.4vw);
+        }
       }
 
       @include forTablet {
@@ -287,7 +300,14 @@
         width: fit-content;
       }
 
-      &.mainButton {
+      .bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: 10vw;
+        transition: all 0.3s $BounceOut;
+        box-shadow: $boxShadow;
+        cursor: pointer;
         background-color: $green-100;
       }
 
@@ -295,6 +315,12 @@
         opacity: 0.4;
         scale: 1 !important;
         cursor: no-drop;
+
+        .bg {
+          scale: 1 !important;
+          filter: blur(0vw) !important;
+          cursor: no-drop;
+        }
       }
     }
   }

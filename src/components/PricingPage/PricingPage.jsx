@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeroPricing from "./Hero/Hero";
 import TablePricing from "./Table/Table";
 import { PageLayout } from "@/utils/PageLayout/PageLayout";
@@ -13,6 +13,10 @@ export default function PricingPage({ theme = "white", type = "personal" }) {
   const [isFixedList, setIsFixedList] = useState(false);
 
   const blackTheme = theme === "black"
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <PageLayout

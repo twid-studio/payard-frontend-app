@@ -2,10 +2,10 @@ import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
 
 const query = groq`
-  *[_type == "pricingPersonalPage"][0] {
+  *[_type == "pricingBusinessPage"][0] {
     title,
     validFrom,
-    "pricingTables": pricingPersonalTables[] -> {
+    "pricingTables": pricingBusinessTables[] -> {
       tableTitle,
       "tableSlug": tableSlug.current,
       underTables,
@@ -18,19 +18,6 @@ const query = groq`
     }
   }
 `;
-
-// const query = groq`
-//   *[_type == "pricingPersonal"][] {
-//     tableTitle,
-//     "tableSlug": tableSlug.current,
-//     "list": list[]{
-//       "tableHeaders": table.tableHeaders,
-//       "tableRows": table.tableRows[] {
-//         values
-//       }
-//     }
-//   }
-// `;
 
 export default async function handler(req, res) {
   try {

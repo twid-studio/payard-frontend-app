@@ -2,6 +2,26 @@ import { useScroll, useSpring, motion, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import s from "./ScrollBar.module.scss";
 import { useScrollLenis } from "@/lib/providers/ScrollProvider/ScrollProvider";
+import { anim } from "@/lib/helpers/anim";
+
+const presence = {
+  initial: {
+    x: "100%"
+  },
+  animate: {
+    x: "0%",
+    transition: {
+      duration: .3,
+      delay: .3
+    }
+  },
+  exit: {
+    x: "100%",
+    transition: {
+      duration: .3,
+    }
+  }
+}
 
 export const ScrollBar = ({}) => {
   const [rangeValue, setRangeValue] = useState(0);
@@ -44,7 +64,11 @@ export const ScrollBar = ({}) => {
   }
 
   return (
-    <div className={s.progressBar} data-desktop-element>
+    <motion.div
+      {...anim(presence)}
+      className={s.progressBar}
+      data-desktop-element
+    >
       <motion.div className={s.progressBar__bar} style={{ top, y }} />
       <input
         type="range"
@@ -54,6 +78,6 @@ export const ScrollBar = ({}) => {
         onChange={handleRangeChange}
         className={s.progressBar__range}
       />
-    </div>
+    </motion.div>
   );
 };

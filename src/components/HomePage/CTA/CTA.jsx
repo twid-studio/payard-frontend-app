@@ -47,6 +47,7 @@ export default function CTA() {
             ease: [0.12, 0.73, 0.28, 0.99],
           }}
         >
+          <span className={s.bg} />
           <svg
             className={s.buttonIcon}
             viewBox="0 0 40 40"
@@ -69,10 +70,7 @@ export default function CTA() {
               layoutId="videoCta"
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <VideoPlayer
-                customClass={s.video_main}
-                url={data.appInstruction}
-              >
+              <VideoPlayer customClass={s.video_main} url={data.appInstruction}>
                 <span
                   className={s.video_main_close}
                   onClick={handlerClosePlayer}

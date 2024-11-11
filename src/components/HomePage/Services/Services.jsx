@@ -8,37 +8,6 @@ import { ButtonMain } from "@/utils/Button/Button";
 import Link from "next/link";
 import { DataContext } from "@/lib/providers/DataProvider/context";
 
-const cards = [
-  {
-    type: "regular",
-    icon: "/images/services/imgs/icon-1.png",
-    title: "Starting Your Account",
-    text: "You first steps are easy and hassle-free. Whether you're an individual or running a business, our simple setup process gets you up and running quickly. <br/><br/> Once you're in, you'll enjoy a range of benefits designed to make your financial life smoother",
-    bg: "/images/services/imgs/bg-1.gif",
-  },
-  {
-    type: "carousel",
-    icon: "/images/services/imgs/icon-2.png",
-    title: "Effortless Global Payments With the Flexibility You Need",
-    text: "With our Visa cards, whether you choose a virtual or physical one, experience the flexibility to manage  finances your way, with global acceptance and robust protection.",
-    carousel: ["Global <br /> Acceptance", "Robust <br /> Protection"],
-  },
-  {
-    type: "regular",
-    icon: "/images/services/imgs/icon-3.png",
-    title: "Exchange currencies seamlessly, fast and hassle-free",
-    text: "You first steps are easy and hassle-free. Whether you're an individual or running a business, our simple setup process gets you up and running quickly. <br/><br/> Once you're in, you'll enjoy a range of benefits designed to make your financial life smoother",
-    bg: "/images/services/imgs/bg-3.gif",
-  },
-  {
-    type: "fullBg",
-    icon: "/images/services/imgs/icon-4.png",
-    title: "Go global with streamlined transactions",
-    text: "Payard supports seamless international transactions with SWIFT & SEPA, making global business and personal finances simple and efficient - all at competitive market rates.",
-    bg: "/images/services/imgs/bg-4.mp4",
-  },
-];
-
 export default function ServicesHome() {
   const { data } = useContext(DataContext);
 
@@ -86,7 +55,7 @@ export default function ServicesHome() {
           }
         })}
       </div>
-      <Link href={data.services.buttonGroup.buttonLink || "/"} className={s.button}>
+      <Link scroll={false} href={data.services.buttonGroup.buttonLink || "/"} className={s.button}>
         <h2 className={s.buttonTitle}>{data.services.buttonGroup.titleText}</h2>
         <div className={s.buttonWrapper}>
           <ButtonMain link={data.services.buttonGroup.buttonLink || "/"} text={data.services.buttonGroup.buttonText} />

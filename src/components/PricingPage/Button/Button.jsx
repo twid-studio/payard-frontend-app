@@ -8,7 +8,7 @@ export default function ButtonPricing({ blackTheme, type }) {
   const href = type === "personal" ? "business" : "personal"
   return (
     <div className={s.button_wrapper}>
-    <Link href={`/pricing/${href}`} className={clsx(s.button, {
+    <Link href={`/pricing/${href}`} scroll={false} className={clsx(s.button, {
       [s.button_black]: blackTheme
     })}>
       <span className={s.bg} />

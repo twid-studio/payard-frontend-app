@@ -6,6 +6,15 @@
   position: relative;
   z-index: 11;
 
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: $w-100;
+    z-index: -1;
+    transform: translateY(100%);
+  }
+
   @include forTablet {
     padding: VW(100, $tablet) 0;
   }

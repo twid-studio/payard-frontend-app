@@ -32,7 +32,7 @@ export const PagePresenceAnim = {
     transition: {
       ease: ease3,
       duration: 0.5,
-      // delay: 0.5,
+      // delay: 0.5,  
     },
     transitionEnd: {
       filter: "none",
