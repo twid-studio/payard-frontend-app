@@ -3,20 +3,19 @@
 
   background: url("/images/instruction/bg.webp") no-repeat;
   background-size: 110%;
-  
+
   position: relative;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  
+
   @include forTablet {
     aspect-ratio: 4/3;
     background-size: cover;
     background-position: center;
   }
-  
+
   @include forMobile {
     aspect-ratio: auto;
     background-size: cover;
@@ -35,33 +34,48 @@
   .button {
     padding: VW(12) VW(22) VW(12) VW(12);
     transition: scale 0.3s $BounceOut;
-    box-shadow: $boxShadow;
+    // box-shadow: $boxShadow;
     border-radius: 10vw;
     color: $c-white;
-    background-color: $green-100;
+    // background-color: $green-100;
     cursor: pointer;
-
+    position: relative;
+    z-index: 10;
     display: flex;
     align-items: center;
     gap: VW(12);
-    
+
     line-height: 90%;
-    
+
     @include hover {
-      scale: 0.9;
+      .bg {
+        scale: 1.1;
+        filter: blur(0.4vw);
+      }
     }
-    
+
     @include forTablet {
       padding: VW(12, $tablet) VW(22, $tablet) VW(12, $tablet) VW(12, $tablet);
       gap: VW(8, $tablet);
       transform: none !important;
       opacity: 1 !important;
     }
-    
+
     @include forMobile {
       opacity: 1 !important;
       transform: none !important;
       padding: VW(12, $mobile) VW(22, $mobile) VW(12, $mobile) VW(12, $mobile);
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: 10vw;
+      transition: all 0.3s $BounceOut;
+      box-shadow: $boxShadow;
+      cursor: pointer;
+      background-color: $green-100;
     }
 
     &_active {
@@ -70,26 +84,29 @@
       }
 
       .buttonIcon {
+        cursor: pointer;
         @include forDesktop {
           opacity: 0;
-          transition: opacity .001s ease;
+          transition: opacity 0.001s ease;
         }
-        
+
         @include forPortraitTablet {
           opacity: 0;
-          transition: opacity .001s ease;
+          transition: opacity 0.001s ease;
         }
       }
 
       .buttonText {
+        cursor: pointer;
+
         @include forDesktop {
           opacity: 0;
-          transition: opacity .001s ease;
+          transition: opacity 0.001s ease;
         }
-        
+
         @include forPortraitTablet {
           opacity: 0;
-          transition: opacity .001s ease;
+          transition: opacity 0.001s ease;
         }
       }
     }
@@ -97,21 +114,21 @@
     .buttonIcon {
       width: VW(40);
       height: VW(40);
-      transition: opacity .3s .5s ease;
-      
+      transition: opacity 0.3s 0.5s ease;
+
       @include forTablet {
         width: VW(30, $tablet);
         height: VW(30, $tablet);
       }
-      
+
       @include forMobile {
         width: VW(30, $mobile);
         height: VW(30, $mobile);
-      }    
+      }
     }
 
     .buttonText {
-      transition: opacity .3s .5s ease;
+      transition: opacity 0.3s 0.5s ease;
     }
   }
 
@@ -121,22 +138,22 @@
     gap: VW(80);
     box-shadow: $boxShadow;
     background-color: $c-white;
-    
+
     width: VW(470);
     padding: VW(20);
     border-radius: VW(20);
-    
+
     position: absolute;
     bottom: VW(20);
     left: VW(20);
-    
+
     @include forTablet {
       width: VW(387, $tablet);
       padding: VW(15, $tablet);
       border-radius: VW(20, $tablet);
       gap: VW(16, $tablet);
     }
-    
+
     @include forMobile {
       width: 84%;
       left: 50%;
@@ -150,7 +167,7 @@
     h2 {
       @include forTablet {
         width: 70%;
-      }  
+      }
     }
   }
 
@@ -159,12 +176,12 @@
     height: VW(911);
     aspect-ratio: 16/9;
     border-radius: VW(30);
-    
+
     &_wrapper {
       position: fixed;
       inset: 0;
       z-index: 100;
-      
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -173,10 +190,10 @@
         position: fixed;
         inset: 0;
         z-index: -1;
-      
-        animation: presenceBg .3s .7s forwards;
 
-        transition: opacity .3s ease-in-out;
+        animation: presenceBg 0.3s 0.7s forwards;
+
+        transition: opacity 0.3s ease-in-out;
 
         @keyframes presenceBg {
           0% {
@@ -188,14 +205,12 @@
             backdrop-filter: blur(VW(15));
           }
         }
-  
-        @include hover {
-          opacity: .8;
-        }
 
+        @include hover {
+          opacity: 0.8;
+        }
       }
     }
-
 
     &_close {
       width: VW(22);
@@ -207,10 +222,10 @@
       z-index: 10000;
       cursor: pointer;
 
-      transition: opacity .3s ease;
+      transition: opacity 0.3s ease;
 
       @include hover {
-        opacity: .6;
+        opacity: 0.6;
       }
     }
   }

@@ -54,6 +54,8 @@ export default function InstructionHome() {
           ease: [0.12, 0.73, 0.28, 0.99],
         }}
       >
+      <span className={s.bg} />
+
         <svg
           className={s.buttonIcon}
           viewBox="0 0 40 40"
