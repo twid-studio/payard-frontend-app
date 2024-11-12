@@ -1,3 +1,4 @@
+import { URL_SEO_BASE } from "@/lib/helpers/DataUrls";
 import Head from "next/head";
 
 export const PageHead = ({ data }) => {
@@ -6,6 +7,8 @@ export const PageHead = ({ data }) => {
   const metaImage = data?.openGraphImage;
   const metaKeywords = data?.keywords;
 
+  console.log(data);
+  
   return (
     <Head>
       {/* Basic Meta Tags */}
@@ -49,7 +52,7 @@ export const PageHead = ({ data }) => {
       {/* X-UA-Compatible */}
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
-      {/* FavIcon */}
+      {/* #region */}
       <link
         rel="apple-touch-icon-precomposed"
         sizes="57x57"
@@ -122,17 +125,28 @@ export const PageHead = ({ data }) => {
       />
       <meta name="application-name" content="&nbsp;" />
       <meta name="msapplication-TileColor" content="#FFFFFF" />
-      <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png" />
-      <meta name="msapplication-square70x70logo" content="/favicon/mstile-70x70.png" />
+      <meta
+        name="msapplication-TileImage"
+        content="/favicon/mstile-144x144.png"
+      />
+      <meta
+        name="msapplication-square70x70logo"
+        content="/favicon/mstile-70x70.png"
+      />
       <meta
         name="msapplication-square150x150logo"
         content="mstile-150x150.png"
       />
-      <meta name="msapplication-wide310x150logo" content="/favicon/mstile-310x150.png" />
+      <meta
+        name="msapplication-wide310x150logo"
+        content="/favicon/mstile-310x150.png"
+      />
       <meta
         name="msapplication-square310x310logo"
         content="mstile-310x310.png"
       />
+      {/* #endregion */}
     </Head>
   );
 };
+

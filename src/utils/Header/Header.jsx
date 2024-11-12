@@ -5,7 +5,7 @@ import { AnchorButtonMain, ButtonBlack, ButtonMain, ButtonTransparent } from "..
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Menu } from "./Menu/Menu";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { anim, MenuAnim } from "@/lib/helpers/anim";
 import { usePathname } from "next/navigation";
 import { AnchorLink } from "../AnchorLink/AnchorLink";

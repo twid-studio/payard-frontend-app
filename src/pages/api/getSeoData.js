@@ -12,7 +12,7 @@ const query = groq`
 
 export default async function handler(req, res) {
   try {
-    console.log(`Attempting to fetch data from Sanity`);
+    console.log(`Attempting to fetch SEOdata from Sanity`);
     const seo = await sanityClient.fetch(query);
 
     if (!seo) {
@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     }
 
     res.status(200).json(seo);
+
   } catch (error) {
     console.error(`Error fetching data from Sanity:`, error);
     res.status(500).json({

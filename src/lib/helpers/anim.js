@@ -86,7 +86,7 @@ export const MenuAnim = {
     exit: {
       opacity: 0,
       transition: {
-        ease: ease3,
+        ease: ease1,
         duration: 0.3,
         delay: 0.5,
       },
