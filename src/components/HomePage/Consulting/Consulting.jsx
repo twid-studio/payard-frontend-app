@@ -20,7 +20,7 @@ export default function Consulting() {
   const filter = useTransform(scrollYProgress, [0.5, 1], ["blur(0vw)", "blur(0.5vw)"]);
 
   return (
-    <motion.section style={{ y, filter }} className={s.consulting} ref={consultRef}>
+    <motion.section style={{ y, filter }} className={s.consulting} ref={consultRef} id="consulting">
       <svg
         className={s.line}
         viewBox="0 0 249 251"

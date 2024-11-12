@@ -4,20 +4,21 @@ import { Logo } from "../Logo/Logo";
 import s from "./Footer.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { AnchorLink } from "../AnchorLink/AnchorLink";
 
 const linksList = {
   anchor: [
     {
       text: "Banking",
-      link: "/",
+      link: "#banking",
     },
     {
       text: "Services",
-      link: "/",
+      link: "#services",
     },
     {
       text: "Consulting",
-      link: "/",
+      link: "#consulting",
     },
   ],
   terms: [
@@ -61,9 +62,9 @@ export default function Footer() {
         <div className={s.list}>
           <p className={"bold " + s.list_title}>More Info</p>
           {linksList.anchor.map((curr, i) => (
-            <Link scroll={false} href={curr.link} key={i} className="small-text text-hover">
+            <AnchorLink toSection={curr.link} page="/" key={i} className="small-text text-hover">
               {curr.text}
-            </Link>
+            </AnchorLink>
           ))}
         </div>
         <div className={s.list}>

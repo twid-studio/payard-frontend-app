@@ -34,7 +34,7 @@ export default function ServicesHome() {
   );
 
   return (
-    <section className={s.services} >
+    <section className={s.services} id="services">
       <div className={s.title_wrapper}>
         <motion.div style={{ clipPath }} className={s.title}>
           <Image src="/images/services/title-start.svg" fill alt=""/>

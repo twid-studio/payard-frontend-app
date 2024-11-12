@@ -1,61 +1,41 @@
 import Head from "next/head";
 
 export const PageHead = ({ data }) => {
+  const metaTitle = data?.metaTitle;
+  const metaDescription = data?.metaDescription;
+  const metaImage = data?.openGraphImage;
+  const metaKeywords = data?.keywords;
+
   return (
     <Head>
       {/* Basic Meta Tags */}
-      <title>{data.documentTitle}</title>
-      <meta name="description" content={data.documentDescription} />
-      <meta name="keywords" content={data.documentKeywords} />
-      <link rel="canonical" href={data.canonicalUrl} />
+      {metaTitle && <title>{metaTitle}</title>}
+      {metaDescription && <meta name="description" content={metaDescription} />}
+      {metaKeywords && <meta name="keywords" content={metaKeywords} />}
 
       {/* Open Graph Meta Tags */}
-      <meta property="og:title" content={data.documentTitle} />
-      <meta property="og:description" content={data.documentDescription} />
-      <meta property="og:image" content={data.documentImage} />
-      <meta property="og:url" content={data.canonicalUrl} />
-      <meta property="og:type" content={data.documentType || "website"} />
-      <meta
-        property="og:site_name"
-        content={data.siteName || "Your Site Name"}
-      />
-      <meta property="og:locale" content={data.locale || "en_US"} />
-
-      {/* Open Graph Article Meta Tags */}
-      {data.documentType === "article" && (
-        <>
-          <meta
-            property="article:published_time"
-            content={data.publishedTime}
-          />
-          <meta property="article:modified_time" content={data.modifiedTime} />
-          <meta property="article:author" content={data.authorName} />
-        </>
+      {metaTitle && <meta property="og:title" content={metaTitle} />}
+      {metaDescription && (
+        <meta property="og:description" content={metaDescription} />
       )}
+      {metaImage && <meta property="og:image" content={metaImage} />}
+      <meta property="og:locale" content={data?.locale || "en"} />
 
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={data.documentTitle} />
-      <meta name="twitter:description" content={data.documentDescription} />
-      <meta name="twitter:image" content={data.documentImage} />
-      {data.twitterUsername && (
+      {metaTitle && <meta name="twitter:title" content={metaTitle} />}
+      {metaDescription && (
+        <meta name="twitter:description" content={metaDescription} />
+      )}
+      {metaImage && <meta name="twitter:image" content={metaImage} />}
+      {data?.twitterUsername && (
         <meta name="twitter:creator" content={data.twitterUsername} />
       )}
 
       {/* Image Meta Tags */}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={data.documentTitle} />
-
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
-
-      {/* Apple Touch Icon */}
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
+      {metaTitle && <meta property="og:image:alt" content={metaTitle} />}
 
       {/* Viewport */}
       <meta
@@ -69,8 +49,90 @@ export const PageHead = ({ data }) => {
       {/* X-UA-Compatible */}
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
-      {/* Theme Color */}
-      <meta name="theme-color" content="#ffffff" />
+      {/* FavIcon */}
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="57x57"
+        href="/favicon/apple-touch-icon-57x57.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="114x114"
+        href="/favicon/apple-touch-icon-114x114.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="72x72"
+        href="/favicon/apple-touch-icon-72x72.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/favicon/apple-touch-icon-144x144.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="60x60"
+        href="/favicon/apple-touch-icon-60x60.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="120x120"
+        href="/favicon/apple-touch-icon-120x120.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="76x76"
+        href="/favicon/apple-touch-icon-76x76.png"
+      />
+      <link
+        rel="apple-touch-icon-precomposed"
+        sizes="152x152"
+        href="/favicon/apple-touch-icon-152x152.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon/favicon-196x196.png"
+        sizes="196x196"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon/favicon-96x96.png"
+        sizes="96x96"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon/favicon-32x32.png"
+        sizes="32x32"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon/favicon-16x16.png"
+        sizes="16x16"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon/favicon-128.png"
+        sizes="128x128"
+      />
+      <meta name="application-name" content="&nbsp;" />
+      <meta name="msapplication-TileColor" content="#FFFFFF" />
+      <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png" />
+      <meta name="msapplication-square70x70logo" content="/favicon/mstile-70x70.png" />
+      <meta
+        name="msapplication-square150x150logo"
+        content="mstile-150x150.png"
+      />
+      <meta name="msapplication-wide310x150logo" content="/favicon/mstile-310x150.png" />
+      <meta
+        name="msapplication-square310x310logo"
+        content="mstile-310x310.png"
+      />
     </Head>
   );
 };

@@ -1,22 +1,23 @@
 import Link from "next/link";
 import { Logo, LogoWhite } from "../Logo/Logo";
 import s from "./Header.module.scss";
-import { ButtonBlack, ButtonMain, ButtonTransparent } from "../Button/Button";
+import { AnchorButtonMain, ButtonBlack, ButtonMain, ButtonTransparent } from "../Button/Button";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Menu } from "./Menu/Menu";
 import { motion } from "framer-motion";
 import { anim, MenuAnim } from "@/lib/helpers/anim";
 import { usePathname } from "next/navigation";
+import { AnchorLink } from "../AnchorLink/AnchorLink";
 
 const linksList = [
   {
     text: "Banking",
-    slug: "/",
+    slug: "#banking",
   },
   {
     text: "Services",
-    slug: "/",
+    slug: "#services",
   },
   {
     text: "Pricing",
@@ -33,17 +34,19 @@ const linksList = [
   },
   {
     text: "Consulting",
-    slug: "/",
+    slug: "#consulting",
   },
 ];
 
 const Header = () => {
+  const [isActive, setIsActive] = useState(false);
+
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
-    <motion.header {...anim(MenuAnim.headerMain)} className={s.header}>
+    <motion.header {...anim(MenuAnim.headerMain)} className={clsx(s.header, {
+      [s.header_active]: !isActive
+    })}>
       <Link scroll={false} href="/" className={s.header__logo}>
         {pathname !== "/pricing/business" ? <Logo /> : <LogoWhite />}
       </Link>
@@ -52,30 +55,30 @@ const Header = () => {
         {linksList.map((currLink, index) => (
           <li key={`header_link_${index}`} className={s.links_item}>
             {currLink?.slug ? (
-              <Link
-                scroll={false}
+              <AnchorLink
                 className={`${s.link} text-hover`}
-                href={currLink.slug}
+                toSection={currLink.slug}
+                page="/"
               >
                 {currLink.text}
-              </Link>
+              </AnchorLink>
             ) : (
               <DropDown label={currLink.text} inside={currLink.dropDown} />
             )}
           </li>
         ))}
-        <ButtonMain link="/" text="Get in Touch" />
+        <AnchorButtonMain link="#contact" text="Get in Touch" />
         <div className={s.bg} />
       </ul>
 
       <div className={clsx(s.log_in_buttons, {
         [s.log_in_buttons__invert]: pathname === "/pricing/business"
       })} data-only-desktop--flex>
-        <ButtonTransparent link="/" text="Sign in" />
-        <ButtonBlack link="/" text="Log in" />
+        <ButtonTransparent link="https://client.payard.io/sign-in" text="Sign in" target="_blank" />
+        <ButtonBlack link="https://client.payard.io/sign-up" text="Log in" target="_blank" />
       </div>
 
-      <Menu />
+      <Menu isActive={isActive} setIsActive={setIsActive}/>
     </motion.header>
   );
 };

@@ -5,6 +5,7 @@ const query = groq`
   *[_type == "pricingPersonalPage"][0] {
     title,
     validFrom,
+    buttonGroup,
     "pricingTables": pricingPersonalTables[] -> {
       tableTitle,
       "tableSlug": tableSlug.current,

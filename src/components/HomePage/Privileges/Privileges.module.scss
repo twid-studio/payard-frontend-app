@@ -10,10 +10,17 @@
   @include forTablet {
     background: url("/images/privileges/bgMobile.webp") no-repeat;
     background-color: $g-70;
-    background-size: 100% VW(430, $tablet);
-    background-position-y: 100% !important;
+
+    background-size: VW(712, $tablet) VW(574, $tablet);
+    background-position-y: 120% !important;
+    background-position-x: 50% !important;
+    height: VW(1420, $tablet);
     
-    height: VW(1326, $tablet);
+    // background-size: VW(479, $tablet) VW(387, $tablet);
+    // background-position-y: 98% !important;
+    // background-position-x: 50% !important;
+    // height: VW(1450, $tablet);
+
     
     padding: VW(80, $tablet) VW(40, $tablet) 0 VW(40, $tablet);
     margin-top: VW(160, $tablet);
@@ -30,7 +37,7 @@
     
     background: url("/images/privileges/bgMobile.webp") no-repeat;
     background-color: $g-70;
-    background-size: 120% VW(307, $mobile);
+    background-size: 100%;
     background-position: 50% 100% !important;
 
     display: flex;

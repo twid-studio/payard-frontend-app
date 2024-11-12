@@ -97,7 +97,9 @@ export default function FormSection() {
           [s.contact_sucess]: isSubmitted,
           [s.contact_colorChange]: isAtTop,
         })}
+        id="contact"
       >
+        <Image src="/images/contact/sucessIcon.png" width={100} height={100} alt="" data-lazy-image />
         <div className={s.top}>
           <h1>
             Ping us,

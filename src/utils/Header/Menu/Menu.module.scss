@@ -46,18 +46,15 @@
 .menuBg {
   position: fixed;
   inset: 0;
-  background-color: #fff;
   z-index: 10;
-  width: 100vw;
-  height: 150lvh;
+  // width: 100vw;
+  height: 100lvh;
 
-  transform: translate(-5%, -5%);
+  // background: rgba(255, 0, 0, 0.349);
 
   box-sizing: border-box;
   background: rgba(217, 217, 217, 0.2);
-  border: 0.407547px solid rgba(255, 255, 255, 0.2);
-  box-shadow: -4.07547px 4.07547px 20.3774px 4.07547px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10vw);
+  backdrop-filter: blur(5vw);
 }
 
 .menu {

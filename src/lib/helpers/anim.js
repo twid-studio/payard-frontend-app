@@ -53,17 +53,17 @@ export const PagePresenceAnim = {
 export const MenuAnim = {
   bg: {
     initial: {
-      backdropFilter: "blur(0vw)",
+      opacity: 0,
     },
     animate: {
-      backdropFilter: "blur(6vw)",
+      opacity: 1,
       transition: {
         ease: ease3,
         duration: 0.5,
       },
     },
     exit: {
-      backdropFilter: "blur(0vw)",
+      opacity: 0,
       transition: {
         ease: ease2,
         duration: 0.5,

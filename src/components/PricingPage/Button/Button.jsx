@@ -1,21 +1,29 @@
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 
-import s from "./Button.module.scss"
+import s from "./Button.module.scss";
 import clsx from "clsx";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
-export default function ButtonPricing({ blackTheme, type }) {
-  const href = type === "personal" ? "business" : "personal"
+export default function ButtonPricing({ blackTheme }) {
+  const { data } = useContext(DataContext);
+  const buttonGroup = data.buttonGroup;
+
   return (
     <div className={s.button_wrapper}>
-    <Link href={`/pricing/${href}`} scroll={false} className={clsx(s.button, {
-      [s.button_black]: blackTheme
-    })}>
-      <span className={s.bg} />
-      {type === "personal"
+      <Link
+        href={`${buttonGroup.buttonLink}`}
+        scroll={false}
+        className={clsx(s.button, {
+          [s.button_black]: blackTheme,
+        })}
+      >
+        <span className={s.bg} />
+        {/* {type === "personal"
         ? "View pricing for business account"
-        : "View pricing for personal account"}
-    </Link>
+        : "View pricing for personal account"} */}
+        {buttonGroup.buttonText}
+      </Link>
     </div>
   );
 }

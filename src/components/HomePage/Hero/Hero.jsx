@@ -34,7 +34,7 @@ export default function HeroHome() {
         <br />
         <Words classNames={`edgy ${s.op}`} index={1} text="made simple" />
       </motion.h1>
-      <motion.div style={{ y: cardY, }} {...anim(HeroCardPresence)} className={s.open_account}>
+      <motion.div style={{ y: cardY, }} {...anim(HeroCardPresence)} className={s.open_account} id="banking">
         <p>Open Account</p>
         <Cards />
       </motion.div>

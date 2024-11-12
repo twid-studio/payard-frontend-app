@@ -11,20 +11,22 @@ import {
   ButtonTransparent,
 } from "@/utils/Button/Button";
 import { ScrollContext } from "@/lib/providers/ScrollProvider/context";
+import { AnchorLink } from "@/utils/AnchorLink/AnchorLink";
+import { usePathname } from "next/navigation";
 
 const linksList = {
   top: [
     {
       text: "Banking",
-      slug: "/",
+      slug: "#banking",
     },
     {
       text: "Services",
-      slug: "/",
+      slug: "#services",
     },
     {
       text: "Consulting",
-      slug: "/",
+      slug: "#consulting",
     },
   ],
   bottom: [
@@ -39,18 +41,37 @@ const linksList = {
   ],
 };
 
-export const Menu = () => {
-  const [isActive, setIsActive] = useState(false);
-  const { scrollStop, scrollResume } = useContext(ScrollContext);
+const page = "/";
+
+export const Menu = ({ isActive, setIsActive }) => {
+  const { scrollTo, scrollStop, scrollResume } = useContext(ScrollContext);
+  const pathname = usePathname();
+
+  const handlerScrollTo = (e, toSection) => {
+    handleMenuClick();
+    e.preventDefault();
+    setTimeout(() => {
+      scrollTo(toSection);
+    }, 100);
+  };
+
+  const handlerLinkScrollTo = (toSection) => {
+    scrollResume();
+
+    setIsActive(false);
+    setTimeout(() => {
+      scrollTo(toSection);
+    }, 2100);
+  };
 
   const handleMenuClick = () => {
-    if(isActive) {
+    if (isActive) {
       scrollResume();
     } else {
       scrollStop();
     }
     setIsActive(!isActive);
-  }
+  };
 
   return (
     <div data-not-desktop>
@@ -70,10 +91,34 @@ export const Menu = () => {
             <motion.div className={s.menu} {...anim(MenuAnim.menuBody)}>
               <ul className={s.menu_links}>
                 {linksList.top.map((currI, i) => (
-                  <motion.li key={i} {...anim(MenuAnim.links)} custom={i}>
-                    <Link scroll={false} href={currI.slug}>
+                  <motion.li
+                    key={i}
+                    {...anim(MenuAnim.links)}
+                    custom={i}
+                    // onClick={handleMenuClick}
+                  >
+                    {/* <AnchorLink
+                      page="/"
+                      toSection={currI.slug}
+                    >
                       <h1 className="second-mobile">{currI.text}</h1>
-                    </Link>
+                    </AnchorLink> */}
+                    {pathname !== page ? (
+                      <Link
+                        href={page}
+                        onClick={(e) => handlerLinkScrollTo(currI.slug)}
+                        scroll={false}
+                      >
+                        <h1 className="second-mobile">{currI.text}</h1>
+                      </Link>
+                    ) : (
+                      <Link
+                        href={currI.slug || "/"}
+                        onClick={(e) => handlerScrollTo(e, currI.slug)}
+                      >
+                        <h1 className="second-mobile">{currI.text}</h1>
+                      </Link>
+                    )}
                   </motion.li>
                 ))}
                 <motion.div
@@ -93,7 +138,12 @@ export const Menu = () => {
                   Pricing
                 </motion.h2>
                 {linksList.bottom.map((currL, i) => (
-                  <Link scroll={false} key={i} href={currL.slug}>
+                  <Link
+                    onClick={handleMenuClick}
+                    scroll={false}
+                    key={i}
+                    href={currL.slug}
+                  >
                     <motion.h2
                       {...anim(MenuAnim.links)}
                       custom={linksList.top.length + i}
@@ -113,10 +163,16 @@ export const Menu = () => {
                 custom={linksList.top.length + linksList.bottom.length}
                 className={s.logInButtons}
               >
-                <Link href="/" className={`${s.button} ${s.transparentButton}`}>
+                <Link
+                  href="https://client.payard.io/sign-in"
+                  className={`${s.button} ${s.transparentButton}`}
+                >
                   Sign in
                 </Link>
-                <Link href="/" className={`${s.button} ${s.blackButton}`}>
+                <Link
+                  href="https://client.payard.io/sign-up"
+                  className={`${s.button} ${s.blackButton}`}
+                >
                   Log in
                 </Link>
               </motion.div>

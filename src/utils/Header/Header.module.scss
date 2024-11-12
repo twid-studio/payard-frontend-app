@@ -8,30 +8,34 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition:
+    background 0.1s ease,
+    backdrop-filter 0.1s ease;
 
   @include forTablet {
     top: -2vw;
     left: 0;
     right: 0;
-    // top: VW(20, $tablet);
-    // left: VW(40, $tablet);
-    // right: VW(40, $tablet);
-
     padding: VW(20, $tablet) VW(40, $tablet);
-    background: rgba(217, 217, 217, 0.2);
-    backdrop-filter: blur(5vw);
   }
-  
+
   @include forMobile {
     top: -2vw;
-    // top: VW(0, $mobile);
     left: VW(0, $mobile);
     right: VW(0, $mobile);
-
     padding: VW(10, $mobile) VW(15, $mobile);
+  }
 
-    background: rgba(217, 217, 217, 0.2);
-    backdrop-filter: blur(5vw);
+  &_active {
+    @include forTablet {
+      background: rgba(217, 217, 217, 0.2);
+      backdrop-filter: blur(5vw);
+    }
+
+    @include forMobile {
+      background: rgba(217, 217, 217, 0.2);
+      backdrop-filter: blur(5vw);
+    }
   }
 
   &__logo {
@@ -46,7 +50,6 @@
       width: VW(166, $mobile);
       height: VW(38, $mobile);
     }
-  
   }
 
   .links {
@@ -54,7 +57,7 @@
     align-items: center;
     box-sizing: border-box;
     background: rgba(217, 217, 217, 0.2);
-    border: .1vw solid rgba(0, 0, 0, 0.1);
+    border: 0.1vw solid rgba(0, 0, 0, 0.1);
     box-shadow: $boxShadow;
     backdrop-filter: blur(VW(15));
 
@@ -79,17 +82,16 @@
       &:nth-of-type(2),
       &:nth-of-type(3) {
         .link {
-
           border-right: 0.1vw solid #0000001a;
         }
       }
-      
+
       &:nth-last-of-type(1) {
         .link {
           padding: VW(22) VW(38) VW(22) VW(28);
         }
       }
-      
+
       .link {
         padding: VW(22) VW(28);
       }
@@ -97,7 +99,7 @@
 
     .dropDown {
       position: relative;
-      
+
       &_active {
         .arrow {
           rotate: -180deg;
@@ -119,7 +121,7 @@
         span {
           cursor: pointer;
         }
-        
+
         @include hover {
           .arrow path {
             fill: $g-100 !important;
@@ -160,14 +162,14 @@
         pointer-events: none;
 
         transition: 0.3s $easeOutPower3;
-        transition-delay: .1s;
+        transition-delay: 0.1s;
         transition-property: transform, opacity;
 
         .dropDownLink {
-          transition: opacity .3s ease;
+          transition: opacity 0.3s ease;
 
           @include hover {
-            opacity: .5;
+            opacity: 0.5;
           }
         }
       }
@@ -175,13 +177,13 @@
   }
 
   .log_in_buttons {
-    // display: flex; 
+    // display: flex;
     align-content: center;
     gap: VW(16);
-    transition: filter .3s .3s ease;
-    
+    transition: filter 0.3s 0.3s ease;
+
     &__invert {
-      transition: filter .3s 1s ease;
+      transition: filter 0.3s 1s ease;
       filter: invert(1);
     }
   }

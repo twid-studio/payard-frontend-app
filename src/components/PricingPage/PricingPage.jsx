@@ -35,7 +35,6 @@ export default function PricingPage({ theme = "white", type = "personal" }) {
       />
       <ButtonPricing
         blackTheme={blackTheme}
-        type={type}
       />
     </PageLayout>
   );

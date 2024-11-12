@@ -3,6 +3,11 @@
     opacity: 0;
   }
 
+  [data-lazy-image] {
+    position: absolute;
+    opacity: 0;
+  }
+
   [data-only-desktop] {
     display: none;
 
