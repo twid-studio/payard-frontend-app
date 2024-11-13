@@ -2,44 +2,29 @@ import Link from "next/link";
 import { Logo, LogoWhite } from "../Logo/Logo";
 import s from "./Header.module.scss";
 import { AnchorButtonMain, ButtonBlack, ButtonMain, ButtonTransparent } from "../Button/Button";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Menu } from "./Menu/Menu";
 import { motion, useAnimation } from "framer-motion";
 import { anim, MenuAnim } from "@/lib/helpers/anim";
 import { usePathname } from "next/navigation";
 import { AnchorLink } from "../AnchorLink/AnchorLink";
-
-const linksList = [
-  {
-    text: "Banking",
-    slug: "#banking",
-  },
-  {
-    text: "Services",
-    slug: "#services",
-  },
-  {
-    text: "Pricing",
-    dropDown: [
-      {
-        text: "For Business",
-        slug: "/pricing/business",
-      },
-      {
-        text: "For Persons",
-        slug: "/pricing/personal",
-      },
-    ],
-  },
-  {
-    text: "Consulting",
-    slug: "#consulting",
-  },
-];
+import { DataProvider } from "@/lib/providers/DataProvider/DataProvider";
+import { URL_HEADER } from "@/lib/helpers/DataUrls";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const Header = () => {
+  return (
+    <DataProvider url={URL_HEADER}>
+      <HeaderBody />
+    </DataProvider>
+  )
+}
+
+const HeaderBody = () => {
   const [isActive, setIsActive] = useState(false);
+
+  const { data } = useContext(DataContext);
 
   const pathname = usePathname();
 
@@ -52,7 +37,7 @@ const Header = () => {
       </Link>
 
       <ul className={s.links} data-only-desktop--flex>
-        {linksList.map((currLink, index) => (
+        {data.linksList.map((currLink, index) => (
           <li key={`header_link_${index}`} className={s.links_item}>
             {currLink?.slug ? (
               <AnchorLink
@@ -60,10 +45,10 @@ const Header = () => {
                 toSection={currLink.slug}
                 page="/"
               >
-                {currLink.text}
+                {currLink.title}
               </AnchorLink>
             ) : (
-              <DropDown label={currLink.text} inside={currLink.dropDown} />
+              <DropDown label={currLink.title} inside={currLink.options} />
             )}
           </li>
         ))}
@@ -74,8 +59,19 @@ const Header = () => {
       <div className={clsx(s.log_in_buttons, {
         [s.log_in_buttons__invert]: pathname === "/pricing/business"
       })} data-only-desktop--flex>
-        <ButtonTransparent link="https://client.payard.io/sign-in" text="Sign in" target="_blank" />
-        <ButtonBlack link="https://client.payard.io/sign-up" text="Log in" target="_blank" />
+        {data.singInButtons.map((currButton, i) => (
+          <>
+            {currButton.type === "main" && (
+              <ButtonMain link={currButton.link} text={currButton.text} target="_blank" key={i}/>
+            )}
+            {currButton.type === "black" && (
+              <ButtonBlack link={currButton.link} text={currButton.text} target="_blank" key={i}/>
+            )}
+            {currButton.type === "transparent" && (
+              <ButtonTransparent link={currButton.link} text={currButton.text} target="_blank" key={i}/>
+            )}
+          </>
+        ))}
       </div>
 
       <Menu isActive={isActive} setIsActive={setIsActive}/>
@@ -144,7 +140,7 @@ const DropDown = ({ label, inside }) => {
             onClick={() => setIsActive(false)}
             scroll={false}
           >
-            {currItem.text}
+            {currItem.name}
           </Link>
         ))}
       </div>

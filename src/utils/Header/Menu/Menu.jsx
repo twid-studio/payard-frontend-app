@@ -13,6 +13,7 @@ import {
 import { ScrollContext } from "@/lib/providers/ScrollProvider/context";
 import { AnchorLink } from "@/utils/AnchorLink/AnchorLink";
 import { usePathname } from "next/navigation";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const linksList = {
   top: [
@@ -44,7 +45,9 @@ const linksList = {
 const page = "/";
 
 export const Menu = ({ isActive, setIsActive }) => {
+  const { data } = useContext(DataContext);
   const { scrollTo, scrollStop, scrollResume } = useContext(ScrollContext);
+
   const pathname = usePathname();
 
   const handlerScrollTo = (e, toSection) => {
@@ -90,37 +93,29 @@ export const Menu = ({ isActive, setIsActive }) => {
             <motion.div className={s.menuBg} {...anim(MenuAnim.bg)} />
             <motion.div className={s.menu} {...anim(MenuAnim.menuBody)}>
               <ul className={s.menu_links}>
-                {linksList.top.map((currI, i) => (
-                  <motion.li
-                    key={i}
-                    {...anim(MenuAnim.links)}
-                    custom={i}
-                    // onClick={handleMenuClick}
-                  >
-                    {/* <AnchorLink
-                      page="/"
-                      toSection={currI.slug}
-                    >
-                      <h1 className="second-mobile">{currI.text}</h1>
-                    </AnchorLink> */}
-                    {pathname !== page ? (
-                      <Link
-                        href={page}
-                        onClick={(e) => handlerLinkScrollTo(currI.slug)}
-                        scroll={false}
-                      >
-                        <h1 className="second-mobile">{currI.text}</h1>
-                      </Link>
-                    ) : (
-                      <Link
-                        href={currI.slug || "/"}
-                        onClick={(e) => handlerScrollTo(e, currI.slug)}
-                      >
-                        <h1 className="second-mobile">{currI.text}</h1>
-                      </Link>
-                    )}
-                  </motion.li>
-                ))}
+                {data.linksList.map(
+                  (currI, i) =>
+                    currI.type === "anchor" && (
+                      <motion.li key={i} {...anim(MenuAnim.links)} custom={i}>
+                        {pathname !== page ? (
+                          <Link
+                            href={page}
+                            onClick={(e) => handlerLinkScrollTo(currI.slug)}
+                            scroll={false}
+                          >
+                            <h1 className="second-mobile">{currI.title}</h1>
+                          </Link>
+                        ) : (
+                          <Link
+                            href={currI.slug || "/"}
+                            onClick={(e) => handlerScrollTo(e, currI.slug)}
+                          >
+                            <h1 className="second-mobile">{currI.title}</h1>
+                          </Link>
+                        )}
+                      </motion.li>
+                    )
+                )}
                 <motion.div
                   {...anim(MenuAnim.links)}
                   custom={linksList.top.length}
@@ -130,28 +125,35 @@ export const Menu = ({ isActive, setIsActive }) => {
                 </motion.div>
               </ul>
               <div className={s.bottom}>
-                <motion.h2
-                  {...anim(MenuAnim.links)}
-                  custom={linksList.top.length + 0.5}
-                  className={`shadow ${s.bottomTitle}`}
-                >
-                  Pricing
-                </motion.h2>
-                {linksList.bottom.map((currL, i) => (
-                  <Link
-                    onClick={handleMenuClick}
-                    scroll={false}
-                    key={i}
-                    href={currL.slug}
-                  >
-                    <motion.h2
-                      {...anim(MenuAnim.links)}
-                      custom={linksList.top.length + i}
-                    >
-                      {currL.text}
-                    </motion.h2>
-                  </Link>
-                ))}
+                {data.linksList.map(
+                  (currI, i) =>
+                    currI.type === "dropdown" && (
+                      <>
+                        <motion.h2
+                          {...anim(MenuAnim.links)}
+                          custom={linksList.top.length + 0.5}
+                          className={`shadow ${s.bottomTitle}`}
+                        >
+                          {currI.title}
+                        </motion.h2>
+                        {currI.options.map((currL, i) => (
+                          <Link
+                            onClick={handleMenuClick}
+                            scroll={false}
+                            key={i}
+                            href={currL.slug}
+                          >
+                            <motion.h2
+                              {...anim(MenuAnim.links)}
+                              custom={linksList.top.length + i}
+                            >
+                              {currL.name}
+                            </motion.h2>
+                          </Link>
+                        ))}
+                      </>
+                    )
+                )}
               </div>
               <motion.span
                 {...anim(MenuAnim.links)}
@@ -163,18 +165,28 @@ export const Menu = ({ isActive, setIsActive }) => {
                 custom={linksList.top.length + linksList.bottom.length}
                 className={s.logInButtons}
               >
-                <Link
-                  href="https://client.payard.io/sign-in"
-                  className={`${s.button} ${s.transparentButton}`}
-                >
-                  Sign in
-                </Link>
-                <Link
-                  href="https://client.payard.io/sign-up"
-                  className={`${s.button} ${s.blackButton}`}
-                >
-                  Log in
-                </Link>
+                {data.singInButtons.map((currButton, i) => (
+                  <>
+                    {currButton.type === "black" && (
+                      <Link
+                        href={currButton.link}
+                        className={`${s.button} ${s.blackButton}`}
+                        key={i}
+                      >
+                        {currButton.text}
+                      </Link>
+                    )}
+                    {currButton.type === "transparent" && (
+                      <Link
+                        href={currButton.link}
+                        className={`${s.button} ${s.transparentButton}`}
+                        key={i}
+                      >
+                        {currButton.text}
+                      </Link>
+                    )}
+                  </>
+                ))}
               </motion.div>
             </motion.div>
           </>

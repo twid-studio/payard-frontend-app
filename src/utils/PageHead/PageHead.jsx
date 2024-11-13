@@ -1,4 +1,3 @@
-import { URL_SEO_BASE } from "@/lib/helpers/DataUrls";
 import Head from "next/head";
 
 export const PageHead = ({ data }) => {

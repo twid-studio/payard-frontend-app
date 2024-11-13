@@ -5,8 +5,7 @@ export const Logo = ({ ...rest }) => (
     src="/images/logo.svg"
     alt="logo"
     style={{ objectFit: "contain" }}
-    width={210}
-    height={47}
+    fill
     priority
     {...rest}
   />
@@ -17,8 +16,8 @@ export const LogoWhite = ({ ...rest }) => (
     src="/images/logo-white.svg"
     alt="logo"
     style={{ objectFit: "contain" }}
-    width={210}
-    height={47}
+    fill
+
     priority
     {...rest}
   />

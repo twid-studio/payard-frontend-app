@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Logo } from "../Logo/Logo";
 
 import s from "./Footer.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { AnchorLink } from "../AnchorLink/AnchorLink";
+import { DataProvider } from "@/lib/providers/DataProvider/DataProvider";
+import { URL_FOOTER } from "@/lib/helpers/DataUrls";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const linksList = {
   anchor: [
@@ -49,53 +52,100 @@ const linksList = {
 
 export default function Footer() {
   return (
+    <DataProvider url={URL_FOOTER}>
+      <FooterBody />
+    </DataProvider>
+  );
+}
+
+function FooterBody() {
+  const { data } = useContext(DataContext);
+
+  const adress = data.adress;
+  const bottom = data.bottom;
+
+  const p = [
+    {
+      title: "More Info",
+      list: data.moreInfoList
+    },
+    {
+      title: "Terms",
+      list: data.termsList
+    },
+    {
+      title: "Pricing",
+      list: data.pricingList
+    },
+  ]
+
+  return (
     <footer className={s.footer}>
       <div className={"grid " + s.top}>
-        <Link scroll={false} href="https://maps.app.goo.gl/ZQLcVNVGWf7SbsyF7" target="_blank" className={"bold text-hover " + s.adress}>
-          <p>Office Adress</p>
-          <p>
-            BC, Vancouver - Pacific centre 70 West Georgia street, Suite 1500
-            Vancouver BC V7Y 1C6 , Canada Records office inform
-          </p>
+        <Link
+          scroll={false}
+          href={adress.link}
+          target="_blank"
+          className={"bold text-hover " + s.adress}
+        >
+          <p>{adress.title}</p>
+          <p>{adress.text}</p>
         </Link>
 
-        <div className={s.list}>
-          <p className={"bold " + s.list_title}>More Info</p>
-          {linksList.anchor.map((curr, i) => (
-            <AnchorLink toSection={curr.link} page="/" key={i} className="small-text text-hover">
-              {curr.text}
-            </AnchorLink>
-          ))}
-        </div>
-        <div className={s.list}>
-          <p className={"bold " + s.list_title}>Terms</p>
-          {linksList.terms.map((curr, i) => (
-            <Link scroll={false} href={curr.link} key={i} className="small-text text-hover">
-              {curr.text}
-            </Link>
-          ))}
-        </div>
-        <div className={s.list}>
-          <p className={"bold " + s.list_title}>Pricing</p>
-          {linksList.pricing.map((curr, i) => (
-            <Link scroll={false} href={curr.link} key={i} className="small-text text-hover">
-              {curr.text}
-            </Link>
-          ))}
-        </div>
+        {p.map((currList, wrapperIndex) => (
+          <div className={s.list} key={wrapperIndex}>
+            <p className={"bold " + s.list_title}>{currList.title}</p>
+            {currList.list.map((curr, i) => (
+              <>
+                {curr.type === "anchor" ? (
+                  <AnchorLink
+                    toSection={curr.link.slug}
+                    page="/"
+                    key={i}
+                    className="small-text text-hover"
+                  >
+                    {curr.link.title}
+                  </AnchorLink>
+                ) : (
+                  <Link
+                    key={i}
+                    href={curr.link.slug}
+                    className="small-text text-hover"
+                    scroll={false}
+                  >
+                    {curr.link.title}
+                  </Link>
+                )}
+              </>
+            ))}
+          </div>
+        ))}
       </div>
       <div className={s.logo}>
         <Image src="/images/footer/logo.svg" fill alt="" />
       </div>
       <div className={"grid " + s.bottom}>
-        <p className="shadow small-text second-mobile second-tablet">2024 Copyright PaYard</p>
-        <p className={"shadow small-text second-mobile second-tablet " + s.trademark}>
-          Google Pay is a trademark of Google LLC
-          <br />
-          Transaction limits are subject to terms and conditions
+        <p className="shadow small-text second-mobile second-tablet">
+          {bottom.copyright}
         </p>
-        <Link scroll={false} href="https://twid.marketing/" target="_blank" className={"shadow text-hover small-text second-mobile second-tablet " + s.link}>
-          Made by twid
+        <p
+          className={
+            "shadow small-text second-mobile second-tablet " + s.trademark
+          }
+        >
+          {bottom.trademark[0]}
+          <br />
+          {bottom.trademark[1]}
+        </p>
+        <Link
+          scroll={false}
+          href={bottom.createdBy.slug}
+          target="_blank"
+          className={
+            "shadow text-hover small-text second-mobile second-tablet " + s.link
+          }
+        >
+          {bottom.createdBy.title}
         </Link>
       </div>
     </footer>
