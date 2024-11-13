@@ -76,7 +76,24 @@ export default function FormSection() {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      await console.log(values);
+      if(values) {
+        const response = await fetch("/api/sendMailAPI", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(values)
+        })
+
+        const result = await response.json()
+
+        if(result.success) {
+          console.log("Success") 
+          console.log(values) 
+        } else {
+          console.log("Faile")
+        }
+      }
     } catch (e) {
       console.error(e);
     } finally {

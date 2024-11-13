@@ -1,0 +1,149 @@
+.cookie {
+  position: fixed;
+  bottom: VW(45);
+  left: VW(45);
+  padding: VW(35);
+
+  width: VW(600);
+  border-radius: VW(30);
+
+  display: flex;
+  flex-direction: column;
+
+  background: rgba(217, 217, 217, 0.2);
+  border: 0.1vw solid rgba(0, 0, 0, 0.1);
+  box-shadow: $boxShadow;
+  backdrop-filter: blur(VW(15));
+
+  z-index: 100;
+
+  @include forTablet {
+    left: VW(10, $tablet);
+    right: VW(10, $tablet);
+    bottom: VW(10, $tablet);
+    width: auto;
+    padding: VW(40, $tablet);
+
+    border-radius: VW(30, $tablet);
+  }
+
+  @include forMobile {
+    left: VW(15, $mobile);
+    right: VW(15, $mobile);
+    bottom: VW(15, $mobile);
+    width: auto;
+    padding: VW(30, $mobile);
+
+    border-radius: VW(30, $mobile);
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    scale: 0.98;
+    border-radius: VW(30);
+    
+    background-color: $c-white;
+    
+    @include forTablet {
+      border-radius: VW(30, $tablet);
+    }
+    
+    @include forMobile {
+      scale: 0.96;
+      border-radius: VW(30, $mobile);
+    }
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: VW(15);
+
+    @include forTablet {
+      gap: VW(15, $tablet);
+    }
+    
+    @include forMobile {
+      gap: VW(15, $mobile);
+    }
+  }
+
+  .button {
+    padding: VW(12) VW(22);
+    transition: scale 0.3s $BounceOut;
+    border-radius: 10vw;
+    color: $c-white;
+    position: relative;
+    z-index: 11;
+    cursor: pointer;
+    // width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    @include hover {
+      .bg {
+        scale: 1.05;
+        filter: blur(0.4vw);
+        opacity: 1 !important;
+      }
+    }
+
+    @include forTablet {
+      padding: VW(12, $tablet) VW(22, $tablet);
+    }
+
+    @include forMobile {
+      padding: VW(12, $mobile) VW(22, $mobile);
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: 10vw;
+      transition: all 0.3s $BounceOut;
+      box-shadow: $boxShadow;
+      cursor: pointer;
+    }
+
+    &.mainButton {
+      .bg {
+        background-color: $green-100;
+      }
+    }
+
+    &.transparentButton {
+      border: 0.1vw solid $c-black;
+      color: $c-black;
+      box-shadow: none;
+
+      .bg {
+        background-color: $green-70;
+        opacity: 0;
+      }
+    }
+
+    &_wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: VW(15);
+
+      margin-top: VW(30);
+
+      @include forTablet {
+        gap: VW(15, $tablet);
+        margin-top: VW(30, $tablet);
+      }
+      
+      @include forMobile {
+        gap: VW(15, $mobile);
+        margin-top: VW(30, $mobile);
+      }  
+    }
+  }
+}

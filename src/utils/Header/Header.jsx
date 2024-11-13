@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { Logo, LogoWhite } from "../Logo/Logo";
 import s from "./Header.module.scss";
-import { AnchorButtonMain, ButtonBlack, ButtonMain, ButtonTransparent } from "../Button/Button";
+import {
+  AnchorButtonMain,
+  ButtonBlack,
+  ButtonMain,
+  ButtonTransparent,
+} from "../Button/Button";
 import { useContext, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Menu } from "./Menu/Menu";
@@ -18,8 +23,8 @@ const Header = () => {
     <DataProvider url={URL_HEADER}>
       <HeaderBody />
     </DataProvider>
-  )
-}
+  );
+};
 
 const HeaderBody = () => {
   const [isActive, setIsActive] = useState(false);
@@ -29,9 +34,12 @@ const HeaderBody = () => {
   const pathname = usePathname();
 
   return (
-    <motion.header {...anim(MenuAnim.headerMain)} className={clsx(s.header, {
-      [s.header_active]: !isActive
-    })}>
+    <motion.header
+      {...anim(MenuAnim.headerMain)}
+      className={clsx(s.header, {
+        [s.header_active]: !isActive,
+      })}
+    >
       <Link scroll={false} href="/" className={s.header__logo}>
         {pathname !== "/pricing/business" ? <Logo /> : <LogoWhite />}
       </Link>
@@ -56,25 +64,40 @@ const HeaderBody = () => {
         <div className={s.bg} />
       </ul>
 
-      <div className={clsx(s.log_in_buttons, {
-        [s.log_in_buttons__invert]: pathname === "/pricing/business"
-      })} data-only-desktop--flex>
-        {data.singInButtons.map((currButton, i) => (
-          <>
-            {currButton.type === "main" && (
-              <ButtonMain link={currButton.link} text={currButton.text} target="_blank" key={i}/>
-            )}
-            {currButton.type === "black" && (
-              <ButtonBlack link={currButton.link} text={currButton.text} target="_blank" key={i}/>
-            )}
-            {currButton.type === "transparent" && (
-              <ButtonTransparent link={currButton.link} text={currButton.text} target="_blank" key={i}/>
-            )}
-          </>
-        ))}
+      <div
+        className={clsx(s.log_in_buttons, {
+          [s.log_in_buttons__invert]: pathname === "/pricing/business",
+        })}
+        data-only-desktop--flex
+      >
+        {data.singInButtons.map((currButton, i) => {
+          switch (currButton.type) {
+            case "main":
+              return <ButtonMain
+                link={currButton.link}
+                text={currButton.text}
+                target="_blank"
+                key={i}
+              />;
+            case "black":
+              return <ButtonBlack
+                link={currButton.link}
+                text={currButton.text}
+                target="_blank"
+                key={i}
+              />;
+            case "transparent":
+              return <ButtonTransparent
+                link={currButton.link}
+                text={currButton.text}
+                target="_blank"
+                key={i}
+              />;
+          }
+        })}
       </div>
 
-      <Menu isActive={isActive} setIsActive={setIsActive}/>
+      <Menu isActive={isActive} setIsActive={setIsActive} />
     </motion.header>
   );
 };

@@ -67,17 +67,17 @@ function FooterBody() {
   const p = [
     {
       title: "More Info",
-      list: data.moreInfoList
+      list: data.moreInfoList,
     },
     {
       title: "Terms",
-      list: data.termsList
+      list: data.termsList,
     },
     {
       title: "Pricing",
-      list: data.pricingList
+      list: data.pricingList,
     },
-  ]
+  ];
 
   return (
     <footer className={s.footer}>
@@ -95,29 +95,27 @@ function FooterBody() {
         {p.map((currList, wrapperIndex) => (
           <div className={s.list} key={wrapperIndex}>
             <p className={"bold " + s.list_title}>{currList.title}</p>
-            {currList.list.map((curr, i) => (
-              <>
-                {curr.type === "anchor" ? (
-                  <AnchorLink
-                    toSection={curr.link.slug}
-                    page="/"
-                    key={i}
-                    className="small-text text-hover"
-                  >
-                    {curr.link.title}
-                  </AnchorLink>
-                ) : (
-                  <Link
-                    key={i}
-                    href={curr.link.slug}
-                    className="small-text text-hover"
-                    scroll={false}
-                  >
-                    {curr.link.title}
-                  </Link>
-                )}
-              </>
-            ))}
+            {currList.list.map((curr, i) => {
+              return curr.type === "anchor" ? (
+                <AnchorLink
+                  toSection={curr.link.slug}
+                  page="/"
+                  key={i}
+                  className="small-text text-hover"
+                >
+                  {curr.link.title}
+                </AnchorLink>
+              ) : (
+                <Link
+                  key={i}
+                  href={curr.link.slug}
+                  className="small-text text-hover"
+                  scroll={false}
+                >
+                  {curr.link.title}
+                </Link>
+              );
+            })}
           </div>
         ))}
       </div>

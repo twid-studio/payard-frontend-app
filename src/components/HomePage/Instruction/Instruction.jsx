@@ -9,7 +9,10 @@ import { DataContext } from "@/lib/providers/DataProvider/context";
 import LazyLoad from "react-lazyload";
 
 export default function InstructionHome() {
-  const { data } = useContext(DataContext);
+  const { data: allData } = useContext(DataContext);
+
+  const data = allData.signUpInstruction
+
   const [isPlayerActive, setIsPlayerActive] = useState(false);
   const { scrollStop, scrollResume } = useContext(ScrollContext);
   const instructionRef = useRef();
@@ -38,10 +41,10 @@ export default function InstructionHome() {
     setIsPlayerActive(false);
   };
 
-  return (
+  return data && data.showSection && (
     <motion.section className={s.instruction} ref={instructionRef} style={{ backgroundPositionY: bgPosition }}>
       <LazyLoad className={s.hiden_video}>
-        <video src={data.signUpInstruction} />
+        <video src={data.video} />
       </LazyLoad>
       <motion.div
         className={clsx(s.button, {
@@ -68,7 +71,7 @@ export default function InstructionHome() {
             fill="#38D091"
           />
         </svg>
-        <span className={s.buttonText}>Video instruction</span>
+        <span className={s.buttonText}>{data.buttonText}</span>
       </motion.div>
 
       <AnimatePresence>
@@ -80,7 +83,7 @@ export default function InstructionHome() {
           >
             <VideoPlayer
               customClass={s.video_main}
-              url={data.signUpInstruction}
+              url={data.video}
             >
               <span className={s.video_main_close} onClick={handlerClosePlayer}>
                 <svg
@@ -112,10 +115,9 @@ export default function InstructionHome() {
       </AnimatePresence>
 
       <motion.div style={{ y: popUpY }} className={s.popUp}>
-        <h2>Sign up to Your Account</h2>
+        <h2>{data.popUpText.title}</h2>
         <p>
-          Our dedicated team says &quot;Hi&quot;! Reach out with any questions or for
-          support, and we&apos;ll ensure you get the assistance you need
+        {data.popUpText.text}
         </p>
       </motion.div>
     </motion.section>

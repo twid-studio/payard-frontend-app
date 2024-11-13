@@ -1,8 +1,5 @@
-// App.js
-import { ScrollProvider } from "@/lib/providers/ScrollProvider/ScrollProvider";
 import "@/styles/reset.scss";
-import Header from "@/utils/Header/Header";
-import { PageHead } from "@/utils/PageHead/PageHead";
+import { CookiePopUp } from "@/utils/CookiePopUp/CookiePopUp";
 import { AnimatePresence } from "framer-motion";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -14,6 +11,7 @@ export default function App({ Component, pageProps, router }) {
       <QueryClientProvider client={queryC}>
         <AnimatePresence mode="wait">
           <Component key={router.route} {...pageProps} />
+          <CookiePopUp />
         </AnimatePresence>
       </QueryClientProvider>
     </div>

@@ -50,6 +50,34 @@ export const PagePresenceAnim = {
   },
 };
 
+export const CookieAnim = {
+  initial: {
+    opacity: 0,
+    filter: "blur(1vw)",
+    y: "50%"
+  },
+  animate: {
+    opacity: 1,
+    filter: "blur(0vw)",  
+    y: "0%",
+    transition: {
+      duration: 1,
+      delay: 1.5,
+      ease: ease1
+    }
+  },
+  exit: {
+    opacity: 0,
+    filter: "blur(1vw)",
+    y: "20%",
+    transition: {
+      duration: .3,
+      delay: .1,
+      ease: ease3
+    }
+  }
+}
+
 export const MenuAnim = {
   bg: {
     initial: {

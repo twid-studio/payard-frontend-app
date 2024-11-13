@@ -4,14 +4,14 @@ import { sanityClient } from "../../../sanity";
 const pricingPreviewHome1 = `
   *[_type == "homePage"][0] {
     "pricingPreview": *[_type == "pricingPreviewHome"][0] {
-      title, // Title containing "edgy" and "base"
+      title,
       "cards": cards[] {
-        settings, // Contains cardColor and type
+        settings,
         "table": table[] {
-          "tableHeaders": table.tableHeaders, // Table headers
+          "tableHeaders": table.tableHeaders,
           "tableRows": table.tableRows[].values {
-              name, // Name of the fee
-              secondValues // Fixed fees
+              name,
+              secondValues
           }
         }
       }
@@ -98,9 +98,24 @@ const features = `
   },
 `;
 
-const appInstruction = `"appInstruction": appInstruction.asset->url,`;
+const signUpInstruction = `
+  "signUpInstruction": signUpInstruction {
+    showSection,
+    buttonText,
+    popUpText,
+    "video": video.asset->url,
+  },
+`;
 
-const signUpInstruction = `"signUpInstruction": signUpInstruction.asset->url,`;
+const appInstruction = `
+  "appInstruction": appInstruction {
+    showSection,
+    sectionText,
+    "video": video.asset->url,
+  },
+`;
+
+// const signUpInstruction = `"signUpInstruction": signUpInstruction.asset->url,`;
 
 const query = groq`
   *[_type == "homePage"][0] {
@@ -109,8 +124,8 @@ const query = groq`
     ${privileges}
     ${whyPayard}
     ${consulting} 
-    ${appInstruction}
     ${signUpInstruction}
+    ${appInstruction}
     ${features} 
     ${pricingPreviewHome}
   }

@@ -6,8 +6,6 @@ export const PageHead = ({ data }) => {
   const metaImage = data?.openGraphImage;
   const metaKeywords = data?.keywords;
 
-  console.log(data);
-  
   return (
     <Head>
       {/* Basic Meta Tags */}
