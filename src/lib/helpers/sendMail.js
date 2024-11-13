@@ -5,14 +5,14 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: process.env.EMAIL_SENDER,
-        pass: process.env.AUTH_PASS
+        user:"valeraviachalo@gmail.com",
+        pass:"fwphugztfqehblkx"
     }
 })
 
 export default async function sendMail(data) {
     const mailOptions = {
-        from: process.env.AUTH_EMAIL_SENDER,
+        from:"valeraviachalo@gmail.com",
         to: "valeravyachalo@gmail.com",
         subject: `Topic: ${data.topic}`,
         text: `Text: ${data.emailOrPhone}\n${data.message}`
