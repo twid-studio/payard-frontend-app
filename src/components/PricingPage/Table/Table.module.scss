@@ -75,7 +75,11 @@
   &_item {
     display: flex;
     flex-direction: column;
+
     &:nth-child(1) {
+      flex-direction: row;
+      align-items: center;
+      gap: max(VW(5), 5px);
       grid-column: 1/4;
 
       @include forMobile {
@@ -95,12 +99,24 @@
 
     &:nth-child(3) {
       grid-column: 7/9;
-      padding-right: 5vw;
 
       @include forMobile {
         grid-column: 3/4;
         padding-right: VW(20, $mobile);
       }
+    }
+
+    &_image {
+      width: VW(24);
+      height: VW(24);
+      
+      @include forTablet {
+        width: VW(24, $tablet);
+        height: VW(24, $tablet);
+      }
+
+      min-height: 14px;
+      min-width: 14px;
     }
   }
 
@@ -141,7 +157,7 @@
       &:nth-child(2) {
         // grid-column: 5/6;
         grid-column: 7/9;
-        padding-right: 5vw;
+        padding-right: 4vw;
 
         @include forMobile {
           grid-column: 3/4;

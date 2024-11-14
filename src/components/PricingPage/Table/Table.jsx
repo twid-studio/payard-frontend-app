@@ -5,6 +5,7 @@ import s from "./Table.module.scss";
 import clsx from "clsx";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { anim, HeroCardPresence } from "@/lib/helpers/anim";
+import Image from "next/image";
 
 export default function TablePricing({ setIsFixedList, blackTheme }) {
   const { data: allData } = useContext(DataContext);
@@ -27,7 +28,7 @@ export default function TablePricing({ setIsFixedList, blackTheme }) {
       <motion.section
         {...anim(HeroCardPresence)}
         className={clsx(s.table, {
-          [s.table_black]: blackTheme
+          [s.table_black]: blackTheme,
         })}
         ref={tableRef}
       >
@@ -51,12 +52,27 @@ export default function TablePricing({ setIsFixedList, blackTheme }) {
                       className={`${s.table_item} ${s.shadow} small-text second-mobile shadow`}
                       key={`${currentTable.tableTitle}_${tableIndex}_${headerIndex}`}
                     >
-                      {currentHeader}
+                      {currentHeader.match("Fixed Fee") ? (
+                        <>
+                          Fixed Fee
+                          <br />
+                          {currentHeader.split("Fixed Fee")[1]}
+                        </>
+                      ) : (
+                        currentHeader
+                      )}
+                      {headerIndex === 0 && tableItem.headerIcon && (
+                        <Image
+                          src={tableItem.headerIcon}
+                          className={s.table_item_image}
+                          width={24}
+                          height={24}
+                        />
+                      )}
                     </p>
                   ))}
                 </div>
                 <div>
-                  {" "}
                   {/* rows */}
                   {tableItem.tableRows.map((tableRow, rowIndex) => (
                     <div

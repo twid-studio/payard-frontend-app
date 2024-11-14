@@ -13,6 +13,7 @@ const query = groq`
       underTables,
       "list": list[]{
         "tableHeaders": table.tableHeaders,
+        "headerIcon": table.nameIcon.icon.asset->url,
         "tableRows": table.tableRows[] {
           values
         },

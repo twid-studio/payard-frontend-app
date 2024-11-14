@@ -63,7 +63,6 @@ export function FixedAnchorList({ blackTheme }) {
         entries.forEach((entry) => {
           // When a section becomes visible
           if (entry.isIntersecting) {
-            // Remove the '#' from the beginning of the ID to match with tableSlug
             const sectionId = entry.target.id;
             setActiveSection(sectionId);
           }
@@ -75,26 +74,24 @@ export function FixedAnchorList({ blackTheme }) {
         rootMargin: "-20% 0px -20% 0px",
       }
     );
-
+  
     // Observe all sections
+    const observedElements = [];
     data.forEach((table) => {
       const element = document.getElementById(table.tableSlug);
       if (element) {
         observer.observe(element);
+        observedElements.push(element);
       }
     });
-
+  
     // Cleanup
     return () => {
-      data.forEach((table) => {
-        const element = document.getElementById(table.tableSlug);
-        if (element) {
-          observer.unobserve(element);
-        }
+      observedElements.forEach((element) => {
+        observer.unobserve(element);
       });
     };
   }, [data]);
-
   return (
     <motion.div
       {...anim(AnchorListAnim)}
