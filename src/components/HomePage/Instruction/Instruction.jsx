@@ -42,7 +42,7 @@ export default function InstructionHome() {
   };
 
   return data && data.showSection && (
-    <motion.section className={s.instruction} ref={instructionRef} style={{ backgroundPositionY: bgPosition }}>
+    <motion.section className={s.instruction} ref={instructionRef} style={{ backgroundPositionY: bgPosition, backgroundImage: `url(${data.background})` }}>
       <LazyLoad className={s.hiden_video}>
         <video src={data.video} />
       </LazyLoad>

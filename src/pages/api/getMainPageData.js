@@ -1,24 +1,6 @@
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
 
-const pricingPreviewHome1 = `
-  *[_type == "homePage"][0] {
-    "pricingPreview": *[_type == "pricingPreviewHome"][0] {
-      title,
-      "cards": cards[] {
-        settings,
-        "table": table[] {
-          "tableHeaders": table.tableHeaders,
-          "tableRows": table.tableRows[].values {
-              name,
-              secondValues
-          }
-        }
-      }
-    }
-  }
-`;
-
 const pricingPreviewHome = `
   "pricingPreview": *[_type == "pricingPreviewHome"][0] {
       title,
@@ -103,6 +85,7 @@ const signUpInstruction = `
     showSection,
     buttonText,
     popUpText,
+    "background": background.asset->url,
     "video": video.asset->url,
   },
 `;

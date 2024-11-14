@@ -10,7 +10,7 @@ const PricingPage = dynamic(() => import('@/components/PricingPage/PricingPage')
 const Business = ({ data }) => {
   return (
     <>
-      <PageHead data={data} />
+      <PageHead data={data.seo} />
       <DataProvider url={URL_BUSINESS_PRICING}>
         <PricingPage type="business" theme="black"/>
       </DataProvider>
@@ -22,7 +22,7 @@ export default Business;
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch(URL_SEO_BASE, {
+    const response = await fetch(URL_BUSINESS_PRICING, {
       cache: "no-cache",
       revalidate: 100,
     });

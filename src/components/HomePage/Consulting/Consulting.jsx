@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import s from "./Consulting.module.scss";
 import clsx from "clsx";
-import { ButtonMain } from "@/utils/Button/Button";
+import { AnchorButtonMain, ButtonMain } from "@/utils/Button/Button";
 import { DataContext } from "@/lib/providers/DataProvider/context";
 
 export default function Consulting() {
@@ -57,7 +57,7 @@ export default function Consulting() {
         ))}
         <div className={s.faq_button}>
           <p className={s.text}>{data.consulting.buttonGroup.titleText}</p>
-          <ButtonMain link={data.consulting.buttonGroup.buttonLink} text={data.consulting.buttonGroup.buttonText} />
+          <AnchorButtonMain link={data.consulting.buttonGroup.buttonLink} text={data.consulting.buttonGroup.buttonText} />
         </div>
       </div>
     </motion.section>

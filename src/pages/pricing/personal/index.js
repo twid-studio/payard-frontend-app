@@ -11,7 +11,7 @@ const PricingPage = dynamic(() => import('@/components/PricingPage/PricingPage')
 const Personal = ({ data }) => {
   return (
     <>
-      <PageHead data={data} />
+      <PageHead data={data.seo} />
       <DataProvider url={URL_PERSONAL_PRICING}>
         <PricingPage />
       </DataProvider>
@@ -23,7 +23,7 @@ export default Personal;
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch(URL_SEO_BASE, {
+    const response = await fetch(URL_PERSONAL_PRICING, {
       cache: "no-cache",
       revalidate: 100,
     });

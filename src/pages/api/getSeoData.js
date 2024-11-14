@@ -3,6 +3,7 @@ import { sanityClient } from "../../../sanity";
 
 const query = groq`
   *[_type == "defaultSeo"][0] {
+    "pageTitle": seo.pageTitle,
     "metaTitle": seo.metaTitle,
     "openGraphImage": seo.openGraphImage.asset->url,
     "keywords": seo.keywords,

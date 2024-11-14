@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 export const PageHead = ({ data }) => {
+  const pageTitle = data?.pageTitle;
   const metaTitle = data?.metaTitle;
   const metaDescription = data?.metaDescription;
   const metaImage = data?.openGraphImage;
@@ -9,7 +10,7 @@ export const PageHead = ({ data }) => {
   return (
     <Head>
       {/* Basic Meta Tags */}
-      {metaTitle && <title>{metaTitle}</title>}
+      {metaTitle && <title>{pageTitle}</title>}
       {metaDescription && <meta name="description" content={metaDescription} />}
       {metaKeywords && <meta name="keywords" content={metaKeywords} />}
 

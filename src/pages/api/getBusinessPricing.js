@@ -1,5 +1,6 @@
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
+import { seoPage } from "./seoPage";
 
 const query = groq`
   *[_type == "pricingBusinessPage"][0] {
@@ -15,8 +16,9 @@ const query = groq`
         "tableRows": table.tableRows[] {
           values
         },
-      }
-    }
+      },
+    },
+  ${seoPage}
   }
 `;
 
