@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import s from "./Form.module.scss";
 import { ErrorMessage, Field, Form, Formik, getIn } from "formik";
 
@@ -15,6 +15,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import { anim, ContactAnim } from "@/lib/helpers/anim";
 import Link from "next/link";
+import { DataProvider } from "@/lib/providers/DataProvider/DataProvider";
+import { DataContext } from "@/lib/providers/DataProvider/context";
 
 const validationSchema = Yup.object({
   emailOrPhone: Yup.string()
@@ -56,6 +58,13 @@ export default function FormSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isAtTop, setIsAtTop] = useState(false);
 
+  const { data: allData } = useContext(DataContext);
+  const socials = allData.socials;
+  const form = allData.form.formText;
+  const sucessText = allData.form.sucessText;
+
+  // #region
+
   const contactRef = useRef();
 
   const { scrollYProgress } = useScroll({
@@ -76,22 +85,22 @@ export default function FormSection() {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      if(values) {
+      if (values) {
         const response = await fetch("/api/sendMailAPI", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(values)
-        })
+          body: JSON.stringify(values),
+        });
 
-        const result = await response.json()
+        const result = await response.json();
 
-        if(result.success) {
-          console.log("Success") 
-          console.log(values) 
+        if (result.success) {
+          console.log("Success");
+          console.log(values);
         } else {
-          console.log("Faile")
+          console.log("Faile");
         }
       }
     } catch (e) {
@@ -105,6 +114,8 @@ export default function FormSection() {
     }
   };
 
+  // #endregion
+
   return (
     <section className={s.contact_wrapper} ref={contactRef}>
       <motion.span style={{ clipPath }} className={s.bg} />
@@ -116,26 +127,26 @@ export default function FormSection() {
         })}
         id="contact"
       >
-        <Image src="/images/contact/sucessIcon.png" width={100} height={100} alt="" data-lazy-image />
+        <Image
+          src={sucessText.sucessIcon}
+          width={100}
+          height={100}
+          alt=""
+          data-lazy-image
+        />
         <div className={s.top}>
-          <h1>
-            Ping us,
-            <br />
-            we&#8217;re here for you
-          </h1>
+          <h1 dangerouslySetInnerHTML={{ __html: form.title }} />
           <p className={"shadow"}>
-            Our dedicated team says &quot;Hi&quot;! Reach out with any questions
-            or for support, and we&apos;ll ensure you get the assistance you
-            need
+            {form.subtitle}
           </p>
         </div>
         <AnimatePresence mode="wait">
           {isSubmitted && (
             <motion.div className={s.submited} {...anim(ContactAnim.sucess)}>
-              <h1>Thank you!</h1>
-              <p>Will get back to your shortly.</p>
+              <h1>{sucessText.sucessTitle}</h1>
+              <p>{sucessText.sucessSubtitle}</p>
               <motion.div {...anim(ContactAnim.sucessIcon)} className={s.icon}>
-                <Image src="/images/contact/sucessIcon.png" fill alt="" />
+                <Image src={sucessText.sucessIcon} fill alt="" />
               </motion.div>
             </motion.div>
           )}
@@ -186,9 +197,12 @@ export default function FormSection() {
                 />
               </motion.div>
               <div className={s.bottom}>
-                <Link scroll={false} href="/privacy/privacy-policy" className={"small-text shadow " + s.privacyLink}>
-                  By submitting this form, I confirm that I agree to Privacy
-                  Policy
+                <Link
+                  scroll={false}
+                  href={form.policyButton.link}
+                  className={"small-text shadow " + s.privacyLink}
+                >
+                  {form.policyButton.title}
                 </Link>
 
                 <motion.button
@@ -201,7 +215,7 @@ export default function FormSection() {
                       formik.isSubmitting || !formik.isValid || !formik.dirty,
                   })}
                 >
-                <span className={s.bg} />
+                  <span className={s.bg} />
                   Submit
                 </motion.button>
               </div>
@@ -210,9 +224,26 @@ export default function FormSection() {
         </Formik>
       </motion.div>
       <div className={s.socials}>
-        {downloadContent.map((currIcon, i) => (
-          <Link scroll={false} href={currIcon.link} key={i} target="_blank" className={s.item}>
-            <Image src={currIcon.icon} className={s.icon} alt="" fill />
+        {socials.downloadLinks.map((currIcon, i) => (
+          <Link
+            scroll={false}
+            href={currIcon.link}
+            key={i}
+            target="_blank"
+            className={s.item}
+          >
+            <Image src={currIcon.linkIcon} className={s.icon} alt="" fill />
+          </Link>
+        ))}
+        {socials.socialsLinks.map((currIcon, i) => (
+          <Link
+            scroll={false}
+            href={currIcon.link}
+            key={i}
+            target="_blank"
+            className={`${s.item} ${s.item_socials}`}
+          >
+            <Image src={currIcon.linkIcon} className={s.icon} alt="" fill />
           </Link>
         ))}
       </div>

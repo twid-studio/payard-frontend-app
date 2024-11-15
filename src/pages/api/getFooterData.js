@@ -20,8 +20,31 @@ const query = groq`
       type,
       link,
     },
+    "socials": socials {
+      "downloadLinks": downloadLinks[] {
+        name,
+        "linkIcon": linkIcon.asset->url,
+        link,
+      },
+      "socialsLinks": socialsLinks[] {
+        name,
+        "linkIcon": linkIcon.asset->url,
+        link,
+      }
+    },
+    "form": form {
+      "sucessText": sucessText {
+        sucessTitle,
+        sucessSubtitle,
+        "sucessIcon": sucessIcon.asset->url,
+      },
+      "formText": {
+        "title": formText.title,
+        "subtitle": formText.subtitle,
+        "policyButton": formText.formText,
+      },
+    },
     bottom,
-        //...
   }
 `;
 

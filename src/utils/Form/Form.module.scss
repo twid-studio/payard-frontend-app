@@ -112,7 +112,6 @@
         clip-path: none !important;
       }
     }
-
   }
 
   .top {
@@ -423,8 +422,7 @@
       height: VW(35, $mobile);
     }
 
-    &:nth-of-type(3),
-    &:nth-of-type(4) {
+    &_socials {
       width: VW(50);
 
       @include forTablet {

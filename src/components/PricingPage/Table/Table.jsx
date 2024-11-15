@@ -94,7 +94,7 @@ export default function TablePricing({ setIsFixedList, blackTheme }) {
                           ) : (
                             <h2 className={"shadow " + s.shadow}>━</h2>
                           )}
-                          {tableRow.values.secondValues.underTextSecond && (
+                          {tableRow.values.secondValues.underTextSecond && !tableRow.values.secondValues.switchField && (
                             <p>
                               {tableRow.values.secondValues.underTextSecond}
                             </p>

@@ -1,64 +1,12 @@
 import React, { useContext } from "react";
-import { Logo } from "../Logo/Logo";
 
 import s from "./Footer.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { AnchorLink } from "../AnchorLink/AnchorLink";
-import { DataProvider } from "@/lib/providers/DataProvider/DataProvider";
-import { URL_FOOTER } from "@/lib/helpers/DataUrls";
 import { DataContext } from "@/lib/providers/DataProvider/context";
 
-const linksList = {
-  anchor: [
-    {
-      text: "Banking",
-      link: "#banking",
-    },
-    {
-      text: "Services",
-      link: "#services",
-    },
-    {
-      text: "Consulting",
-      link: "#consulting",
-    },
-  ],
-  terms: [
-    {
-      text: "Fees & Commissions",
-      link: "/",
-    },
-    {
-      text: "Terms & Conditions",
-      link: "/privacy/terms-and-conditions",
-    },
-    {
-      text: "Privacy Policy",
-      link: "/privacy/privacy-policy",
-    },
-  ],
-  pricing: [
-    {
-      text: "For Business Account",
-      link: "/pricing/business",
-    },
-    {
-      text: "For Personal Account",
-      link: "/pricing/personal",
-    },
-  ],
-};
-
 export default function Footer() {
-  return (
-    <DataProvider url={URL_FOOTER}>
-      <FooterBody />
-    </DataProvider>
-  );
-}
-
-function FooterBody() {
   const { data } = useContext(DataContext);
 
   const adress = data.adress;
