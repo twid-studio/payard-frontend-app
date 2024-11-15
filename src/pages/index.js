@@ -11,7 +11,7 @@ const HomePage = dynamic(() => import('@/components/HomePage/HomePage'), {
 const Home = ({data}) => {
   return (
     <>
-      <PageHead data={data}/>
+      <PageHead data={data.seo}/>
       <DataProvider url={URL_HOME}>
         <HomePage />
       </DataProvider>
@@ -23,7 +23,7 @@ export default Home;
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch(URL_SEO_BASE, {
+    const response = await fetch(URL_HOME, {
       cache: "no-cache",
       revalidate: 100,
     });

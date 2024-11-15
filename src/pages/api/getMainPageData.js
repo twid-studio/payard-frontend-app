@@ -1,5 +1,6 @@
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
+import { seoPage } from "./seoPage";
 
 const pricingPreviewHome = `
   "pricingPreview": *[_type == "pricingPreviewHome"][0] {
@@ -26,7 +27,7 @@ const pricingPreviewHome = `
           }
         }
       }
-    }
+    },
 `;
 
 const heroCards = `
@@ -111,6 +112,7 @@ const query = groq`
     ${appInstruction}
     ${features} 
     ${pricingPreviewHome}
+    ${seoPage}
   }
 `;
 
