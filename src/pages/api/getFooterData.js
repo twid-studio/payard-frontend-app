@@ -33,6 +33,7 @@ const query = groq`
       }
     },
     "form": form {
+      email,
       "sucessText": sucessText {
         sucessTitle,
         sucessSubtitle,

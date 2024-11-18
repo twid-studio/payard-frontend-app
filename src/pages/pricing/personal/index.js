@@ -34,8 +34,6 @@ export async function getServerSideProps() {
 
     const data = await response.json();
 
-    console.log("DATA ===>", data);
-
     return { props: { data } };
   } catch (error) {
     console.error("Error fetching data:", error);

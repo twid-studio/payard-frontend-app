@@ -1,4 +1,4 @@
-import { URL_HOME, URL_SEO_BASE } from "@/lib/helpers/DataUrls";
+import { URL_HOME } from "@/lib/helpers/DataUrls";
 import { DataProvider } from "@/lib/providers/DataProvider/DataProvider";
 import { PageHead } from "@/utils/PageHead/PageHead";
 import dynamic from "next/dynamic";
@@ -33,8 +33,6 @@ export async function getServerSideProps() {
     }
 
     const data = await response.json();
-
-    console.log("DATA ===>", data);
 
     return { props: { data } };
   } catch (error) {

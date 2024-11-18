@@ -17,6 +17,7 @@ export default function UpcomingFeatures() {
             height={243}
             src="/images/features/Payard-Origami-Loader-25fps-243.gif"
             alt=""
+            unoptimized
           />
           <h1 className={"super-text second-tablet"}>Upcoming Features</h1>
         </div>
