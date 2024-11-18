@@ -1,10 +1,10 @@
 export async function getServerSideProps({ res }) {
-  const baseUrl = process.env.BASE_URL; // Fallback if not set
+  const baseUrl = process.env.BASE_URL;
 
   const staticRoutes = [
     "",
-    "/pricing/personal",
-    "/pricing/business",
+    "pricing/personal",
+    "pricing/business",
   ].map(route => `
     <url>
       <loc>${baseUrl}${route}</loc>
@@ -27,5 +27,5 @@ export async function getServerSideProps({ res }) {
 }
 
 export default function Sitemap() {
-  return null; // No rendering needed
+  return null;
 }
