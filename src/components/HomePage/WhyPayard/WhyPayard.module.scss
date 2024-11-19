@@ -1,11 +1,11 @@
 .why {
   background-color: $green-70;
-  // padding-bottom: 200vh;
   overflow: clip;
-
   margin-top: VW(230);
-position: relative;
-z-index: 10;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 10vh;
+
   @include forMobile {
     padding-bottom: 5vh;
   }
@@ -180,7 +180,10 @@ z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: VW(300);
+
+    @include forDesktop {
+      gap: VW(40);
+    }
 
     @include touch {
       gap: 0;
@@ -189,7 +192,8 @@ z-index: 10;
     .slide {
       border-bottom: 0.1vw solid $green-90;
       border-top: 0.1vw solid $green-90;
-      position: sticky;
+      // position: sticky;
+      position: relative;
       width: 100%;
       text-align: center;
       display: flex;
@@ -199,22 +203,22 @@ z-index: 10;
       height: VW(150);
       overflow: clip;
 
-      &:nth-of-type(1) {
-        top: 20%;
-        margin-bottom: 80vh;
-      }
-      &:nth-of-type(2) {
-        top: 40%;
-        margin-bottom: 60vh;
-      }
-      &:nth-of-type(3) {
-        top: 60%;
-        margin-bottom: 40vh;
-      }
-      &:nth-of-type(4) {
-        top: 80%;
-        margin-bottom: 20vh;
-      }
+      // &:nth-of-type(1) {
+      //   top: 20%;
+      //   margin-bottom: 80vh;
+      // }
+      // &:nth-of-type(2) {
+      //   top: 40%;
+      //   margin-bottom: 60vh;
+      // }
+      // &:nth-of-type(3) {
+      //   top: 60%;
+      //   margin-bottom: 40vh;
+      // }
+      // &:nth-of-type(4) {
+      //   top: 80%;
+      //   margin-bottom: 20vh;
+      // }
 
       @include hover {
         .title {
@@ -232,6 +236,7 @@ z-index: 10;
 
       @include touch {
         position: static;
+        border-bottom: 0;
         margin-bottom: 0 !important;
         height: auto;
 
@@ -239,17 +244,22 @@ z-index: 10;
         flex-direction: column;
         gap: VW(40);
         padding: VW(20) 0 VW(60);
+
+        &:nth-last-of-type(1) {
+          border-bottom: 0.1vw solid $green-90;
+        }
       }
 
       @include forTablet {
         position: static;
         margin-bottom: 0 !important;
+        width: auto;
         height: auto;
 
         display: flex;
         flex-direction: column;
         gap: VW(40, $tablet);
-        padding: VW(20, $tablet) 0 VW(60, $tablet);
+        padding: VW(20, $tablet) VW(35, $tablet) VW(60, $tablet);
       }
 
       @include forMobile {
@@ -313,7 +323,7 @@ z-index: 10;
           transform: translateY(0%) !important;
           position: static;
           height: auto;
-          width: 70%;
+          width: 80%;
         }  
         
         @include forMobile {

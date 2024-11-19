@@ -67,6 +67,7 @@ export default function TablePricing({ setIsFixedList, blackTheme }) {
                           className={s.table_item_image}
                           width={24}
                           height={24}
+                          alt="icon"
                         />
                       )}
                     </p>
