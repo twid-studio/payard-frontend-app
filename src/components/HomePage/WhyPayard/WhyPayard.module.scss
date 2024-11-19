@@ -31,8 +31,11 @@
 
     .icon {
       position: absolute;
-      display: none;
       scale: 2.2;
+      
+      & > img {
+        object-fit: contain;
+      }
 
       &_wrapper {
         position: absolute;
@@ -42,13 +45,13 @@
       &_1 {
         display: block;
         top: 8%;
-        left: 10%;
+        left: 14%;
         width: VW(173);
         height: VW(173);
         
         @include forTablet {
-          width: VW(200, $tablet);
-          height: VW(200, $tablet);
+          width: VW(150, $tablet);
+          height: VW(150, $tablet);
         }
         
         @include forMobile {
@@ -63,12 +66,12 @@
         left: -2%;
         width: VW(200);
         height: VW(262);
-        scale: 1.8;
+        scale: 1.6;
         
         @include forTablet {
           top: VW(450, $tablet);
-          width: VW(100, $tablet);
-          height: VW(162, $tablet);
+          width: VW(120, $tablet);
+          height: VW(132, $tablet);
         }
         
         @include forMobile {
@@ -146,16 +149,16 @@
       &_6 {
         display: block;
         top: 10%;
-        right: -2%;
+        right: 2%;
         width: VW(387.67);
         height: VW(262.49);
         scale: 1.4;
 
         @include forTablet {
           right: -2%;
-          top: 14%;
-          width: VW(287, $tablet);
-          height: VW(162, $tablet);
+          top: 18%;
+          width: VW(247, $tablet);
+          height: VW(202, $tablet);
         }
 
         @include forMobile {

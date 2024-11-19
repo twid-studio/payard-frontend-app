@@ -9,7 +9,7 @@ const queryC = new QueryClient();
 export default function App({ Component, pageProps, router }) {
   return (
     <>
-      <GoogleAnalytics gaId="G-XG58B9L0S1" />{" "}
+      <GoogleAnalytics gaId="G-XG58B9L0S1" />
       <div className="main">
         <QueryClientProvider client={queryC}>
           <AnimatePresence mode="wait">
