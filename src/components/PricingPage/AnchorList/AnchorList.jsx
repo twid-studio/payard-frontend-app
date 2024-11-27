@@ -70,8 +70,7 @@ export function FixedAnchorList({ blackTheme }) {
       },
       {
         // Adjust these values based on when you want the section to be considered "active"
-        threshold: 0.3,
-        rootMargin: "-20% 0px -20% 0px",
+        threshold: 0.2,
       }
     );
   
@@ -92,6 +91,7 @@ export function FixedAnchorList({ blackTheme }) {
       });
     };
   }, [data]);
+
   return (
     <motion.div
       {...anim(AnchorListAnim)}
