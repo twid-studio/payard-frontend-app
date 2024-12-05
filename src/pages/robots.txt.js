@@ -3,11 +3,17 @@ export async function getServerSideProps({ res }) {
 
   const robots = `
     User-agent: *
-    Allow: /
-    Disallow: /privacy/
+    Disallow: /
     
     Sitemap: ${baseUrl}sitemap.xml
   `;
+  // const robots = `
+  //   User-agent: *
+  //   Allow: /
+  //   Disallow: /privacy/
+    
+  //   Sitemap: ${baseUrl}sitemap.xml
+  // `;
 
   res.setHeader('Content-Type', 'text/plain');
   res.write(robots);
