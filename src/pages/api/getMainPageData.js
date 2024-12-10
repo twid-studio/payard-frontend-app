@@ -96,6 +96,7 @@ const appInstruction = `
     showSection,
     sectionText,
     "video": video.asset->url,
+    "mobileVideo": mobileVideo.asset->url,
   },
 `;
 

@@ -8,10 +8,12 @@ import { VideoPlayer } from "@/utils/VideoPlayer/VideoPlayer";
 import clsx from "clsx";
 import LazyLoad from "react-lazyload";
 import { DataContext } from "@/lib/providers/DataProvider/context";
+import useIsMobile from "@/lib/helpers/useIsMobile";
 
 export default function CTA() {
   const { scrollStop, scrollResume } = useContext(ScrollContext);
   const { data: allData } = useContext(DataContext);
+  const isMobile = useIsMobile();
 
   const data = allData?.appInstruction;
 
@@ -34,7 +36,11 @@ export default function CTA() {
     data.showSection && (
       <section className={s.cta}>
         <LazyLoad className={s.hiden_video}>
-          <video src={data.video} />
+          {isMobile ? (
+            <video src={data.mobileVideo} />
+          ) : (
+            <video src={data.video} />
+          )}
         </LazyLoad>
 
         <div className={s.phone}>
@@ -70,43 +76,7 @@ export default function CTA() {
           </motion.div>
 
           <AnimatePresence>
-            {isPlayerActive && (
-              <motion.div
-                className={s.video_main_wrapper}
-                layoutId="videoCta"
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <VideoPlayer customClass={s.video_main} url={data.video}>
-                  <span
-                    className={s.video_main_close}
-                    onClick={handlerClosePlayer}
-                  >
-                    <svg
-                      viewBox="0 0 23 23"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        x="21.2133"
-                        width="2"
-                        height="30"
-                        transform="rotate(45 21.2133 0)"
-                        fill="white"
-                      />
-                      <rect
-                        x="0.000366211"
-                        y="1.41406"
-                        width="2"
-                        height="30"
-                        transform="rotate(-45 0.000366211 1.41406)"
-                        fill="white"
-                      />
-                    </svg>
-                  </span>
-                </VideoPlayer>
-                <span className={s.bg} onClick={handlerClosePlayer} />
-              </motion.div>
-            )}
+            {isPlayerActive && <ShowVideo data={data} isMobile={isMobile} handlerClosePlayer={handlerClosePlayer}/>}
           </AnimatePresence>
 
           <p className={"shadow " + s.text}>{sectionText.text}</p>
@@ -115,3 +85,68 @@ export default function CTA() {
     )
   );
 }
+
+const ShowVideo = ({ data, isMobile, handlerClosePlayer }) => {
+  return (
+    <motion.div
+      className={s.video_main_wrapper}
+      layoutId="videoCta"
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {isMobile ? (
+        <VideoPlayer customClass={s.video_main} url={data.mobileVideo}>
+          <span className={s.video_main_close} onClick={handlerClosePlayer}>
+            <svg
+              viewBox="0 0 23 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="21.2133"
+                width="2"
+                height="30"
+                transform="rotate(45 21.2133 0)"
+                fill="white"
+              />
+              <rect
+                x="0.000366211"
+                y="1.41406"
+                width="2"
+                height="30"
+                transform="rotate(-45 0.000366211 1.41406)"
+                fill="white"
+              />
+            </svg>
+          </span>
+        </VideoPlayer>
+      ) : (
+        <VideoPlayer customClass={s.video_main} url={data.video}>
+          <span className={s.video_main_close} onClick={handlerClosePlayer}>
+            <svg
+              viewBox="0 0 23 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="21.2133"
+                width="2"
+                height="30"
+                transform="rotate(45 21.2133 0)"
+                fill="white"
+              />
+              <rect
+                x="0.000366211"
+                y="1.41406"
+                width="2"
+                height="30"
+                transform="rotate(-45 0.000366211 1.41406)"
+                fill="white"
+              />
+            </svg>
+          </span>
+        </VideoPlayer>
+      )}
+      <span className={s.bg} onClick={handlerClosePlayer} />
+    </motion.div>
+  );
+};
