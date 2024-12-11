@@ -5,6 +5,7 @@ import { ButtonBlack } from "@/utils/Button/Button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { anim, HeroCardPresence, TitleAnim } from "@/lib/helpers/anim";
 import { DataContext } from "@/lib/providers/DataProvider/context";
+import clsx from "clsx";
 
 export default function HeroHome() {
   
@@ -61,7 +62,10 @@ const Cards = () => {
   return (
     <div className={s.cards_wrapper}>
       {data.heroCards.map((currC, i) => (
-        <div className={s.card} key={i}>
+        <div className={clsx(s.card, {
+          [s.card__green]: currC?.title == "For persons",
+          [s.card__blue]: currC?.title == "For business",
+        })} key={i}>
           <h2 className={s.cardTitle}>{currC?.title}</h2>
           <div className={s?.popUp}>
             <p className={s.popUp_text}>{currC?.popUpText}</p>
