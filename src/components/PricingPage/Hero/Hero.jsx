@@ -5,6 +5,7 @@ import React, { useContext, useRef } from "react";
 
 import s from "./Hero.module.scss";
 import clsx from "clsx";
+import { TitlePresence } from "@/utils/TitlePresence/TitlePresence";
 
 export default function HeroPricing({ blackTheme }) {
   const { data } = useContext(DataContext);
@@ -41,23 +42,10 @@ export default function HeroPricing({ blackTheme }) {
         </motion.p>
       )}
       <motion.h1 className="super-text">
-        <Words text={data.title.split(" ")[0]} />
+        <TitlePresence text={data.title.split(" ")[0]} />
         <br />
-        <Words text={data.title.split(" ").splice(1).join(" ")} index={1} />
+        <TitlePresence text={data.title.split(" ").splice(1).join(" ")} index={1} />
       </motion.h1>
     </motion.section>
   );
 }
-
-const Words = ({ text, classNames, index = 0 }) => {
-  return text.split(" ").map((currWord, i) => (
-    <motion.span
-      key={i}
-      className={`${classNames}`}
-      {...anim(TitleAnim)}
-      custom={i + index}
-    >
-      {currWord}&nbsp;
-    </motion.span>
-  ));
-};

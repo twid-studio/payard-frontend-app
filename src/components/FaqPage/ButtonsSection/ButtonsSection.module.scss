@@ -1,0 +1,73 @@
+.buttonSection {
+  width: VW(980);
+  margin: VW(120) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: VW(120);
+  
+  @include forTablet {
+    width: VW(750, $tablet);
+    margin: 0 auto VW(100, $tablet);
+  }
+  
+  @include forMobile {
+    width: VW(360, $mobile);
+    margin: 0 auto VW(100, $mobile);
+    gap: VW(80, $mobile);
+  }
+
+  .getInTouch {
+    display: flex;
+    flex-direction: column;
+    gap: VW(20);
+    
+    @include forMobile {
+      gap: VW(20, $mobile);
+    }
+
+    .text {
+      padding-right: VW(80);
+      
+      @include forMobile {
+        padding-right: 0;
+      }
+    }
+
+    .button {
+      width: auto;
+      text-align: center;
+    }
+  }
+
+  .pricing {
+    display: flex;
+    flex-direction: column;
+    gap: VW(20);
+    
+    @include forMobile {
+      gap: VW(20, $mobile);
+    }
+
+    &_buttons {
+      display: flex;
+      gap: VW(40);
+      
+      @include forTablet {
+        gap: VW(40, $tablet );
+      }
+
+      @include forMobile {
+        flex-direction: column;
+      }  
+
+      .button {
+        width: 100%;
+        text-align: center;
+
+        @include forMobile {
+          width: auto;
+        }    
+      }
+    }
+  }
+}

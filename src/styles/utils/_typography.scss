@@ -144,6 +144,12 @@
 
   h2 {
     @extend %h2;
+
+    &.second-mobile {
+      @include forMobile {
+        font-size: VW(25, $mobile);
+      }
+    }
   }
 
   h3 {

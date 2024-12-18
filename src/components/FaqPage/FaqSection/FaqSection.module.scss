@@ -1,0 +1,58 @@
+.section {
+  position: relative;
+
+  &_title {
+    width: fit-content;
+    padding: VW(25);
+    border-radius: VW(20);
+    box-shadow: $boxShadow;
+    
+    @include forDesktop {
+      position: absolute;
+      top: 1vw;
+      left: VW(100);
+    }
+
+    @include forTablet {
+      margin: 0 0 VW(40, $tablet) VW(40, $tablet);
+      padding: VW(20, $tablet);
+      border-radius: VW(20, $tablet);
+    }
+
+    @include forMobile {
+      margin: 0 0 VW(30, $mobile) VW(15, $mobile);
+      padding: VW(20, $mobile);
+      border-radius: VW(13, $mobile);
+    }
+  }
+
+  &:nth-of-type(2n + 1) {
+    .section_title {
+      @include forDesktop {
+        rotate: 15deg;
+      }
+    }
+  }
+  &:nth-of-type(2n) {
+    .section_title {
+      @include forDesktop {
+        rotate: -15deg;
+      }
+    }
+  }
+
+  &_content {
+    width: VW(980);
+    margin: VW(120) auto 0;
+
+    @include forTablet {
+      width: VW(750, $tablet);
+      margin: 0 auto VW(100, $tablet);
+    }
+    
+    @include forMobile {
+      width: VW(360, $mobile);
+      margin: 0 auto VW(100, $mobile);
+    }
+  }
+}

@@ -6,6 +6,7 @@ import React, { useContext, useEffect } from "react";
 import s from "./PrivacyPage.module.scss";
 import { motion } from "framer-motion";
 import { anim, HeroCardPresence, TitleAnim } from "@/lib/helpers/anim";
+import { TitlePresence } from "@/utils/TitlePresence/TitlePresence";
 
 export default function PrivacyPage() {
   const { data } = useContext(DataContext);
@@ -19,7 +20,7 @@ export default function PrivacyPage() {
       <div className={s.content}>
         <div className={s.title_wrapper}>
           <h1 className="super-text">
-            <Words text={data.title} />
+            <TitlePresence text={data.title} />
           </h1>
           <motion.p className="shadow" {...anim(TitleAnim)} custom={1}>
             {data.subTitle}
@@ -39,16 +40,3 @@ export default function PrivacyPage() {
     </PageLayout>
   );
 }
-
-const Words = ({ text, classNames, index = 0 }) => {
-  return text.split(" ").map((currWord, i) => (
-    <motion.span
-      key={i}
-      className={`${classNames}`}
-      {...anim(TitleAnim)}
-      custom={i + index}
-    >
-      {currWord}&nbsp;
-    </motion.span>
-  ));
-};

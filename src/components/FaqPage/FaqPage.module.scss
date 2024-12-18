@@ -1,0 +1,20 @@
+.faqPage {
+  .title {
+    padding-top: VW(200);
+    width: VW(1080);
+    margin: 0 auto;
+    text-align: center;
+
+    @include forTablet {
+      padding-top: VW(200, $tablet);
+      width: VW(750, $tablet);
+      margin: 0 auto VW(50, $tablet);
+    }
+    
+    @include forMobile {
+      padding-top: VW(150, $mobile);
+      width: VW(360, $mobile);
+      margin: 0 auto VW(25, $mobile);
+    }
+  }
+}

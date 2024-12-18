@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { anim, HeroCardPresence, TitleAnim } from "@/lib/helpers/anim";
 import { DataContext } from "@/lib/providers/DataProvider/context";
 import clsx from "clsx";
+import { TitlePresence } from "@/utils/TitlePresence/TitlePresence";
 
 export default function HeroHome() {
   
@@ -31,9 +32,9 @@ export default function HeroHome() {
         style={{ scale: titleScale, filter: titleBlur }}
         className={`super-text ${s.title}`}
       >
-        <Words text="Banking beyond borders," />
+        <TitlePresence text="Banking beyond borders," />
         <br />
-        <Words classNames={`edgy ${s.op}`} index={1} text="made simple" />
+        <TitlePresence classNames={`edgy ${s.op}`} index={1} text="made simple" />
       </motion.h1>
       <motion.div style={{ y: cardY, }} {...anim(HeroCardPresence)} className={s.open_account} id="banking">
         <p>Open Account</p>
@@ -42,19 +43,6 @@ export default function HeroHome() {
     </section>
   );
 }
-
-const Words = ({ text, classNames, index = 0 }) => {
-  return text.split(" ").map((currWord, i) => (
-    <motion.span
-      key={i}
-      className={`${classNames}`}
-      {...anim(TitleAnim)}
-      custom={i + index}
-    >
-      {currWord}&nbsp;
-    </motion.span>
-  ));
-};
 
 const Cards = () => {
   const { data } = useContext(DataContext);

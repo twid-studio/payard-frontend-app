@@ -1,0 +1,149 @@
+.anchor_link {
+  margin: VW(40) auto 0;
+  padding: VW(14);
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  // gap: VW(5);
+
+  background: rgba(217, 217, 217, 0.2);
+  border: 0.1vw solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(VW(15));
+  border-radius: 100vw;
+
+  z-index: 9;
+  max-width: 90vw;
+
+  @include forTablet {
+    // position: sticky;
+    // top: 12vw;
+    margin: VW(60, $tablet) auto VW(60, $tablet);
+    padding: VW(5, $tablet);
+  }
+
+  @include forMobile {
+    // position: sticky;
+    // top: 18vw;
+    margin: VW(20, $mobile) auto VW(40, $mobile);
+    padding: VW(7, $mobile);
+    backdrop-filter: blur(VW(15, $mobile));
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    border-radius: 10vw;
+    position: absolute;
+    inset: VW(8);
+    z-index: -1;
+    background-color: #fff;
+  }
+
+  .scrollWrapper {
+    overflow-x: scroll;
+    display: flex;
+    width: max-content;
+    align-items: center;
+    border-radius: 10vw;
+
+
+    scrollbar-width: none; /* Firefox 64+ */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    &::-moz-scrollbar {
+      display: none; /* Firefox до версії 64 */
+    }
+  }
+  
+
+  &_fixed {
+    position: fixed;
+    left: 0%;
+    right: 0%;
+    z-index: 10;
+    bottom: 1vw;
+
+    display: flex;
+    align-items: center;
+
+    @include forTablet {
+      top: 4vw;
+      bottom: auto;
+    }
+    
+    @include forMobile {
+      top: 16vw;
+      bottom: auto;
+    }
+
+    .link {
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 32% 15%;
+        background-color: $green-100;
+        border-radius: 10vw;
+        filter: blur(0.5vw);
+        transition: all 0.3s $ease1;
+
+        opacity: 0;
+        scale: 0.8;
+      }
+
+      @include hover {
+        &::after {
+          filter: blur(1vw);
+          opacity: 1;
+          scale: 1;
+        }
+      }
+    }
+  }
+
+  .link {
+    position: relative;
+    z-index: 1;
+    padding: VW(15) VW(20);
+    cursor: pointer;
+
+    transition: color 0.4s ease;
+
+    text-wrap: nowrap;
+
+    @include forTablet {
+      padding: VW(20, $tablet) VW(25, $tablet);
+      font-size: VW(20, $tablet);
+    }
+
+    @include forMobile {
+      padding: VW(9, $mobile) VW(10, $mobile);
+      // font-size: VW(12, $mobile);
+      text-wrap: nowrap;
+    }
+
+    &_active {
+      // transition: color .3s .1s ease;
+      color: $c-white;
+    }
+
+    .text {
+      position: relative;
+      z-index: 100;
+      cursor: pointer;
+    }
+
+    .highlight {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: $green-100;
+      box-shadow: $boxShadow;
+      border-radius: 10vw;
+      cursor: pointer;
+    }
+  }
+}
