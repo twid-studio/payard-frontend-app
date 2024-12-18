@@ -63,8 +63,8 @@ export function FixedAnchorFaqList({ data }) {
       },
       {
         // Adjust these values based on when you want the section to be considered "active"
-        threshold: 0.2,
-      }
+        threshold: 0.5,
+        }
     );
 
     // Observe all sections

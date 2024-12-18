@@ -11,20 +11,17 @@ export default function FaqSection({ data }) {
   return data.map((section, index) => (
     <motion.section
       {...anim(HeroCardPresence)}
-      key={index}
+      key={`${section?.sectionTitle}__${index}`}
       className={s.section}
+      id={section?.sectionslug}
     >
-      <Title
-        color={section?.color}
-        title={section?.sectionTitle}
-        id={section?.sectionslug}
-      />
+      <Title color={section?.color} title={section?.sectionTitle} />
       <div className={s.section_content}>
         {section.list.map((currentItem, i) => (
           <FaqItem
             title={currentItem.title}
             body={currentItem.body}
-            key={`${index}_${i}`}
+            key={`${section?.sectionTitle}__${index}_${i}`}
             activeItem={activeItem}
             setActiveItem={setActiveItem}
             index={`${index}_${i}`}
@@ -37,7 +34,7 @@ export default function FaqSection({ data }) {
 
 const Title = ({ title, id, color }) => {
   return (
-    <h3 className={s.section_title} style={{ backgroundColor: color }} id={id}>
+    <h3 className={s.section_title} style={{ backgroundColor: color }}>
       {title}
     </h3>
   );

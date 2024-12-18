@@ -1,6 +1,6 @@
 import { DataContext } from "@/lib/providers/DataProvider/context";
 import { PageLayout } from "@/utils/PageLayout/PageLayout";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import s from "./FaqPage.module.scss";
 import { TitlePresence } from "@/utils/TitlePresence/TitlePresence";
@@ -33,14 +33,16 @@ export default function FaqPage() {
           <TitlePresence text={data.title} />
         </h1>
       </div>
-      <div ref={sectionRef}>
+      <div
+      ref={sectionRef}
+      >
         <AnimatePresence mode="wait">
           {isFixed && <FixedAnchorFaqList data={data.faqSections} />}
         </AnimatePresence>
         <AnchorFaqList data={data.faqSections} />
         <FaqSection data={data.faqSections} />
+        <ButtonsSection data={data.buttons} />
       </div>
-      <ButtonsSection data={data.buttons} />
     </PageLayout>
   );
 }
