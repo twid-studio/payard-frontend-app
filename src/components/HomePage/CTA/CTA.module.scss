@@ -123,11 +123,14 @@
 
     line-height: 90%;
 
+    transition: all 0.3s $BounceOut;
+
+
     @include hover {
-      .bg {
+      // .bg {
         scale: 1.1;
-        filter: blur(0.4vw);
-      }
+        // filter: blur(0.4vw);
+      // }
     }
 
     @include forTablet {
@@ -172,7 +175,8 @@
       }
 
       .buttonText {
-        pointer-events: none;
+        // pointer-events: none;
+        cursor: pointer;
 
         @include forDesktop {
           opacity: 0;

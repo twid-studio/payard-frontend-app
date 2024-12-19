@@ -14,18 +14,6 @@ export default function FaqPage() {
   const [isFixed, setIsFixed] = useState(false);
   const { data } = useContext(DataContext);
 
-  const sectionRef = useRef();
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["0% 0%", "100% 70%"],
-    layoutEffect: false,
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setIsFixed(latest > 0 && latest !== 1);
-  });
-
   return (
     <PageLayout className={s.faqPage}>
       <div className={s.title}>
@@ -33,16 +21,12 @@ export default function FaqPage() {
           <TitlePresence text={data.title} />
         </h1>
       </div>
-      <div
-      ref={sectionRef}
-      >
-        <AnimatePresence mode="wait">
-          {isFixed && <FixedAnchorFaqList data={data.faqSections} />}
-        </AnimatePresence>
-        <AnchorFaqList data={data.faqSections} />
-        <FaqSection data={data.faqSections} />
-        <ButtonsSection data={data.buttons} />
-      </div>
+      <AnimatePresence mode="wait">
+        {isFixed && <FixedAnchorFaqList data={data.faqSections} />}
+      </AnimatePresence>
+      <AnchorFaqList data={data.faqSections} />
+      <FaqSection data={data.faqSections} setIsFixed={setIsFixed} />
+      <ButtonsSection data={data.buttons} />
     </PageLayout>
   );
 }

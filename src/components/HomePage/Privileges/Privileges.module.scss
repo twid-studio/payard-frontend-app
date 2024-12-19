@@ -135,12 +135,14 @@
       }
 
       .text {
+        @include forDesktop {
+          padding-right: VW(150);
+        }
+
         @include forTablet {
           width: VW(500, $tablet);
         }
       }
     }
   }
-
-
 }

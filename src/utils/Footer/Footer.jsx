@@ -37,7 +37,8 @@ export default function Footer() {
           className={"bold text-hover " + s.adress}
         >
           <p>{adress.title}</p>
-          <p>{adress.text}</p>
+          <p dangerouslySetInnerHTML={{ __html: adress.text }}/>
+          {/* 208-14993, 101A AVE <br /> SURREY BC V3R 0T1 <br /> CANADA */}
         </Link>
 
         {p.map((currList, wrapperIndex) => (

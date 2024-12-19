@@ -57,7 +57,7 @@ const ScrollProviderContent = ({ children, scrollBar = true, wrapper }) => {
 
   const scrollTo = (target) => {
     if (lenis) {
-      const dynamicOffset = window.innerHeight * 0.15; // 10% of viewport height
+      const dynamicOffset = window.innerHeight * 0.16; // 10% of viewport height
       lenis.scrollTo(target, {
         duration: 2,
         offset: -dynamicOffset,

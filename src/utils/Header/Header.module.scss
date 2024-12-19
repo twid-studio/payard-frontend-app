@@ -186,6 +186,10 @@
     &__invert {
       transition: filter 0.3s 1s ease;
       filter: invert(1);
+
+      .log_in_buttons__button {
+        box-shadow: none !important;
+      }
     }
   }
 }

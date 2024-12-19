@@ -78,6 +78,7 @@ const HeaderBody = () => {
                 text={currButton.text}
                 target="_blank"
                 key={i}
+                addClass={s.log_in_buttons__button}
               />;
             case "black":
               return <ButtonBlack
@@ -85,6 +86,7 @@ const HeaderBody = () => {
                 text={currButton.text}
                 target="_blank"
                 key={i}
+                addClass={s.log_in_buttons__button}
               />;
             case "transparent":
               return <ButtonTransparent

@@ -9,7 +9,7 @@ export const TitlePresence = ({ text, classNames, index = 0 }) => {
       {...anim(TitleAnim)}
       custom={i + index}
     >
-      {currWord}&nbsp;
+      {currWord}{text.split(" ").length-1 !== i ? (<>&nbsp;</>) : null}
     </motion.span>
   ));
 };

@@ -1,5 +1,4 @@
 .faqItem {
-
   &:nth-last-of-type(1) {
     border-bottom: VW(1) solid $g-50;
   }
@@ -12,27 +11,28 @@
     padding: VW(30) 0;
     border-top: VW(1) solid $g-50;
     cursor: pointer;
-    transition: opacity .5s ease;
-    
+    transition: opacity 0.5s ease;
+
     @include forTablet {
       align-items: flex-start;
       padding: VW(20, $tablet) 0;
       gap: VW(250, $tablet);
     }
-    
+
     @include forMobile {
       align-items: flex-start;
       padding: VW(20, $mobile) 0;
-      gap: VW(25, $mobile);
+      gap: VW(20, $mobile);
     }
-  
+
     h2 {
       pointer-events: none;
+      width: fit-content;
     }
 
     &_line {
       width: 100%;
-      height: max(0.1vw, 1px);
+      height: max(VW(2), 2px);
       background-color: $c-black;
       position: absolute;
       top: 50%;
@@ -40,8 +40,8 @@
       pointer-events: none;
 
       transition-duration: 0.5s, 0.5s;
-        transition-property: rotate, scale;
-        transition-timing-function: $ease1, $BounceOut;
+      transition-property: rotate, scale;
+      transition-timing-function: $ease1, $BounceOut;
 
       &:nth-of-type(2) {
         rotate: -90deg;
@@ -58,27 +58,32 @@
         }
 
         @include forMobile {
-          width: VW(30, $mobile);
-          height: VW(30, $mobile);
+          width: VW(18, $mobile);
+          height: VW(18, $mobile);
         }
       }
     }
 
     @include hover {
-        opacity: 0.5;
-        &_line {
-          scale: 1.1;
-        }
+      opacity: 0.5;
+      &_line {
+        scale: 1.1;
+      }
     }
   }
 
   .body {
     overflow-y: hidden;
     overflow-x: visible;
-    transition: height .7s $ease1, opacity .5s ease;
+    transition:
+      height 0.7s $ease1,
+      filter 0.5s ease,
+      opacity 0.5s ease;
     height: 0;
     opacity: 0;
-    
+
+    filter: blur(.2vw);
+
     &_content {
       padding: 0 VW(100) VW(30) 0;
 
@@ -88,7 +93,9 @@
     }
 
     &_element {
-      ol, ul, li {
+      ol,
+      ul,
+      li {
         margin: revert !important;
         padding: revert !important;
         border: revert !important;
@@ -100,7 +107,11 @@
   &__active {
     .body {
       opacity: 1 !important;
-      transition: height .7s $ease1, opacity .5s .5s ease !important;
+      filter: blur(.0vw) !important;
+      transition:
+        height 0.7s $ease1,
+        filter 0.7s 0.5s $ease1,
+        opacity 0.5s 0.5s ease !important;
     }
     .head_line {
       &:nth-of-type(2) {

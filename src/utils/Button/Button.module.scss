@@ -6,12 +6,15 @@
   position: relative;
   z-index: 11;
 
+  box-shadow: $boxShadow;
+
+
   @include hover {
-    .bg {
-      scale: 1.1;
-      filter: blur(0.4vw);
-      opacity: 1 !important;
-    }
+    scale: 1.1;
+    // .bg {
+    //   scale: 1.1;
+    //   // filter: blur(0.4vw);
+    // }
   }
 
   @include forTablet {
@@ -29,7 +32,6 @@
     z-index: -1;
     border-radius: 10vw;
     transition: all 0.3s $BounceOut;
-    box-shadow: $boxShadow;
     cursor: pointer;
   }
 
@@ -46,13 +48,11 @@
   }
 
   &.transparentButton {
-    border: 0.1vw solid $c-black;
     color: $c-black;
     box-shadow: none;
-
+    
     .bg {
-      background-color: $green-70;
-      opacity: 0;
+      border: 0.1vw solid $c-black;
     }
   }
 }

@@ -48,7 +48,8 @@ export default function PrivilegesHome() {
               />
               <h2>{currI.title}</h2>
             </div>
-            <h3 className={s.text}>{currI.text}</h3>
+            {/* <h3 className={s.text}>{currI.text}</h3> */}
+            <p className={"shadow " + s.text}>{currI.text}</p>
           </li>
         ))}
       </ul>
