@@ -88,6 +88,7 @@ const signUpInstruction = `
     popUpText,
     "background": background.asset->url,
     "video": video.asset->url,
+    "mobileVideo": mobileVideo.asset->url,
   },
 `;
 
