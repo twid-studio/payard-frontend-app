@@ -12,6 +12,12 @@
       top: 1vw;
       left: VW(100);
     }
+    
+    @include forPortraitTablet {
+      position: absolute;
+      top: 1vw;
+      left: VW(100);
+    }
 
     @include forTablet {
       margin: 0 0 VW(40, $tablet) VW(40, $tablet);
@@ -26,9 +32,17 @@
     }
   }
 
+  &__white {
+    color: $c-white;
+  }
+
   &:nth-of-type(2n + 1) {
     .section_title {
       @include forDesktop {
+        rotate: 15deg;
+      }
+      
+      @include forPortraitTablet {
         rotate: 15deg;
       }
     }
@@ -36,6 +50,10 @@
   &:nth-of-type(2n) {
     .section_title {
       @include forDesktop {
+        rotate: -15deg;
+      }
+      
+      @include forPortraitTablet {
         rotate: -15deg;
       }
     }

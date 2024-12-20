@@ -1,6 +1,6 @@
 import { DataContext } from "@/lib/providers/DataProvider/context";
 import { AnchorLink } from "@/utils/AnchorLink/AnchorLink";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 
 import s from "./AnchorFaqList.module.scss";
 import clsx from "clsx";
@@ -14,17 +14,17 @@ export default function AnchorFaqList({ data }) {
     data && (
       <motion.div {...anim(BlurTitleAnim)} className={s.anchor_link}>
         <div className={s.scrollWrapper}>
-          {data.map((currentTable, index) => (
+          {data?.map((currentTable, index) =>  currentTable?.sectionTitle && (
             <AnchorLink
-              toSection={`#${currentTable.sectionslug}`}
+              toSection={`#${currentTable?.sectionslug}`}
               key={index}
               className={clsx(s.link, {
-                [s.link_active]: activeSection === currentTable.sectionslug,
+                [s.link_active]: activeSection === currentTable?.sectionslug,
               })}
-              onMouseEnter={() => setActiveSection(currentTable.sectionslug)}
+              onMouseEnter={() => setActiveSection(currentTable?.sectionslug)}
               onMouseLeave={() => setActiveSection(activeSection)}
             >
-              {activeSection === currentTable.sectionslug && (
+              {activeSection === currentTable?.sectionslug && (
                 <motion.span
                   transition={{
                     layout: {
@@ -36,7 +36,7 @@ export default function AnchorFaqList({ data }) {
                   layoutId="highlight"
                 />
               )}
-              <span className={s.text}>{currentTable.sectionTitle}</span>
+              <span className={s.text}>{currentTable?.sectionTitle}</span>
             </AnchorLink>
           ))}
         </div>
@@ -48,6 +48,8 @@ export default function AnchorFaqList({ data }) {
 export function FixedAnchorFaqList({ data }) {
   const [activeSection, setActiveSection] = useState(data[0]?.sectionslug);
   const [hoveredSection, setHoveredSection] = useState(null);
+
+  const scrollWrapper = useRef();
 
   useEffect(() => {
     // Create an Intersection Observer to track sections
@@ -69,8 +71,8 @@ export function FixedAnchorFaqList({ data }) {
 
     // Observe all sections
     const observedElements = [];
-    data.forEach((table) => {
-      const element = document.getElementById(table.sectionslug);
+    data?.forEach((table) => {
+      const element = document.getElementById(table?.sectionslug);
       if (element) {
         observer.observe(element);
         observedElements.push(element);
@@ -85,26 +87,33 @@ export function FixedAnchorFaqList({ data }) {
     };
   }, [data]);
 
+  useEffect(() => {
+    const element = document.getElementById(`${activeSection}__link`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [activeSection, scrollWrapper]);
+
   return (
     <motion.div
       {...anim(AnchorListAnim)}
       className={clsx(`${s.anchor_link} ${s.anchor_link_fixed}`, {})}
     >
-      <div className={s.scrollWrapper}>
-        {data.map((currentTable, index) => (
+      <div className={s.scrollWrapper} ref={scrollWrapper}>
+        {data?.map((currentTable, index) => currentTable?.sectionTitle && (
           <AnchorLink
-            toSection={`#${currentTable.sectionslug}`}
+            toSection={`#${currentTable?.sectionslug}`}
             key={index}
             className={clsx(s.link, {
               [s.link_active]:
-                activeSection === currentTable.sectionslug ||
-                hoveredSection === currentTable.sectionslug,
+                activeSection === currentTable?.sectionslug ||
+                hoveredSection === currentTable?.sectionslug,
             })}
-            // onMouseEnter={() => setHoveredSection(currentTable.sectionslug)}
+            // onMouseEnter={() => setHoveredSection(currentTable?.sectionslug)}
             // onMouseLeave={() => setHoveredSection(null)}
           >
-            {(activeSection === currentTable.sectionslug ||
-              hoveredSection === currentTable.sectionslug) && (
+            {(activeSection === currentTable?.sectionslug ||
+              hoveredSection === currentTable?.sectionslug) && (
               <motion.span
                 transition={{
                   layout: {
@@ -116,7 +125,7 @@ export function FixedAnchorFaqList({ data }) {
                 layoutId="highlightFixed"
               />
             )}
-            <span className={s.text}>{currentTable.sectionTitle}</span>
+            <span className={s.text} id={`${currentTable?.sectionslug}__link`}>{currentTable?.sectionTitle}</span>
           </AnchorLink>
         ))}
       </div>

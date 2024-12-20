@@ -46,7 +46,8 @@
     align-items: center;
     border-radius: 10vw;
 
-
+    scroll-behavior: smooth;
+    scroll-padding: 11vw;
     scrollbar-width: none; /* Firefox 64+ */
 
     &::-webkit-scrollbar {
