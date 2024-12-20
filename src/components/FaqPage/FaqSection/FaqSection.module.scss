@@ -72,5 +72,14 @@
       width: VW(360, $mobile);
       margin: 0 auto VW(100, $mobile);
     }
+
+    a {
+      text-decoration: underline;
+      transition: opacity .3s ease;
+
+      @include hover {
+        opacity: .6;
+      }
+    }
   }
 }
