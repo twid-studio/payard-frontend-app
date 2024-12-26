@@ -3,18 +3,18 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: VW(604);
+  height: VW(624);
   position: relative;
   z-index: 2;
 
   color: $c-black;
 
   @include forTablet {
-    height: VW(664, $tablet);
+    height: VW(684, $tablet);
   }
 
   @include forMobile {
-    height: VW(720, $mobile);
+    height: VW(740, $mobile);
   }
 
   background-color: $green-100;
