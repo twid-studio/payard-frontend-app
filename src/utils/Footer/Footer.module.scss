@@ -6,19 +6,28 @@
   height: VW(604);
   position: relative;
   z-index: 2;
-  margin-top: VW(140);
 
   color: $c-black;
 
   @include forTablet {
     height: VW(664, $tablet);
-    margin-top: VW(180, $tablet);
   }
 
   @include forMobile {
     height: VW(720, $mobile);
+  }
 
-    margin-top: VW(100, $mobile);
+  background-color: $green-100;
+
+  &_margin {
+    margin-top: VW(140);
+    @include forTablet {
+      margin-top: VW(180, $tablet);
+    }
+    @include forMobile {
+      margin-top: VW(100, $mobile);
+    }
+  
   }
 
   .top {

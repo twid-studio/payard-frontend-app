@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnchorLink } from "../AnchorLink/AnchorLink";
 import { DataContext } from "@/lib/providers/DataProvider/context";
+import clsx from "clsx";
 
-export default function Footer() {
+export default function Footer({ showedForm }) {
   const { data } = useContext(DataContext);
 
   const adress = data.adress;
@@ -28,7 +29,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={s.footer}>
+    <footer className={clsx(s.footer, {
+      [s.footer_margin]: showedForm
+    })}>
       <div className={"grid " + s.top}>
         <Link
           scroll={false}
@@ -38,7 +41,6 @@ export default function Footer() {
         >
           <p>{adress.title}</p>
           <p dangerouslySetInnerHTML={{ __html: adress.text }}/>
-          {/* 208-14993, 101A AVE <br /> SURREY BC V3R 0T1 <br /> CANADA */}
         </Link>
 
         {p.map((currList, wrapperIndex) => (

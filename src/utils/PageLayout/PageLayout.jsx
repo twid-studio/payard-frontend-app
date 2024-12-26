@@ -10,8 +10,10 @@ import { ScrollProvider } from "@/lib/providers/ScrollProvider/ScrollProvider";
 import Header from "../Header/Header";
 import { DataProvider } from "@/lib/providers/DataProvider/DataProvider";
 import { URL_FOOTER } from "@/lib/helpers/DataUrls";
+import DeletionForm from "../DeletionForm/DeletionForm";
+import clsx from "clsx";
 
-export const PageLayout = ({ children, ...rest }) => {
+export const PageLayout = ({ children, showForm = true, ...rest }) => {
   return (
     <ScrollProvider>
       <Header />
@@ -23,10 +25,12 @@ export const PageLayout = ({ children, ...rest }) => {
         <ScrollBar />
         {children}
         <DataProvider url={URL_FOOTER}>
-          <div className={s.page_bottom}>
+          <div className={clsx(s.page_bottom, {
+            [s.page_bottom_margin]: showForm
+          })}>
             <span className={s.bg} />
-            <FormSection />
-            <Footer />
+            {showForm && <FormSection />}
+            <Footer showedForm={showForm} />
           </div>
         </DataProvider>
       </motion.div>

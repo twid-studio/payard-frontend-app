@@ -1,13 +1,20 @@
 .page_bottom {
   position: relative;
   z-index: 12;
-  margin-top: VW(300);
+  
+  &_margin {
+    margin-top: VW(300);
 
-  @include forTablet {
-    margin-top: 0;
-  }
-  @include forMobile {
-    margin-top: 0;
+    @include forTablet {
+      margin-top: 0;
+    }
+    @include forMobile {
+      margin-top: 0;
+    }
+
+    .bg {
+      
+    }
   }
 
   .bg {

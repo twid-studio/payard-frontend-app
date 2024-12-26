@@ -7,7 +7,6 @@ const HomePage = dynamic(() => import('@/components/HomePage/HomePage'), {
   ssr: false,
 });
 
-
 const Home = ({data}) => {
   return (
     <>
