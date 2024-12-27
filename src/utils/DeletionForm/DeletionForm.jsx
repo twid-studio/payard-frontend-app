@@ -37,10 +37,8 @@ const validationSchema = Yup.object({
 
 export default function DeletionForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isAtTop, setIsAtTop] = useState(false);
 
   const { data: allData } = useContext(DataContext);
-  const socials = allData.socials;
   const form = allData.form.formText;
   const sucessText = allData.form.sucessText;
 
@@ -99,18 +97,10 @@ export default function DeletionForm() {
           data-lazy-image
         />
         <div className={s.top}>
-          <h1>
-          Write to us
-          <br />
-          to delete your account
-          </h1>
-          {/* <h1 dangerouslySetInnerHTML={{ __html: form.title }} /> */}
+          <h1 dangerouslySetInnerHTML={{ __html: form.title }} />
           <p className={"shadow"}>
-          All associated data will be permanently deleted.
-          </p>
-          {/* <p className={"shadow"}>
             {form.subtitle}
-          </p> */}
+          </p>
         </div>
         <AnimatePresence mode="wait">
           {isSubmitted && (

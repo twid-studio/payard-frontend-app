@@ -212,6 +212,9 @@
           max-width: 100%;
           min-height: VW(70);
           max-height: VW(170);
+          font: inherit;
+          line-height: 130%;
+
 
           @include forTablet {
             min-width: VW(630, $tablet);
@@ -221,7 +224,7 @@
 
             padding: VW(6, $mobile) VW(12, $mobile);
             border-radius: VW(5, $mobile);
-            font-size: VW(18, $mobile);
+            font-size: VW(18, $tablet);
           }
 
           @include forMobile {
@@ -229,7 +232,7 @@
             border-radius: VW(5, $tablet);
             min-width: VW(630, $tablet);
             max-width: VW(630, $tablet);
-            font-size: VW(18, $tablet);
+            font-size: VW(18, $mobile);
             min-height: VW(70, $tablet);
             max-height: VW(170, $tablet);
           }

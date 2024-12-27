@@ -11,3 +11,5 @@ export const URL_FAQ = URL_BASE + "getFaqPageData"
 
 export const URL_PRIVACY = URL_BASE + "getPrivacyData?slug="
 export const URL_SEO_BASE = URL_BASE + "getSeoData"
+
+export const URL_DELECTION = URL_BASE + "getDelectionFormData"
