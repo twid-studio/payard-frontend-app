@@ -1,7 +1,8 @@
 .hero {
   width: 100vw;
-  height: 110lvh;
-
+  height: auto;
+  aspect-ratio: 16/8;
+  
   background-color: $green-100;
   background-size: cover;
   background-attachment: fixed;
@@ -10,6 +11,7 @@
   
   @include forTablet {
     height: VW(864, $tablet);
+    aspect-ratio: auto;
   }
   
   @include forMobile {
@@ -20,7 +22,7 @@
 
   .title {
     position: absolute;
-    top: VW(240);
+    top: VW(220);
     width: 100%;
     text-align: center;
     color: $c-white;

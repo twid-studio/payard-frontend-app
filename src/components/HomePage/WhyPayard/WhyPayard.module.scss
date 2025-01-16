@@ -11,21 +11,21 @@
   }
 
   .hero {
-    height: 100vh;
+    aspect-ratio: 16 / 7.5;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     background: url("/images/whyPayard/bg.png") no-repeat center;
     position: relative;
+    height: auto;
 
     @include forTablet {
       aspect-ratio: 4/3;
-      height: auto;
     }
     
     @include forMobile {
       aspect-ratio: 3/4;
-      height: auto;
       background-size: cover;
     }
 
