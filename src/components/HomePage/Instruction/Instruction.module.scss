@@ -48,10 +48,7 @@
     line-height: 90%;
 
     @include hover {
-      .bg {
-        scale: 1.1;
-        filter: blur(0.4vw);
-      }
+      scale: 1.1;
     }
 
     @include forTablet {
@@ -97,8 +94,6 @@
       }
 
       .buttonText {
-        cursor: pointer;
-
         @include forDesktop {
           opacity: 0;
           transition: opacity 0.001s ease;
@@ -129,6 +124,7 @@
 
     .buttonText {
       transition: opacity 0.3s 0.5s ease;
+      cursor: pointer;
     }
   }
 

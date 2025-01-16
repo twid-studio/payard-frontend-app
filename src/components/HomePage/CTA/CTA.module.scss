@@ -175,8 +175,6 @@
       }
 
       .buttonText {
-        // pointer-events: none;
-        cursor: pointer;
 
         @include forDesktop {
           opacity: 0;
@@ -207,6 +205,7 @@
     }
 
     .buttonText {
+      cursor: pointer;
       transition: opacity 0.3s 0.5s ease;
     }
   }
