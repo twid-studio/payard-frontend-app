@@ -38,3 +38,5 @@ next-env.d.ts
 homePage.json
 
 /_tmp/
+
+*-lock.json
