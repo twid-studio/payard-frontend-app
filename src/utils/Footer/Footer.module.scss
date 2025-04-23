@@ -14,7 +14,7 @@
   }
 
   @include forMobile {
-    height: VW(740, $mobile);
+    height: VW(780, $mobile);
   }
 
   background-color: $green-100;
@@ -149,12 +149,16 @@
     }
 
     @include forMobile {
+      display: flex;
+      flex-direction: column;
+      gap: VW(10, $mobile);
       align-items: flex-start;
-      bottom: 0;
+      bottom: VW(20, $mobile);
+      left: VW(20, $mobile);
     }
 
     .trademark {
-      grid-column: 7/11;
+      grid-column: 7/12;
 
       @include forTablet {
         grid-column: 3/6;
@@ -179,7 +183,7 @@
         grid-column: 1/2;
         grid-row: 2/2;
         text-align: start;
-        transform: translateY(-100%);
+        // transform: translateY(-100%);
       }
     }
   }
@@ -202,7 +206,7 @@
     }
 
     @include forMobile {
-      bottom: VW(145, $mobile);
+      bottom: VW(175, $mobile);
       width: VW(360, $mobile);
     }
   }

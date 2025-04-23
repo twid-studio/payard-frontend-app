@@ -82,9 +82,13 @@ export default function Footer({ showedForm }) {
             "shadow small-text second-mobile second-tablet " + s.trademark
           }
         >
-          {bottom.trademark[0]}
-          <br />
-          {bottom.trademark[1]}
+          {bottom.trademark.map((curr, i) => (
+            <span key={i}>
+              {curr}
+              {i !== bottom.trademark.length - 1 && <br />}
+            </span>
+          ))}
+          
         </p>
         <Link
           scroll={false}
