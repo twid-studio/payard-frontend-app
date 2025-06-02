@@ -3,8 +3,8 @@ export async function getServerSideProps({ res }) {
 
   const staticRoutes = [
     "",
-    "pricing/personal",
-    "pricing/business",
+    "/pricing/personal",
+    "/pricing/business",
   ].map(route => `
     <url>
       <loc>${baseUrl}${route}</loc>

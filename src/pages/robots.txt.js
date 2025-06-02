@@ -3,7 +3,7 @@ export async function getServerSideProps({ res }) {
 
   const robots = `
     User-agent: *
-    Disallow: /
+    Disallow: /privacy
     
     Sitemap: ${baseUrl}sitemap.xml
   `;
