@@ -55,7 +55,7 @@ export default function ServicesHome() {
           }
         })}
       </div>
-      <Link scroll={false} href={data.services.buttonGroup.buttonLink || "/"} className={s.button}>
+      <Link scroll={true} href={data.services.buttonGroup.buttonLink || "/"} className={s.button}>
         <h2 className={s.buttonTitle}>{data.services.buttonGroup.titleText}</h2>
         <div className={s.buttonWrapper}>
           <ButtonMain link={data.services.buttonGroup.buttonLink || "/"} text={data.services.buttonGroup.buttonText} />

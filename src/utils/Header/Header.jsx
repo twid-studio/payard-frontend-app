@@ -40,7 +40,7 @@ const HeaderBody = () => {
         [s.header_active]: !isActive,
       })}
     >
-      <Link scroll={false} href="/" className={s.header__logo}>
+      <Link scroll={true} href="/" className={s.header__logo}>
         {pathname !== "/pricing/business" ? <Logo /> : <LogoWhite />}
       </Link>
 
@@ -163,7 +163,7 @@ const DropDown = ({ label, inside }) => {
             key={i}
             className={s.dropDownLink}
             onClick={() => setIsActive(false)}
-            scroll={false}
+            scroll={true}
           >
             {currItem.name}
           </Link>

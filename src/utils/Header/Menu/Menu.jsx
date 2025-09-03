@@ -101,7 +101,7 @@ export const Menu = ({ isActive, setIsActive }) => {
                           <Link
                             href={page}
                             onClick={(e) => handlerLinkScrollTo(currI.slug)}
-                            scroll={false}
+                            scroll={true}
                           >
                             <h1 className="second-mobile">{currI.title}</h1>
                           </Link>
@@ -139,7 +139,7 @@ export const Menu = ({ isActive, setIsActive }) => {
                         {currI.options.map((currL, i) => (
                           <Link
                             onClick={handleMenuClick}
-                            scroll={false}
+                            scroll={true}
                             key={i}
                             href={currL.slug}
                           >

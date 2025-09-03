@@ -34,7 +34,7 @@ export default function Footer({ showedForm }) {
     })}>
       <div className={"grid " + s.top}>
         <Link
-          scroll={false}
+          scroll={true}
           href={adress.link}
           target="_blank"
           className={"bold text-hover " + s.adress}
@@ -61,7 +61,7 @@ export default function Footer({ showedForm }) {
                   key={i}
                   href={curr.link.slug}
                   className="small-text text-hover"
-                  scroll={false}
+                  scroll={true}
                 >
                   {curr.link.title}
                 </Link>
@@ -91,7 +91,7 @@ export default function Footer({ showedForm }) {
           
         </p>
         <Link
-          scroll={false}
+          scroll={true}
           href={bottom.createdBy.slug}
           target="_blank"
           className={

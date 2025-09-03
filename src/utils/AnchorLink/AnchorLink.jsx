@@ -21,7 +21,7 @@ export const AnchorLink = ({ children, toSection, page, ...rest }) => {
   }
 
   return (page && pathname !== page) ? (
-    <Link href={page} onClick={handlerLinkScrollTo} scroll={false} {...rest}>
+    <Link href={page} onClick={handlerLinkScrollTo} scroll={true} {...rest}>
       {children}
     </Link>
   ) : (

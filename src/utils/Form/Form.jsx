@@ -198,7 +198,7 @@ export default function FormSection() {
               </motion.div>
               <div className={s.bottom}>
                 <Link
-                  scroll={false}
+                  scroll={true}
                   href={form.policyButton.link}
                   className={"small-text shadow " + s.privacyLink}
                 >
@@ -226,7 +226,7 @@ export default function FormSection() {
       <div className={s.socials}>
         {socials.downloadLinks.map((currIcon, i) => (
           <Link
-            scroll={false}
+            scroll={true}
             href={currIcon.link}
             key={i}
             target="_blank"
@@ -237,7 +237,7 @@ export default function FormSection() {
         ))}
         {socials.socialsLinks.map((currIcon, i) => (
           <Link
-            scroll={false}
+            scroll={true}
             href={currIcon.link}
             key={i}
             target="_blank"

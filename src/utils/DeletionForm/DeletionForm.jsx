@@ -154,7 +154,7 @@ export default function DeletionForm() {
               </motion.div>
               <div className={s.bottom}>
                 <Link
-                  scroll={false}
+                  scroll={true}
                   href={form.policyButton.link}
                   className={"small-text shadow " + s.privacyLink}
                 >

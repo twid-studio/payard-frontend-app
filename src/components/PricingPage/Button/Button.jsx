@@ -13,7 +13,7 @@ export default function ButtonPricing({ blackTheme }) {
     <div className={s.button_wrapper}>
       <Link
         href={`${buttonGroup.buttonLink}`}
-        scroll={false}
+        scroll={true}
         className={clsx(s.button, {
           [s.button_black]: blackTheme,
         })}

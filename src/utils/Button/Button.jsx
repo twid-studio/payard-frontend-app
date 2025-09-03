@@ -6,7 +6,7 @@ import { AnchorLink } from '../AnchorLink/AnchorLink';
 
 export const ButtonMain = ({ link, text, addClass }) => {
   return (
-    <Link scroll={false} href={link} className={`${s.button} ${s.mainButton} ${addClass}`}>
+    <Link scroll={true} href={link} className={`${s.button} ${s.mainButton} ${addClass}`}>
       <span className={s.bg} />
       {text}
     </Link>
@@ -24,7 +24,7 @@ export const AnchorButtonMain = ({ link, text, addClass, ...rest }) => {
 
 export const ButtonBlack = ({ link, text, addClass, ...rest }) => {
   return (
-    <Link scroll={false} href={link} className={`${s.button} ${s.blackButton} ${addClass}`} {...rest}>
+    <Link scroll={true} href={link} className={`${s.button} ${s.blackButton} ${addClass}`} {...rest}>
       <span className={s.bg} />
       {text}
     </Link>
@@ -33,7 +33,7 @@ export const ButtonBlack = ({ link, text, addClass, ...rest }) => {
 
 export const ButtonTransparent = ({ link, text, addClass, ...rest }) => {
   return (
-    <Link scroll={false} href={link} className={`${s.button} ${s.transparentButton} ${addClass}`} {...rest}>
+    <Link scroll={true} href={link} className={`${s.button} ${s.transparentButton} ${addClass}`} {...rest}>
       <span className={s.bg} />
       {text}
     </Link>

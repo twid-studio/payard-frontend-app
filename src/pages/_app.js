@@ -12,10 +12,8 @@ export default function App({ Component, pageProps, router }) {
       <GoogleAnalytics gaId="G-XG58B9L0S1" />
       <div className="main">
         <QueryClientProvider client={queryC}>
-          <AnimatePresence mode="wait">
-            <Component key={router.route} {...pageProps} />
-            <CookiePopUp />
-          </AnimatePresence>
+          <Component key={router.route} {...pageProps} />
+          <CookiePopUp />
         </QueryClientProvider>
       </div>
     </>
