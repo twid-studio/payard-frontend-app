@@ -73,7 +73,7 @@ const Table = ({ table }) => (
           ))}
           <span className={s.line} />
         </ul>
-        {currT.tableRows.map((currTableRow, j) => (
+        {currT.tableRows?.map((currTableRow, j) => (
           <ul className={s.tableWrapper} key={i + j}>
             <li className={s.tableItem}>{currTableRow.name}</li>
             <li className={s.tableItem}>
