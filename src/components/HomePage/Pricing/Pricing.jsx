@@ -63,7 +63,7 @@ const Table = ({ table }) => (
       <div className={s.table_content} key={i}>
         {currT.title && <h2>{currT.title}</h2>}
         <ul className={`${s.tableWrapper} ${s.tableTop}`}>
-          {currT.tableHeaders.map((currTableTop, indexTop) => (
+          {currT.tableHeaders?.map((currTableTop, indexTop) => (
             <li
               className={`${s.tableItem} shadow small-text second-mobile`}
               key={indexTop}
