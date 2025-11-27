@@ -1,0 +1,258 @@
+.bannerWrapper {
+  position: fixed;
+  top: VW(120);
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  @include forTablet {
+    top: VW(90, $tablet);
+  }
+
+  @include forMobile {
+    top: VW(80, $mobile);
+  }
+
+  .banner {
+    position: absolute;
+    left: 50.5%;
+    width: VW(820);
+    transform: translateX(-50%);
+    z-index: 1500;
+    background: rgba(217, 217, 217, 0.2);
+    border: 0.1vw solid rgba(0, 0, 0, 0.1);
+    box-shadow: $boxShadow;
+    backdrop-filter: blur(VW(15));
+    border-radius: VW(25);
+    padding: VW(8);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    opacity: 0;
+    animation: presence 0.5s 1.2s $ease1 forwards;
+
+    @include forTablet {
+      width: VW(320, $tablet);
+      border-radius: VW(30, $tablet);
+      flex-direction: column;
+      padding: VW(12, $tablet);
+    }
+
+    @include forMobile {
+      width: VW(330, $mobile);
+      border-radius: VW(20, $mobile);
+      flex-direction: column;
+      padding: VW(10, $mobile);
+    }
+
+    &_hidden {
+      animation: hide 0.5s $ease1 forwards;
+      pointer-events: none !important;
+    }
+
+    .cross {
+      position: absolute;
+      top: VW(14);
+      right: VW(14);
+      width: VW(40);
+      height: VW(40);
+      cursor: pointer;
+      transition: scale 0.3s $BounceOut;
+      
+      @include forTablet {
+        top: VW(14, $tablet);
+        right: VW(14, $tablet);
+        width: VW(44, $tablet);
+        height: VW(44, $tablet);
+      }
+      
+      @include forMobile {
+        top: VW(14, $mobile);
+        right: VW(14, $mobile);
+        width: VW(44, $mobile);
+        height: VW(44, $mobile);
+      }
+
+      @include hover {
+        scale: 1.1;
+      }
+    }
+
+    .bg {
+      position: absolute;
+      inset: VW(8);
+      background: $c-black;
+      z-index: -1;
+      border-radius: VW(20);
+
+      @include forTablet {
+        inset: VW(10, $tablet);
+        border-radius: VW(25, $tablet);
+      }
+
+      @include forMobile {
+        inset: VW(8, $mobile);
+        border-radius: VW(15, $mobile);
+      }
+    }
+
+    .image {
+      width: VW(450);
+      height: VW(410);
+
+      @include forTablet {
+        margin-top: VW(10, $tablet);
+        width: 100%;
+        height: auto;
+      }
+
+      @include forMobile {
+        margin-top: VW(30, $mobile);
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: VW(16);
+
+      margin: 0 VW(60) 0 VW(40);
+
+      @include forTablet {
+        margin: VW(10, $tablet) 0 VW(40, $tablet);
+        gap: VW(14, $tablet);
+      }
+
+      @include forMobile {
+        margin: VW(40, $mobile) 0 VW(50, $mobile);
+        gap: VW(14, $mobile);
+      }
+
+      .title {
+        font-size: VW(22);
+        line-height: 150%;
+        letter-spacing: -0.02em;
+
+        background: linear-gradient(90deg, #f9d863 0%, #ff5764 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+
+        @include forTablet {
+          font-size: VW(17, $tablet);
+        }
+
+        @include forMobile {
+          font-size: VW(24, $mobile);
+        }
+      }
+
+      .link {
+        color: $c-white;
+        border: 0.1vw solid #bdbdbd30;
+        padding: VW(12) VW(22);
+        border-radius: 10vw;
+        transition: all 0.3s ease;
+        
+        position: relative;
+        overflow: hidden;
+        
+        @include forTablet {
+          border-color:  #bdbdbd60;
+          padding: VW(15, $tablet) VW(70, $tablet);
+        }
+        
+        @include forMobile {
+          border-color:  #bdbdbd60;
+          padding: VW(15, $mobile) VW(50, $mobile);
+        }
+
+        span {
+          cursor: pointer;
+          position: relative;
+          z-index: 2;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background: linear-gradient(90deg, #f9d863 0%, #ff5764 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        @include hover {
+          border-color: transparent;
+          box-shadow: -10px 10px 30px 5px rgba(255, 126, 27, 0.2);
+          &::after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .crossMobile {
+    @include forDesktop {
+      display: none;
+    }
+    @include forPortraitTablet {
+      display: none;
+    }
+
+    position: absolute;
+    top: VW(10, $tablet);
+    left: 50%;
+    transform: translate(-50%, -150%);
+    width: VW(48, $tablet);
+    height: VW(48, $tablet);
+    opacity: 0;
+    animation: crossPresence 0.5s 1.5s $ease1 forwards;
+
+    &_hidden {
+      opacity: 0 !important;
+      transition: all 0.3s ease !important;
+      pointer-events: none !important;
+    }
+  }
+}
+
+@keyframes presence {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -20%);
+  }
+}
+
+@keyframes crossPresence {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

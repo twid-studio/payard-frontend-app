@@ -12,11 +12,13 @@ import { DataProvider } from "@/lib/providers/DataProvider/DataProvider";
 import { URL_FOOTER } from "@/lib/helpers/DataUrls";
 import DeletionForm from "../DeletionForm/DeletionForm";
 import clsx from "clsx";
+import { BlackFridayBanner } from "../BlackFridayBanner/BlackFridayBanner";
 
 export const PageLayout = ({ children, showForm = true, ...rest }) => {
   return (
     <ScrollProvider>
       <Header />
+      <BlackFridayBanner />
       <motion.div
         {...anim(PagePresenceAnim)}
         {...rest}
